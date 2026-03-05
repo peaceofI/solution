@@ -1,1 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>نور المعرفة | Islamic Knowledge</title>
 
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #0b5e3c;
+      --secondary: #f4f7f6;
+      --accent: #d4af37;
+      --dark: #102820;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: var(--secondary);
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--dark));
+      color: white;
+      padding: 2.5rem 1rem;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      background: white;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      padding: 0.6rem 1.4rem;
+      cursor: pointer;
+      font-size: 1rem;
+      border-radius: 25px;
+      transition: 0.3s;
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    nav button:hover,
+    nav button.active {
+      background: linear-gradient(135deg, var(--primary), var(--dark));
+      color: white;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 1.5rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+      border-left: 4px solid var(--accent);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card h3 {
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .card h3 a {
+      text-decoration: none;
+      color: #1f6f4a;
+      font-weight: 600;
+    }
+
+    .card h3 a:hover {
+      color: var(--dark);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+
+    footer span {
+      color: var(--accent);
+    }
+
+    .pattern {
+      height: 6px;
+      background: repeating-linear-gradient(
+        45deg,
+        var(--accent),
+        var(--accent) 10px,
+        transparent 10px,
+        transparent 20px
+      );
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>نور المعرفة</h1>
+  <p>Poems • Novels • Q&A • Thoughts • Knowledge</p>
+</header>
+
+<div class="pattern"></div>
+
+<nav>
+  <button class="active" onclick="showSection('poems', this)">Poems</button>
+  <button onclick="showSection('novels', this)">Novels</button>
+  <button onclick="showSection('qa', this)">Ques & Ans</button>
+  <button onclick="showSection('thoughts', this)">Thoughts</button>
+  <button onclick="showSection('about', this)">About me</button>
+</nav>
+
+<div class="container">
+
+<!-- Poems -->
+<section id="poems" class="content">
+  <div class="grid">
+    <div class="card"><h3><a href="a.html">Valo jodi hote caho</a></h3><p>Oneness of Allah.</p></div>
+
+    <div class="card"><h3> <a href="b.html">My Love</a></h3><p>namaj</p></div>
+
+    <div class="card"><h3><a href="c.html">Tumi agmir Omr</a></h3><p>Faith reflections.</p></div>
+
+    <div class="card"><h3><a href="d.html">Patience (Sabr)</a></h3><p>Endurance and trust.</p></div>
+    <!-- <div class="card"><h3>Hope in Allah</h3><p>Spiritual hope.</p></div>
+    <div class="card"><h3>Path to Jannah</h3><p>Reminders of akhirah.</p></div>
+    <div class="card"><h3>Heart & Soul</h3><p>Inner purification.</p></div>
+    <div class="card"><h3>Light After Darkness</h3><p>Trials & mercy.</p></div>
+    <div class="card"><h3>Trust in Qadr</h3><p>Divine decree.</p></div> -->
+  </div>
+</section>
+
+<!-- Novels -->
+<section id="novels" class="content hidden">
+  <div class="grid">
+    <div class="card"><h3><a href="yes.html">The Purpose of Life.</a></h3><p>Why this life for?.</p></div>
+
+    <div class="card"><h3> <a href="merit.html">Merit: The Ultimate Success</a></h3><p>Spiritual journey.</p></div>
+
+    <div class="card"><h3><a href="e.html">Idol for The Humanity (The Prophet ﷺ)</a></h3><p>The Following person For all sort of Followrs.</p></div>
+
+
+    <div class="card"><h3><a href="f.html">How to give pain to your Foe.</a></h3><p>Hidden  Methods</p></div>
+
+    <div class="card"><h3> <a href="g.html">The resoniblity of Evey man.</a>  </h3><p>Read in the Name of your lord</p></div>
+    <!-- <div class="card"><h3>Road to Salah</h3><p>Returning to prayer.</p></div>
+    <div class="card"><h3>Between Fear & Hope</h3><p>Balance in faith.</p></div>
+    <div class="card"><h3>The Last Call</h3><p>Reminder of akhirah.</p></div>
+    <div class="card"><h3>Steps of Guidance</h3><p>Seeking truth.</p></div>
+    <div class="card"><h3>The Chosen Way</h3><p>Islamic lifestyle.</p></div> -->
+  </div>
+</section>
+
+<!-- Ques & Ans -->
+<section id="qa" class="content hidden">
+  <div class="grid">
+    <div class="card"><h3><a href="h.html">THe key of your LIfe</a>.</h3><p>Core belief.</p></div>
+    <!-- <div class="card"><h3>Why Salah matters?</h3><p>Pillar of Islam.</p></div> -->
+    <!-- <div class="card"><h3>What is Imaan?</h3><p>Faith explained.</p></div>
+    <div class="card"><h3>Meaning of Sabr</h3><p>Patience.</p></div>
+    <div class="card"><h3>Power of Du’a</h3><p>Connection to Allah.</p></div>
+    <div class="card"><h3>Purpose of Life</h3><p>Islamic view.</p></div>
+    <div class="card"><h3>What is Taqwa?</h3><p>God-consciousness.</p></div>
+    <div class="card"><h3>Halal & Haram</h3><p>Guidelines.</p></div>
+    <div class="card"><h3>Why Tests?</h3><p>Trials explained.</p></div>
+    <div class="card"><h3>Path to Jannah</h3><p>Salvation.</p></div> -->
+  </div>
+</section>
+
+<!-- Thoughts -->
+<section id="thoughts" class="content hidden">
+  <div class="grid">
+    <div class="card"><h3><a href="n.html">My Thoughts</a></h3><p> Shering love of mine..</p></div>
+    <!-- <div class="card"><h3>Healing Hearts</h3><p>Trust Allah.</p></div>
+    <div class="card"><h3>Reminder to Self</h3><p>Self reflection.</p></div>
+    <div class="card"><h3>Between Hope & Fear</h3><p>Balance.</p></div>
+    <div class="card"><h3>Small Deeds</h3><p>Big rewards.</p></div> -->
+    <!-- <div class="card"><h3>Time & Akhirah</h3><p>Value time.</p></div>
+    <div class="card"><h3>Quiet Du’as</h3><p>Private prayers.</p></div>
+    <div class="card"><h3>Broken but Believing</h3><p>Faith healing.</p></div>
+    <div class="card"><h3>Light Within</h3><p>Iman glow.</p></div>
+    <div class="card"><h3>Returning Home</h3><p>Back to Allah.</p></div>
+  </div> -->
+</section>
+
+<!-- About -->
+<section id="about" class="content hidden">
+  <div class="card">
+    <h3>About Me</h3>
+    <p>
+      I am Abdur Rahim. This platform is created to spread Islamic knowledge,
+      reflections, poetry, and thoughts for the benefit of the Ummah.
+    </p>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <p>© 2026 | Built with <span>Abdur Rahim</span> | For the <span>Muslim Ummah</span></p>
+</footer>
+
+<script>
+function showSection(id, btn) {
+  document.querySelectorAll('.content').forEach(section => {
+    section.classList.add('hidden');
+  });
+  document.getElementById(id).classList.remove('hidden');
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>
+in this code add an image in the top left corner and it circular shape  
