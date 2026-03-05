@@ -1,0 +1,609 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merit / মেধা</title>
+
+    <style>
+        :root{
+            --primary:#1f3d3b;
+            --secondary:#3f6f6a;
+            --accent:#7a9e9a;   /* gray-green */
+            --bg:#f4f7f6;
+            --text:#1e1e1e;
+        }
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background: linear-gradient(120deg, #eef5f3, #f9fbfa);
+            color:var(--text);
+            line-height:1.7;
+        }
+
+        .container{
+            max-width:900px;
+            margin:40px auto;
+            background:#ffffff;
+            padding:40px;
+            border-radius:16px;
+            box-shadow:0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        h1{
+            text-align:center;
+            font-size:2.5rem;
+            color:var(--primary);
+            margin-bottom:20px;
+        }
+
+        h2{
+            color:var(--secondary);
+            margin-top:30px;
+            margin-bottom:10px;
+            border-left:5px solid var(--accent);
+            padding-left:10px;
+        }
+
+        h3{
+            color:var(--primary);
+            margin-top:25px;
+            margin-bottom:10px;
+        }
+
+        p{
+            margin:12px 0;
+            text-align:justify;
+        }
+
+        blockquote{
+            background:#eef5f4;
+            border-left:6px solid var(--accent);
+            padding:15px 20px;
+            margin:20px 0;
+            font-style:italic;
+            border-radius:8px;
+        }
+
+        span{
+            color: chocolate;
+        }
+
+        hr{
+            border:none;
+            height:1px;
+            background:linear-gradient(to right, transparent, var(--accent), transparent);
+            margin:35px 0;
+        }
+
+        span{
+            color:var(--accent);
+            font-weight:600;
+        }
+
+        i{
+            color:#2e5f5a;
+        }
+
+        .lang-btn{
+            display:block;
+            margin:0 auto 30px auto;
+            padding:12px 26px;
+            font-size:1rem;
+            border:none;
+            border-radius:30px;
+            cursor:pointer;
+            background:linear-gradient(135deg, var(--secondary), var(--primary));
+            color:#fff;
+            transition:0.3s ease;
+            box-shadow:0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .lang-btn:hover{
+            transform:translateY(-2px);
+            box-shadow:0 12px 28px rgba(0,0,0,0.2);
+        }
+
+        footer{
+            text-align:center;
+            margin-top:40px;
+            font-size:0.9rem;
+            color:#666;
+        }
+
+        @media(max-width:768px){
+            .container{
+                padding:25px;
+            }
+            h1{
+                font-size:2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <button id="langBtn" class="lang-btn" onclick="toggleLanguage()">ভাষা পরিবর্তন করুন / Change Language</button>
+
+    <div id="bn" style="display:none;">
+        <h1>মেধা: চূড়ান্ত সাফল্য</h1>
+
+        <h3>আসসালামু আলাইকুম, আমার ভাই ও বোনেরা</h3>
+
+        <p>
+            আমি আশা করি আপনারা সবাই ভালো আছেন।
+        </p>
+
+        <blockquote>
+            ওহ, সে কতই না মেধাবী!
+            আমাকেও তার মতো হতে হবে।
+        </blockquote>
+
+        <p>
+            বেশিরভাগ সময়, আমরা আমাদের কৌতূহল প্রকাশ করতে এই ধরনের বাক্য ব্যবহার করি।
+            কখনও কখনও আমরা মনে করি আল্লাহ অন্যদের তুলনায় আমাদের কম জ্ঞান বা কম প্রজ্ঞা দিয়েছেন।
+            তাই, আমরা যদি কিছু ভালো বা উন্নত করার চেষ্টা করি, কোনো অগ্রগতি হবে না।
+            আমাদের ক্ষুদ্র মস্তিষ্কে এই ধরনের চিন্তাভাবনা থাকে।
+        </p>
+
+        <hr>
+
+        <h2>কুরআন ও ইতিহাসের আলোকে জেনে নিই এই ধরনের বক্তব্য কতটুকু সত্য।</h2>
+
+        <h2>কুরআন</h2>
+
+        <p>
+            সূরা আল-বাকারায় (২:৩০) বর্ণিত আয়াতে বলা হয়েছে:
+        </p>
+
+        <blockquote>
+            নিশ্চয়ই আমি পৃথিবীতে আমার প্রতিনিধি (খলিফা) পাঠাব।
+        </blockquote>
+
+        <p>
+            এবার একটু অপেক্ষা করুন। তিনি কী ধরনের প্রতিনিধি?
+            একটি যৌক্তিক প্রশ্ন।
+            উত্তরটি সহজবোধ্য।
+            প্রতিনিধি (খলিফা) শব্দের অর্থ হল এমন একজন ব্যক্তি যিনি আল্লাহ তাআলার আইন-কানুন এবং আমাদের প্রিয় নবী মুহাম্মদ (সা.)-এর হাদীসের প্রতিনিধিত্ব করবেন।
+        </p>
+
+        <p>
+            সুতরাং, কুরআন অনুসারে এটি খুবই স্পষ্ট যে আল্লাহ আমাদের এই বড় দায়িত্ব ও কর্তব্য পালনের জন্য যথেষ্ট প্রজ্ঞা ও জ্ঞান দিয়েছেন।
+            আমাদের জন্য এ কথা বলার কোনো সুযোগ নেই যে আমরা কম জ্ঞানী বা আমাদের মেধা অন্যদের চেয়ে কম।
+        </p>
+
+        <hr>
+
+        <h2>ইতিহাস</h2>
+
+        <h3>জন ডি. রকফেলার</h3>
+
+        <p>
+            আপনি জন ডি. রকফেলারের নাম শুনে থাকবেন।
+            শুরুতে তিনি আমেরিকাতে আলুর ক্ষেতে কাজ করতেন, মাত্র ৪ সেন্ট বেতন পেতেন।
+            তিনি বুঝতে পেরেছিলেন যে, চূড়ান্ত সাফল্যের সারমর্ম আনতে পারে এমন একটি মাত্র পথ, একটি কৌশল আছে।
+        </p>
+
+        <p>
+           আর সে তা করে দেখিয়েছে।
+
+তার জীবনের ৬০ বছর আগে, সে ২ বিলিয়ন ডলারের মালিক ছিল।
+এমনকি তার সম্পদ প্রতি মিনিটে ১০০ ডলার করে বৃদ্ধি পাচ্ছে,
+যা প্রতিদিন প্রায় ৭২ লক্ষ টাকা।
+        </p>
+
+        <p>
+            তিনি মুসলিম ছিলেন না, কিন্তু তিনি মদপান করতেন না, নাচতেন না,
+            তবে তিনি ছিলেন একজন পরিশ্রমী ব্যক্তি যিনি জানতেন যে সাফল্যের একমাত্র চাবিকাঠি
+            হলো কঠোর পরিশ্রম করা এবং জীবনের সংগ্রামের মুখোমুখি হওয়া।
+        </p>
+
+        <h3>সৈয়দ আব্দুস সামাদ</h3>
+
+        <p>
+            আমরা বিভিন্ন বিভাগে অনেক কিংবদন্তিকে দেখেছি,
+            কিন্তু এই কিংবদন্তি অন্যদের থেকে আলাদা।
+            একজন ফুটবল কিংবদন্তি যিনি তার উত্তরাধিকার দিয়ে গোটা বিশ্বকে হতবাক করেছিলেন।
+        </p>
+
+        <p>
+            তার জন্ম ১৮৯৫ সালে।
+            একবার, তিনি এবং তার দল ব্রিটিশদের বিরুদ্ধে খেলতে গিয়েছিলেন।
+            ব্রিটেন ফুটবলের জন্মভূমি হিসেবে পরিচিত।
+            ম্যাচটি লন্ডন স্টেডিয়ামে খেলা হয়।
+        </p>
+
+        <p>
+            মজার ঘটনা ঘটে যখন তিনি গোলপোস্টের দিকে একটি কিক করলেন,
+            কিন্তু দুর্ভাগ্যবশত বল ফিরে এলো।
+            সাইদ ছিলেন একগুঁয়ে।
+            তিনি দাবি করলেন যে এটি একটি নির্ভুল গোল ছিল কারণ প্রতিপক্ষের গোলপোস্টটি কিছুটা নিচু ছিল।
+        </p>
+
+        <p>
+            প্রথমে রেফারি তার কথা মানতে অস্বীকৃতি জানাল।
+            পরে, যখন রেফারি গোলপোস্টটি মাপল,
+            দেখা গেল সেটি সত্যিই ১.৫ ইঞ্চি নিচু।
+        </p>
+
+        <p>
+            আমরা যদি তার জীবনী দেখি, বুঝতে পারব ফুটবলের সাথে তার সম্পর্ক
+            ছিল চুম্বকীয় আকর্ষণের মতো।
+            তিনি প্রতিষ্ঠা করেছিলেন এই মূলমন্ত্র:
+            <i>“অনুশীলন মানুষকে নিখুঁত করে।”</i>
+        </p>
+
+        <h3>ফেরিস এলজার</h3>
+
+        <p>
+       
+
+            বর্তমান পৃথিবীর সবচেয়ে মেধাবী মানুষটি হচ্ছে আমেরিকার পেনসিলভিনিয়া রাজ্যের ফেরিস এলগার। 
+            ৮৬ বৎসর বয়সী এ অসাধারণ মানুষটি স্কুল কলেজের আনুষ্ঠানিক শিক্ষা না নিয়েও অনেক বিস্ময়কর কান্ড করেছেন। 
+            আই .কিউ টেস্ট বা বুদ্ধিমাপক পরীক্ষায় ফেরীসের বুদ্ধাংক ২০০ এর মধ্যে ১৯৭। 
+            প্রতি একশ কোটি মানুষের ভিতর মাত্র একজন বুদ্ধাংক ১৯৩ এর উপর হওয়ার সম্ভাবনা থাকে।
+             সে হিসাবে পৃথিবীর বর্তমান প্রায় ৬শ কোটি মানুষের ভিতর ফেরীসের মতো মাত্র ৬ জন লোক থাকার কথা।
+              কিন্তু জন্মগতভাবে বুদ্ধি ও মেধার ক্ষেত্রে ফেরীসের কোন প্রতিদ্বন্দ্বী নেই বললেই চলে। 
+              প্রকৃতপক্ষে ফেরীস একজন সুপার জিনিয়াস,
+             ওর বুদ্ধি সাধারণ একজন মানুষের তিনগুণ | প্রতিভাবানদের দ্বিগুণ। 
+
+
+
+        </p>
+
+        <p>
+            তার আইকিউ ছিল ২০০-এর মধ্যে ১৯৭।
+            আপনি কি জানেন মেধা সম্পর্কে তিনি কী বলেছিলেন?
+        </p>
+
+        <blockquote>
+            মেধা হলো শুধুই কঠোর পরিশ্রম।
+            মেধা বিকাশের জন্য কঠোর পরিশ্রমের কোনও বিকল্প নেই।
+        </blockquote>
+
+        <p>
+            সুতরাং, বন্ধুরা, এখন কি আপনারা উপলব্ধি করতে পারছেন যে মেধা নামক কোনো কিছুই নেই?
+        </p>
+
+        <hr>
+
+        <h2>
+            এখন প্রশ্ন হলো: কার মতো আমাদের পরিশ্রমী হতে হবে?
+        </h2>
+
+        <p>
+            আমি আপনাদের বলছি পরিশ্রমী হতে,
+            কিন্তু একজন আদর্শ ব্যক্তিত্ব থাকাও একটি যৌক্তিক প্রয়োজন।
+        </p>
+
+        <h3>আল-কিন্দি</h3>
+
+        <p>
+            আল-কিন্দি হলেন পরিশ্রমের আদর্শ।
+            ইতিহাসে তাকে "আল-ফাইলাসুফ" বা "মহান দার্শনিক" হিসেবে পরিচিত করা হয়।
+        </p>
+
+        <p>
+            তিনি পবিত্র কুরআন, হাদীস, ফিকহ, ইতিহাস, দর্শন,
+            ভাষাবিজ্ঞান, রাজনীতি, চিকিৎসা বিজ্ঞান, পদার্থবিজ্ঞান, গণিত, জ্যোতির্বিদ্যা,
+            এবং সঙ্গীত বিষয়ে দক্ষ ছিলেন।
+        </p>
+
+        <p>
+            তিনি ১২টি পৃথক ক্ষেত্রে দক্ষতা অর্জন করেছিলেন
+            এবং ৬টি ভাষায় দক্ষতা অর্জন করেছিলেন:
+            সংস্কৃত, আরবি, হিব্রু, ইরানীয় এবং সিরিয়াক।
+            তিনি কমপক্ষে ২৬৫টি বই লিখেছিলেন।
+        </p>
+
+        <hr>
+
+        <h3>আল-রাযী</h3>
+
+        <p>
+            মুসলমানদের মধ্যে, চিকিৎসা বিজ্ঞানে যিনি এক মহান বিপ্লব ঘটিয়েছেন
+            তিনি আল-রাযী নামে পরিচিত।
+            যদিও তিনি রসায়ন নিয়ে গবেষণা করতেন,
+            তবুও চিকিৎসা বিজ্ঞানে তার বিশাল অবদান রয়েছে।
+        </p>
+
+        <p>
+            তিনি কমপক্ষে ২০০টি বই লিখেছেন,
+            যার মধ্যে ১০০টিরও বেশি চিকিৎসা বিজ্ঞানের সাথে সম্পর্কিত।
+        </p>
+
+        <p>
+            তার বিখ্যাত বই <i>আল-জুদারি ওয়া আল-হাসাবাহ</i>
+            ল্যাটিন ও ইউরোপীয় ভাষায় অনুবাদ করা হয়েছিল।
+            ইংরেজিতে, এটি ১৪৯৮ থেকে ১৮৬৬ সাল পর্যন্ত ৪০ বার মুদ্রিত হয়েছিল।
+        </p>
+
+        <p>
+            আরেকটি মহান কাজ হলো <i>আল-হাউই</i>,
+            যা রোগের একটি ব্যাপক বই,
+            যেখানে তিনি গভীর চিন্তা ও স্পষ্ট ব্যাখ্যাসহ
+            ওষুধের বর্ণনা দিয়েছেন।
+        </p>
+
+        <blockquote>
+            জ্ঞানার্জনের আমার তীব্র অনুপ্রেরণার কারণে,
+            আমি ২০,০০০ পৃষ্ঠার একটি প্রবন্ধ লিখেছিলাম
+            (প্রায় দৈনিক ৬০ পৃষ্ঠা)।
+            কঠোর পরিশ্রমের কারণে আমি দৃষ্টিশক্তি হারিয়েছিলাম,
+            কিন্তু আজও আমি অন্যদের মাধ্যমে বই পড়ি
+            এবং প্রবন্ধ লেখা চালিয়ে যাচ্ছি।
+        </blockquote>
+
+        <h3>
+            সুতরাং, আমার ভাই ও বোনেরা,
+            এখন আপনারা উপলব্ধি করতে পারছেন যে কম জ্ঞান বা কম প্রজ্ঞা সম্পর্কিত
+            আপনাদের সকল অজুহাত উপযুক্ত নয়।
+            এবং সর্বদা এটি মনে রাখবেন:
+        </h3>
+
+        <blockquote>
+            যদি আল্লাহ আপনাকে সাহায্য করেন, কেউই আপনাকে বাধা দিতে পারবে না।
+            কিন্তু যদি আল্লাহ আপনাকে পরিত্যাগ করেন,
+            তাহলে কে আছে আপনাকে সাহায্য করার?
+        </blockquote>
+    </div>
+
+    <div id="en" style="display:block;">
+        <h1>Merit: The Ultimate Success</h1>
+
+        <h3>Assalamu Alaikum, my brothers and sisters</h3>
+
+        <p>
+            I wish that you all are fine.
+        </p>
+
+        <blockquote>
+            Oh, how meritorious he is!  
+            I have to be like him/her.
+        </blockquote>
+
+        <p>
+            Most of the time, we use these statements in order to express our curiosity.
+            Sometimes, we think that Allah has given us low knowledge or less wisdom compared with others.
+            So, if we try to do something well or better, no development will be gained.
+            This is our thinking in our tiny brain.
+        </p>
+
+        <hr>
+
+        <h2>Let us know how true these kinds of statements are according to the Quran and History.</h2>
+
+        <h2>Quran</h2>
+
+        <p>
+            In the verse mentioned in Surah Al-Baqarah (2:30):
+        </p>
+
+        <blockquote>
+            Indeed, I will send My representative (Khalifa) in the world.
+        </blockquote>
+
+        <p>
+            Now wait for a bit. Which kind of representative is he?
+            A great rational question.
+            The answer is easy to understand.
+            The word representative (Khalifa) means a person who will represent the laws and rules of Allah Almighty
+            and the Hadith of our beloved Prophet Muhammad (SAW).
+        </p>
+
+        <p>
+            So, according to the Quran, it is too clear that Allah has given us enough wisdom and knowledge
+            to hold this major duty and responsibility.
+            There is no chance left for us to say that we are low knowledgeable
+            or that our merit is less than others.
+        </p>
+
+        <hr>
+
+        <h2>History</h2>
+
+        <h3>John D. Rockefeller</h3>
+
+        <p>
+            You may have heard the name of John D. Rockefeller.
+            In the beginning, he worked in potato fields in America, having only 4 cents as salary.
+            He understood that there is only one way to  achieve success  is to do Hard Work
+        </p>
+
+        <p>
+            And he did it.
+            Before  60 years of his life, he owned 2 billion dollars.
+            Even his wealth is increasing by 100 dollars in  every single minute,
+            which is approximately 72 lakhs a day.
+        </p>
+
+        <p>
+            He was not a Muslim, but he did not take alcohol, he did not dance,
+            but he was an industrious person who knew that the only key to success
+            is doing hard work and facing struggle in life.
+        </p>
+
+        <h3>Sayeed Abdus Samad</h3>
+
+        <p>
+            We have seen many legends in different categories,
+            but this legend is different from others.
+            A football legend who shocked the whole world by his legency.
+        </p>
+
+        <p>
+            He was born in 1895.
+            Once, he and his team went to play against the British.
+            Britain is known as the birthplace of football.
+            The match was played in London Stadium.
+        </p>
+
+        <p>
+            The interesting incident happened when he made a kick towards the goalpost,
+            but unfortunately, the ball returned back.
+            Sayeed was stubborn.
+            He demanded that it was an accurate goal because the opponent’s goalpost was a bit lower.
+        </p>
+
+        <p>
+            At first, the referee denied his words.
+            Later, when the referee measured the goalpost,
+            it was really <b>1.5</b> inches lower.
+        </p>
+
+        <p>
+            If we see his biography, we can understand that his connection with football
+            was like a magnetic attraction.
+            He established  nothing but the maxim:
+            <i>“Practice makes a man perfect.”</i>
+        </p>
+
+        <h3>Ferris Elgar</h3>
+
+        <p>
+           In the present world, The highest genius man is <i>Ferris Elgar,</i>
+           from Pennslyvania of America. This 86 years old man  held a lot of 
+           amazing  things unless taking any formal  institutional education.
+           But his IQ score was <b>197</b> between <b>200</b> .Only one in every billion 
+           people has an IQ above 193. According to this compution, in this present 
+           world of 6 billion people there should be 6 persons like Ferris.
+           But Ferris is different than others because of inborn intelligence and
+           talent. In fact , Ferris is a Super genius.  His merit is more than 
+           3 times of the ordinary people and 2 times than the talented.
+
+        
+
+        </p>
+
+        <p>
+            
+            Do you know what <b>Ferris</b> said about merit?
+        </p>
+
+        <blockquote>
+            Merit is nothing but hard industry.
+            In order to develop merit, there is no alternative to hard industry.
+        </blockquote>
+
+        <p>
+            So, my friends, can you realize now that there is nothing called merit?
+        </p>
+
+        <hr>
+
+        <h2>
+            Now the question is: like whom do we need to be industrious?
+        </h2>
+
+        <p>
+            I am saying to you to be industrious,
+            but having a role model is also a rational requirement.
+        </p>
+
+        <h3>Al-Kindi</h3>
+
+        <p>
+            Al-Kindi is the role model of industry.
+            He is renowned as “Al-Failasuf” or “The Great Philosopher” in history.
+        </p>
+
+        <p>
+            He was an expert in the Holy Quran, Hadith, Fiqh, History, Philosophy,
+            Linguistics, Politics, Medical Science, Physics, Mathematics, Astronomy,
+            and Music.
+        </p>
+
+        <p>
+            He had expertise in 12 individual sectors
+            and mastery in 6 languages:
+            Sanskrit, Arabic, Hebrew, Iranian, and Syriac.
+            He wrote at least 265 books.
+        </p>
+
+        <hr>
+
+        <h3>Al-Razi</h3>
+
+        <p>
+            Among Muslims, the man who made a great revolution in medical science
+            is known as Al-Razi.
+            Though he researched alchemy,
+            he had a great contribution to medical science.
+        </p>
+
+        <p>
+            He wrote at least 200 books,
+            among which more than 100 were related to medical science.
+        </p>
+
+        <p>
+            His famous book <i>Al-Judari wal Hasabah</i>
+            was translated into Latin and European languages.
+            In English, it was printed 40 times from 1498 to 1866.
+        </p>
+
+        <p>
+            Another great work is <i>Al-Hawi</i>,
+            a comprehensive book of diseases,
+            where he explained medicines with deep thinking
+            and clear interpretation.
+
+        </p>
+         <h3><I>We can understant the  egarness of gaining wisdom from his talks:</I></h3>
+        <blockquote>
+            Because of my immediate inspiration to gain knowledge,
+            I wrote an essay containing 20,000 pages
+            (approximately 60 pages daily).
+            I lost my eyesight due to hard labor,
+            but even today, I read books through others
+            and  write my essays by others.
+        </blockquote>
+
+        <h3>
+            So, my brothers and sisters,
+            now you can realize that all your excuses
+            about low knowledge or less wisdom are not suitable.
+            <B>And Always remember this:</B>
+        </h3>
+
+        <blockquote>
+          <I>If Allah helps you, no one can prevent you.
+            But if Allah forshake you,
+            who is there ,can assist you?</I>  
+        </blockquote>
+    </div>
+
+</div>
+
+<script>
+    let english = true;
+    const bn = document.getElementById('bn');
+    const en = document.getElementById('en');
+    const btn = document.getElementById('langBtn');
+
+    function toggleLanguage(){
+        english = !english;
+        if(english){
+            en.style.display = 'block';
+            bn.style.display = 'none';
+            btn.textContent = 'ভাষা পরিবর্তন করুন / Change Language';
+        } else {
+            en.style.display = 'none';
+            bn.style.display = 'block';
+            btn.textContent = 'Change Language / ভাষা পরিবর্তন করুন';
+        }
+    }
+</script>
+
+</body>
+</html>
+```
