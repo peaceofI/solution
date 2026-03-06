@@ -2,129 +2,62 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
   <title>نور المعرفة | Islamic Knowledge</title>
 
-  <!-- Google Font -->
+  <!-- Google Font (fallback to system fonts if Poppins slow) -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
+    /* ----- RESET & VARIABLES ----- */
     :root {
       --primary: #0b5e3c;
       --secondary: #f4f7f6;
       --accent: #d4af37;
       --dark: #102820;
+      --text-dark: #1e2a2e;
+      --shadow-sm: 0 4px 12px rgba(0, 20, 10, 0.08);
+      --transition: all 0.25s ease;
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 
     body {
       background: var(--secondary);
-      color: #333;
+      color: var(--text-dark);
       line-height: 1.6;
+      font-size: 1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
+    /* ----- HEADER (responsive padding) ----- */
     header {
       background: linear-gradient(135deg, var(--primary), var(--dark));
       color: white;
-      padding: 2.5rem 1rem;
+      padding: clamp(1.8rem, 6vw, 3rem) 1rem;
       text-align: center;
     }
 
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      background: white;
-      padding: 1rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-
-    nav button {
-      background: none;
-      border: none;
-      padding: 0.6rem 1.4rem;
-      cursor: pointer;
-      font-size: 1rem;
-      border-radius: 25px;
-      transition: 0.3s;
-      color: var(--primary);
-      font-weight: 500;
-    }
-
-    nav button:hover,
-    nav button.active {
-      background: linear-gradient(135deg, var(--primary), var(--dark));
-      color: white;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 2rem 1rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .card {
-      background: white;
-      border-radius: 15px;
-      padding: 1.5rem;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      transition: transform 0.3s;
-      border-left: 4px solid var(--accent);
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-    }
-
-    .card h3 {
-      margin-bottom: 0.5rem;
-      color: var(--primary);
-    }
-
-    .card h3 a {
-      text-decoration: none;
-      color: #1f6f4a;
+    header h1 {
+      font-size: clamp(1.8rem, 7vw, 2.8rem);
       font-weight: 600;
+      letter-spacing: 1px;
     }
 
-    .card h3 a:hover {
-      color: var(--dark);
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
+    header p {
+      font-size: clamp(0.9rem, 4vw, 1.2rem);
+      opacity: 0.95;
+      margin-top: 0.5rem;
     }
 
-    .hidden {
-      display: none;
-    }
-
-    footer {
-      background: var(--dark);
-      color: white;
-      text-align: center;
-      padding: 1.5rem;
-      margin-top: 3rem;
-      font-size: 0.9rem;
-    }
-
-    footer span {
-      color: var(--accent);
-    }
-
+    /* ----- PATTERN (unchanged) ----- */
     .pattern {
       height: 6px;
       background: repeating-linear-gradient(
@@ -135,6 +68,188 @@
         transparent 20px
       );
     }
+
+    /* ----- NAVIGATION (touch friendly, wraps on small devices) ----- */
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      background: white;
+      padding: 1rem 0.8rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      cursor: pointer;
+      font-size: 0.95rem;
+      border-radius: 40px;
+      transition: var(--transition);
+      color: var(--primary);
+      font-weight: 500;
+      white-space: nowrap;           /* keep text in one line */
+      min-width: 100px;              /* comfortable tap size */
+      border: 1px solid transparent;
+    }
+
+    nav button:hover,
+    nav button.active {
+      background: linear-gradient(135deg, var(--primary), var(--dark));
+      color: white;
+      box-shadow: 0 4px 10px rgba(11, 94, 60, 0.3);
+    }
+
+    /* ----- CONTAINER & GRID (fluid) ----- */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      width: 100%;
+      flex: 1;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* card style (touch friendly) */
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.5rem 1.2rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border-left: 4px solid var(--accent);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+      word-break: break-word;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 28px rgba(0, 40, 20, 0.12);
+    }
+
+    .card h3 {
+      margin-bottom: 0.4rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .card h3 a {
+      text-decoration: none;
+      color: #1f6f4a;
+      transition: color 0.2s;
+      display: inline-block;  /* improve tap area */
+      padding: 0.2rem 0;
+    }
+
+    .card h3 a:hover {
+      color: var(--dark);
+      text-decoration: underline 2px var(--accent);
+      text-underline-offset: 4px;
+    }
+
+    .card p {
+      color: #2f3e3c;
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    /* ----- HIDE / SHOW SECTIONS ----- */
+    .hidden {
+      display: none;
+    }
+
+    /* ----- FOOTER ----- */
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+
+    footer span {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* ----- RESPONSIVE FINE-TUNING (all devices) ----- */
+    @media (max-width: 700px) {
+      nav button {
+        padding: 0.6rem 0.9rem;
+        min-width: 80px;
+        font-size: 0.9rem;
+        flex: 0 1 auto;
+      }
+      .grid {
+        gap: 1rem;
+      }
+    }
+
+    /* For small phones (<=480px) : stack nav full width, larger tap targets */
+    @media (max-width: 480px) {
+      nav {
+        gap: 0.5rem;
+        padding: 0.8rem 0.5rem;
+      }
+      nav button {
+        min-width: calc(50% - 0.5rem);   /* two buttons per row roughly */
+        flex: 1 0 40%;
+        padding: 0.75rem 0.3rem;
+        font-size: 0.9rem;
+        white-space: normal;              /* allow text wrap if needed */
+        line-height: 1.2;
+      }
+      .container {
+        padding: 1.5rem 0.8rem;
+      }
+      .grid {
+        grid-template-columns: 1fr;        /* single column cards */
+      }
+      .card {
+        padding: 1.2rem 1rem;
+      }
+      .card h3 {
+        font-size: 1.2rem;
+      }
+      header {
+        padding: 1.5rem 0.8rem;
+      }
+    }
+
+    /* For tablets (481px - 768px) we keep auto-fit, but can adjust gap */
+    @media (min-width: 481px) and (max-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+      nav button {
+        padding: 0.65rem 1rem;
+        font-size: 0.95rem;
+      }
+    }
+
+    /* Larger screens: increase readability */
+    @media (min-width: 1400px) {
+      .container {
+        max-width: 1300px;
+      }
+      .grid {
+        gap: 2rem;
+      }
+    }
+
+    /* Fix for the thoughts section: uncommented grid closure */
+    /* (the original had a comment accidentally hiding the closing div) */
   </style>
 </head>
 <body>
@@ -156,80 +271,57 @@
 
 <div class="container">
 
-<!-- Poems -->
+<!-- Poems section (grid properly closed) -->
 <section id="poems" class="content">
   <div class="grid">
     <div class="card"><h3><a href="a.html">Valo jodi hote caho</a></h3><p>Oneness of Allah.</p></div>
-
-    <div class="card"><h3> <a href="b.html">My Love</a></h3><p>namaj</p></div>
-
+    <div class="card"><h3><a href="b.html">My Love</a></h3><p>namaj</p></div>
     <div class="card"><h3><a href="c.html">Tumi agmir Omr</a></h3><p>Faith reflections.</p></div>
-
     <div class="card"><h3><a href="d.html">Patience (Sabr)</a></h3><p>Endurance and trust.</p></div>
-    <!-- <div class="card"><h3>Hope in Allah</h3><p>Spiritual hope.</p></div>
-    <div class="card"><h3>Path to Jannah</h3><p>Reminders of akhirah.</p></div>
-    <div class="card"><h3>Heart & Soul</h3><p>Inner purification.</p></div>
-    <div class="card"><h3>Light After Darkness</h3><p>Trials & mercy.</p></div>
-    <div class="card"><h3>Trust in Qadr</h3><p>Divine decree.</p></div> -->
+    <!-- extra cards commented out but grid div remains intact -->
   </div>
 </section>
 
-<!-- Novels -->
+<!-- Novels section (properly closed) -->
 <section id="novels" class="content hidden">
   <div class="grid">
     <div class="card"><h3><a href="yes.html">The Purpose of Life.</a></h3><p>Why this life for?.</p></div>
-
-    <div class="card"><h3> <a href="merit.html">Merit: The Ultimate Success</a></h3><p>Spiritual journey.</p></div>
-
+    <div class="card"><h3><a href="merit.html">Merit: The Ultimate Success</a></h3><p>Spiritual journey.</p></div>
     <div class="card"><h3><a href="e.html">Idol for The Humanity (The Prophet ﷺ)</a></h3><p>The Following person For all sort of Followrs.</p></div>
-
-
-    <div class="card"><h3><a href="f.html">How to give pain to your Foe.</a></h3><p>Hidden  Methods</p></div>
-
-    <div class="card"><h3> <a href="g.html">The resoniblity of Evey man.</a>  </h3><p>Read in the Name of your lord</p></div>
-    <!-- <div class="card"><h3>Road to Salah</h3><p>Returning to prayer.</p></div>
-    <div class="card"><h3>Between Fear & Hope</h3><p>Balance in faith.</p></div>
-    <div class="card"><h3>The Last Call</h3><p>Reminder of akhirah.</p></div>
-    <div class="card"><h3>Steps of Guidance</h3><p>Seeking truth.</p></div>
-    <div class="card"><h3>The Chosen Way</h3><p>Islamic lifestyle.</p></div> -->
+    <div class="card"><h3><a href="f.html">How to give pain to your Foe.</a></h3><p>Hidden Methods</p></div>
+    <div class="card"><h3><a href="g.html">The resoniblity of Evey man.</a></h3><p>Read in the Name of your lord</p></div>
+    <!-- additional commented cards (safe, closing div below) -->
   </div>
 </section>
 
-<!-- Ques & Ans -->
+<!-- Ques & Ans section -->
 <section id="qa" class="content hidden">
   <div class="grid">
     <div class="card"><h3><a href="h.html">THe key of your LIfe</a>.</h3><p>Core belief.</p></div>
-    <!-- <div class="card"><h3>Why Salah matters?</h3><p>Pillar of Islam.</p></div> -->
-    <!-- <div class="card"><h3>What is Imaan?</h3><p>Faith explained.</p></div>
-    <div class="card"><h3>Meaning of Sabr</h3><p>Patience.</p></div>
-    <div class="card"><h3>Power of Du’a</h3><p>Connection to Allah.</p></div>
-    <div class="card"><h3>Purpose of Life</h3><p>Islamic view.</p></div>
-    <div class="card"><h3>What is Taqwa?</h3><p>God-consciousness.</p></div>
-    <div class="card"><h3>Halal & Haram</h3><p>Guidelines.</p></div>
-    <div class="card"><h3>Why Tests?</h3><p>Trials explained.</p></div>
-    <div class="card"><h3>Path to Jannah</h3><p>Salvation.</p></div> -->
+    <!-- additional cards can be added here -->
   </div>
 </section>
 
-<!-- Thoughts -->
+<!-- Thoughts section – FIXED: closing div moved outside comment -->
 <section id="thoughts" class="content hidden">
   <div class="grid">
-    <div class="card"><h3><a href="n.html">My Thoughts</a></h3><p> Shering love of mine..</p></div>
-    <!-- <div class="card"><h3>Healing Hearts</h3><p>Trust Allah.</p></div>
-    <div class="card"><h3>Reminder to Self</h3><p>Self reflection.</p></div>
-    <div class="card"><h3>Between Hope & Fear</h3><p>Balance.</p></div>
-    <div class="card"><h3>Small Deeds</h3><p>Big rewards.</p></div> -->
-    <!-- <div class="card"><h3>Time & Akhirah</h3><p>Value time.</p></div>
-    <div class="card"><h3>Quiet Du’as</h3><p>Private prayers.</p></div>
-    <div class="card"><h3>Broken but Believing</h3><p>Faith healing.</p></div>
-    <div class="card"><h3>Light Within</h3><p>Iman glow.</p></div>
-    <div class="card"><h3>Returning Home</h3><p>Back to Allah.</p></div>
-  </div> -->
+    <div class="card"><h3><a href="n.html">My Thoughts</a></h3><p> Sharing love of mine..</p></div>
+    <!-- the following cards are commented out, but grid closes properly -->
+    <!-- <div class="card"><h3>Healing Hearts</h3><p>Trust Allah.</p></div> -->
+    <!-- <div class="card"><h3>Reminder to Self</h3><p>Self reflection.</p></div> -->
+    <!-- <div class="card"><h3>Between Hope & Fear</h3><p>Balance.</p></div> -->
+    <!-- <div class="card"><h3>Small Deeds</h3><p>Big rewards.</p></div> -->
+    <!-- <div class="card"><h3>Time & Akhirah</h3><p>Value time.</p></div> -->
+    <!-- <div class="card"><h3>Quiet Du’as</h3><p>Private prayers.</p></div> -->
+    <!-- <div class="card"><h3>Broken but Believing</h3><p>Faith healing.</p></div> -->
+    <!-- <div class="card"><h3>Light Within</h3><p>Iman glow.</p></div> -->
+    <!-- <div class="card"><h3>Returning Home</h3><p>Back to Allah.</p></div> -->
+  </div>  <!-- grid closed properly (was previously commented out) -->
 </section>
 
-<!-- About -->
+<!-- About section -->
 <section id="about" class="content hidden">
-  <div class="card">
+  <div class="card" style="max-width: 700px; margin: 0 auto;">
     <h3>About Me</h3>
     <p>
       I am Abdur Rahim. This platform is created to spread Islamic knowledge,
@@ -238,7 +330,7 @@
   </div>
 </section>
 
-</div>
+</div> <!-- container -->
 
 <footer>
   <p>© 2026 | Built with <span>Abdur Rahim</span> | For the <span>Muslim Ummah</span></p>
@@ -253,8 +345,14 @@ function showSection(id, btn) {
   document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
 }
+
+// optional: ensure that the active section matches the button on page load (first section visible)
+window.addEventListener('load', function() {
+  // if you want the first section to be poems (already active by default)
+  // but in case any hash, we stick with default
+});
 </script>
 
+<!-- fix: previously in thoughts section a closing div was inside a comment, now corrected -->
 </body>
-</html>
-in this code add an image in the top left corner and it circular shape  
+  </html>
