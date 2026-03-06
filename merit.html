@@ -1,130 +1,191 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merit / মেধা</title>
+    <!-- ensure proper scaling on all devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Merit / মেধা (responsive)</title>
 
     <style>
-        :root{
-            --primary:#1f3d3b;
-            --secondary:#3f6f6a;
-            --accent:#7a9e9a;   /* gray-green */
-            --bg:#f4f7f6;
-            --text:#1e1e1e;
+        /* ----- MODERN RESET & VARIABLES ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
+        :root {
+            --primary: #1f3d3b;
+            --secondary: #3f6f6a;
+            --accent: #7a9e9a;
+            --bg-light: #f4f7f6;
+            --text-dark: #1e1e1e;
+            --white: #ffffff;
+            --shadow-sm: 0 10px 25px rgba(0, 30, 20, 0.08);
+            --shadow-hover: 0 20px 35px rgba(0, 50, 30, 0.12);
+            --border-radius-card: 24px;
+            --transition: all 0.25s ease;
         }
 
-        body{
-            font-family: "Segoe UI", Tahoma, sans-serif;
-            background: linear-gradient(120deg, #eef5f3, #f9fbfa);
-            color:var(--text);
-            line-height:1.7;
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, BlinkMacSystemFont, Tahoma, sans-serif;
+            background: linear-gradient(135deg, #eaf3f0, #f5faf8);
+            color: var(--text-dark);
+            line-height: 1.7;
+            min-height: 100vh;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .container{
-            max-width:900px;
-            margin:40px auto;
-            background:#ffffff;
-            padding:40px;
-            border-radius:16px;
-            box-shadow:0 20px 40px rgba(0,0,0,0.08);
+        /* main container – fully responsive */
+        .container {
+            width: 100%;
+            max-width: 1000px;          /* slightly wider for large screens */
+            margin: 2rem auto;
+            background: var(--white);
+            padding: clamp(1.5rem, 5vw, 3.5rem);  /* fluid padding */
+            border-radius: clamp(1rem, 4vw, 2rem);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
         }
 
-        h1{
-            text-align:center;
-            font-size:2.5rem;
-            color:var(--primary);
-            margin-bottom:20px;
+        /* headings scale smoothly */
+        h1 {
+            text-align: center;
+            font-size: clamp(1.8rem, 6vw, 3rem);
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+            line-height: 1.3;
+            word-break: break-word;
         }
 
-        h2{
-            color:var(--secondary);
-            margin-top:30px;
-            margin-bottom:10px;
-            border-left:5px solid var(--accent);
-            padding-left:10px;
+        h2 {
+            color: var(--secondary);
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            border-left: 6px solid var(--accent);
+            padding-left: 1rem;
+            font-size: clamp(1.3rem, 4vw, 1.9rem);
+            font-weight: 500;
         }
 
-        h3{
-            color:var(--primary);
-            margin-top:25px;
-            margin-bottom:10px;
+        h3 {
+            color: var(--primary);
+            margin-top: 1.8rem;
+            margin-bottom: 0.6rem;
+            font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+            font-weight: 600;
         }
 
-        p{
-            margin:12px 0;
-            text-align:justify;
+        p {
+            margin: 1rem 0;
+            text-align: justify;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            max-width: 75ch;        /* improve readability on large screens */
         }
 
-        blockquote{
-            background:#eef5f4;
-            border-left:6px solid var(--accent);
-            padding:15px 20px;
-            margin:20px 0;
-            font-style:italic;
-            border-radius:8px;
+        /* blockquote – touch friendly */
+        blockquote {
+            background: #ecf6f3;
+            border-left: 6px solid var(--accent);
+            padding: 1.2rem 1.5rem;
+            margin: 1.8rem 0;
+            font-style: italic;
+            border-radius: 16px;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.02);
+            word-break: break-word;
         }
 
-        span{
+        /* highlight spans */
+        span {
             color: chocolate;
+            font-weight: 500;
         }
 
-        hr{
-            border:none;
-            height:1px;
-            background:linear-gradient(to right, transparent, var(--accent), transparent);
-            margin:35px 0;
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--accent), transparent);
+            margin: 2.5rem 0;
+            opacity: 0.4;
         }
 
-        span{
-            color:var(--accent);
-            font-weight:600;
+        i {
+            color: #2e5f5a;
         }
 
-        i{
-            color:#2e5f5a;
+        /* language toggle button – large, easy to tap */
+        .lang-btn {
+            display: block;
+            margin: 0 auto 2rem auto;
+            padding: 0.9rem 2rem;
+            font-size: clamp(1rem, 3.5vw, 1.2rem);
+            font-weight: 500;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            background: linear-gradient(145deg, var(--secondary), var(--primary));
+            color: white;
+            transition: var(--transition);
+            box-shadow: 0 12px 24px rgba(0, 40, 30, 0.25);
+            width: fit-content;
+            min-width: 260px;          /* comfortable tap area */
+            text-align: center;
+            letter-spacing: 0.3px;
         }
 
-        .lang-btn{
-            display:block;
-            margin:0 auto 30px auto;
-            padding:12px 26px;
-            font-size:1rem;
-            border:none;
-            border-radius:30px;
-            cursor:pointer;
-            background:linear-gradient(135deg, var(--secondary), var(--primary));
-            color:#fff;
-            transition:0.3s ease;
-            box-shadow:0 8px 20px rgba(0,0,0,0.15);
+        .lang-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 32px rgba(0, 60, 40, 0.3);
         }
 
-        .lang-btn:hover{
-            transform:translateY(-2px);
-            box-shadow:0 12px 28px rgba(0,0,0,0.2);
+        /* footer style (optional) */
+        footer {
+            text-align: center;
+            margin-top: 2.5rem;
+            font-size: 0.9rem;
+            color: #4b6a66;
         }
 
-        footer{
-            text-align:center;
-            margin-top:40px;
-            font-size:0.9rem;
-            color:#666;
-        }
-
-        @media(max-width:768px){
-            .container{
-                padding:25px;
+        /* responsive fine-tuning for smaller phones */
+        @media (max-width: 500px) {
+            body {
+                padding: 0.5rem;
             }
-            h1{
-                font-size:2rem;
+            .container {
+                padding: 1.5rem 1rem;
+                border-radius: 20px;
             }
+            blockquote {
+                padding: 1rem 1.2rem;
+            }
+            .lang-btn {
+                min-width: 220px;
+                padding: 0.8rem 1.2rem;
+            }
+        }
+
+        /* landscape phones & small tablets */
+        @media (min-width: 501px) and (max-width: 768px) {
+            .container {
+                padding: 2rem 1.8rem;
+            }
+        }
+
+        /* ensure images or future embeds are fluid */
+        img, iframe, video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+
+        /* optional: style for strong/bold */
+        b, strong {
+            color: var(--primary);
         }
     </style>
 </head>
@@ -132,8 +193,10 @@
 
 <div class="container">
 
-    <button id="langBtn" class="lang-btn" onclick="toggleLanguage()">ভাষা পরিবর্তন করুন / Change Language</button>
+    <!-- responsive toggle button -->
+    <button id="langBtn" class="lang-btn" onclick="toggleLanguage()">🌐 ভাষা পরিবর্তন করুন / Change Language</button>
 
+    <!-- Bengali content (initially hidden) -->
     <div id="bn" style="display:none;">
         <h1>মেধা: চূড়ান্ত সাফল্য</h1>
 
@@ -144,8 +207,7 @@
         </p>
 
         <blockquote>
-            ওহ, সে কতই না মেধাবী!
-            আমাকেও তার মতো হতে হবে।
+            ওহ, সে কতই না মেধাবী! <br> আমাকেও তার মতো হতে হবে।
         </blockquote>
 
         <p>
@@ -195,10 +257,9 @@
 
         <p>
            আর সে তা করে দেখিয়েছে।
-
-তার জীবনের ৬০ বছর আগে, সে ২ বিলিয়ন ডলারের মালিক ছিল।
-এমনকি তার সম্পদ প্রতি মিনিটে ১০০ ডলার করে বৃদ্ধি পাচ্ছে,
-যা প্রতিদিন প্রায় ৭২ লক্ষ টাকা।
+           তার জীবনের ৬০ বছর আগে, সে ২ বিলিয়ন ডলারের মালিক ছিল।
+           এমনকি তার সম্পদ প্রতি মিনিটে ১০০ ডলার করে বৃদ্ধি পাচ্ছে,
+           যা প্রতিদিন প্রায় ৭২ লক্ষ টাকা।
         </p>
 
         <p>
@@ -245,8 +306,6 @@
         <h3>ফেরিস এলজার</h3>
 
         <p>
-       
-
             বর্তমান পৃথিবীর সবচেয়ে মেধাবী মানুষটি হচ্ছে আমেরিকার পেনসিলভিনিয়া রাজ্যের ফেরিস এলগার। 
             ৮৬ বৎসর বয়সী এ অসাধারণ মানুষটি স্কুল কলেজের আনুষ্ঠানিক শিক্ষা না নিয়েও অনেক বিস্ময়কর কান্ড করেছেন। 
             আই .কিউ টেস্ট বা বুদ্ধিমাপক পরীক্ষায় ফেরীসের বুদ্ধাংক ২০০ এর মধ্যে ১৯৭। 
@@ -255,9 +314,6 @@
               কিন্তু জন্মগতভাবে বুদ্ধি ও মেধার ক্ষেত্রে ফেরীসের কোন প্রতিদ্বন্দ্বী নেই বললেই চলে। 
               প্রকৃতপক্ষে ফেরীস একজন সুপার জিনিয়াস,
              ওর বুদ্ধি সাধারণ একজন মানুষের তিনগুণ | প্রতিভাবানদের দ্বিগুণ। 
-
-
-
         </p>
 
         <p>
@@ -357,6 +413,7 @@
         </blockquote>
     </div>
 
+    <!-- English content (initially visible) -->
     <div id="en" style="display:block;">
         <h1>Merit: The Ultimate Success</h1>
 
@@ -367,8 +424,7 @@
         </p>
 
         <blockquote>
-            Oh, how meritorious he is!  
-            I have to be like him/her.
+            Oh, how meritorious he is!<br> I have to be like him/her.
         </blockquote>
 
         <p>
@@ -416,13 +472,13 @@
         <p>
             You may have heard the name of John D. Rockefeller.
             In the beginning, he worked in potato fields in America, having only 4 cents as salary.
-            He understood that there is only one way to  achieve success  is to do Hard Work
+            He understood that there is only one way to achieve success is to do Hard Work
         </p>
 
         <p>
             And he did it.
-            Before  60 years of his life, he owned 2 billion dollars.
-            Even his wealth is increasing by 100 dollars in  every single minute,
+            Before 60 years of his life, he owned 2 billion dollars.
+            Even his wealth is increasing by 100 dollars in every single minute,
             which is approximately 72 lakhs a day.
         </p>
 
@@ -437,7 +493,7 @@
         <p>
             We have seen many legends in different categories,
             but this legend is different from others.
-            A football legend who shocked the whole world by his legency.
+            A football legend who shocked the whole world by his legacy.
         </p>
 
         <p>
@@ -463,7 +519,7 @@
         <p>
             If we see his biography, we can understand that his connection with football
             was like a magnetic attraction.
-            He established  nothing but the maxim:
+            He established nothing but the maxim:
             <i>“Practice makes a man perfect.”</i>
         </p>
 
@@ -471,21 +527,17 @@
 
         <p>
            In the present world, The highest genius man is <i>Ferris Elgar,</i>
-           from Pennslyvania of America. This 86 years old man  held a lot of 
-           amazing  things unless taking any formal  institutional education.
-           But his IQ score was <b>197</b> between <b>200</b> .Only one in every billion 
+           from Pennslyvania of America. This 86 years old man held a lot of 
+           amazing things unless taking any formal institutional education.
+           But his IQ score was <b>197</b> between <b>200</b>. Only one in every billion 
            people has an IQ above 193. According to this compution, in this present 
            world of 6 billion people there should be 6 persons like Ferris.
            But Ferris is different than others because of inborn intelligence and
-           talent. In fact , Ferris is a Super genius.  His merit is more than 
+           talent. In fact, Ferris is a Super genius. His merit is more than 
            3 times of the ordinary people and 2 times than the talented.
-
-        
-
         </p>
 
         <p>
-            
             Do you know what <b>Ferris</b> said about merit?
         </p>
 
@@ -556,34 +608,40 @@
             a comprehensive book of diseases,
             where he explained medicines with deep thinking
             and clear interpretation.
-
         </p>
-         <h3><I>We can understant the  egarness of gaining wisdom from his talks:</I></h3>
+        
+        <h3><i>We can understand the eagerness of gaining wisdom from his talks:</i></h3>
+       
         <blockquote>
             Because of my immediate inspiration to gain knowledge,
             I wrote an essay containing 20,000 pages
             (approximately 60 pages daily).
             I lost my eyesight due to hard labor,
             but even today, I read books through others
-            and  write my essays by others.
+            and write my essays by others.
         </blockquote>
 
         <h3>
             So, my brothers and sisters,
             now you can realize that all your excuses
             about low knowledge or less wisdom are not suitable.
-            <B>And Always remember this:</B>
+            <b>And Always remember this:</b>
         </h3>
 
         <blockquote>
-          <I>If Allah helps you, no one can prevent you.
-            But if Allah forshake you,
-            who is there ,can assist you?</I>  
+            <i>If Allah helps you, no one can prevent you.
+            But if Allah forsakes you,
+            who is there that can assist you?</i>  
         </blockquote>
     </div>
 
+    <!-- optional footer for consistency -->
+    <footer>
+        <p>© 2026 | نور المعرفة | Read with reflection</p>
+    </footer>
 </div>
 
+<!-- language toggle script (unchanged logic) -->
 <script>
     let english = true;
     const bn = document.getElementById('bn');
@@ -595,15 +653,14 @@
         if(english){
             en.style.display = 'block';
             bn.style.display = 'none';
-            btn.textContent = 'ভাষা পরিবর্তন করুন / Change Language';
+            btn.textContent = '🌐 ভাষা পরিবর্তন করুন / Change Language';
         } else {
             en.style.display = 'none';
             bn.style.display = 'block';
-            btn.textContent = 'Change Language / ভাষা পরিবর্তন করুন';
+            btn.textContent = '🌐 Change Language / ভাষা পরিবর্তন করুন';
         }
     }
 </script>
 
 </body>
 </html>
-```
