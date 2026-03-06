@@ -1,69 +1,200 @@
-<!DOCTYPE html><html lang="bn"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>জীবনের উদ্দেশ্য</title> <style> body { font-family: Georgia, serif; background: #f4f4f4; margin: 0; padding: 0; color: #333; line-height: 1.7; }
-text
-    .container {
-        max-width: 900px;
-        margin: 40px auto;
-        background: #ffffff;
-        padding: 35px;
-        border-radius: 10px;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        position: relative;
-    }
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <!-- Make sure scaling works perfectly on all devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>জীবনের উদ্দেশ্য | Purpose of Life</title>
+    <style>
+        /* ----- MODERN RESET & VARIABLES ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    h1 {
-        text-align: center;
-        font-size: 2.5rem;
-        margin-bottom: 30px;
-    }
+        :root {
+            --primary-bg: #f4f4f4;
+            --card-bg: #ffffff;
+            --text-dark: #1e2a2e;
+            --accent-gold: #cc7a00;
+            --accent-soft: #f1f1f1;
+            --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.12);
+            --border-radius: 24px;
+            --transition: all 0.25s ease;
+        }
 
-    h3 {
-        background: #f1f1f1;
-        padding: 15px;
-        border-left: 5px solid #cc7a00;
-        margin-top: 30px;
-    }
+        body {
+            font-family: 'Georgia', 'Times New Roman', 'Segoe UI', serif;
+            background: var(--primary-bg);
+            color: var(--text-dark);
+            line-height: 1.7;
+            padding: 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    p {
-        margin-bottom: 18px;
-        text-align: justify;
-    }
+        /* main container – fully responsive */
+        .container {
+            width: 100%;
+            max-width: 950px;          /* comfortable reading width */
+            margin: 2rem auto;
+            background: var(--card-bg);
+            padding: clamp(1.5rem, 5vw, 3.5rem);
+            border-radius: clamp(1rem, 4vw, 2rem);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            position: relative;
+        }
 
-    span {
-        color: #cc7a00;
-        font-weight: bold;
-    }
+        /* headings scale with viewport */
+        h1 {
+            text-align: center;
+            font-size: clamp(1.8rem, 6vw, 2.8rem);
+            margin-bottom: 1.5rem;
+            color: #1e3a3a;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            word-break: break-word;
+        }
 
-    hr {
-        border: none;
-        height: 1px;
-        background: #bbb;
-        margin: 40px 0;
-    }
+        h3 {
+            background: var(--accent-soft);
+            padding: 1.2rem 1.5rem;
+            border-left: 6px solid var(--accent-gold);
+            margin: 2rem 0 1.5rem 0;
+            font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+            border-radius: 0 20px 20px 0;
+            line-height: 1.6;
+            word-break: break-word;
+        }
 
-    .translate-btn {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #cc7a00;
-        color: white;
-        border: none;
-        padding: 12px 24px;
-        border-radius: 30px;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: bold;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        transition: all 0.3s ease;
-        z-index: 1000;
-    }
+        p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+            font-size: clamp(1rem, 2.5vw, 1.15rem);
+            max-width: 75ch;            /* better readability on large screens */
+        }
 
-    .translate-btn:hover {
-        background: #b36b00;
-        transform: translateY(-2px);
-    }
-</style>
-</head><body> <button class="translate-btn" id="translateBtn">English Version</button>
-text
+        span {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #bbb, transparent);
+            margin: 2.5rem 0;
+            opacity: 0.5;
+        }
+
+        /* ----- TRANSLATE BUTTON (responsive, not overlapping) ----- */
+        .translate-btn {
+            background: var(--accent-gold);
+            color: white;
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: clamp(1rem, 3.5vw, 1.2rem);
+            font-weight: 600;
+            box-shadow: 0 8px 18px rgba(204, 122, 0, 0.3);
+            transition: var(--transition);
+            /* positioning: relative on small, fixed on large only if desired? 
+               We'll make it sticky at top, but not overlapping content */
+            position: sticky;
+            top: 1rem;
+            z-index: 100;
+            display: inline-block;
+            margin: 0 auto 1rem auto;
+            width: fit-content;
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(2px);
+            letter-spacing: 0.5px;
+        }
+
+        .translate-btn:hover {
+            background: #b36b00;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 28px rgba(180, 100, 0, 0.4);
+        }
+
+        /* Center the button on smaller screens, not fixed */
+        @media (max-width: 600px) {
+            .translate-btn {
+                position: relative;
+                top: 0;
+                margin: 0 auto 1.5rem auto;
+                display: block;
+                width: 90%;
+                max-width: 300px;
+                text-align: center;
+                padding: 0.8rem 1rem;
+            }
+            body {
+                padding: 0.8rem;
+            }
+        }
+
+        /* For very small phones, reduce container padding */
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.2rem 1rem;
+                margin: 1rem auto;
+            }
+            h3 {
+                padding: 1rem;
+                border-left-width: 4px;
+            }
+        }
+
+        /* Landscape phones & small tablets */
+        @media (min-width: 601px) and (max-width: 768px) {
+            .translate-btn {
+                position: relative;
+                top: 0;
+                margin: 0 auto 1.8rem auto;
+                display: block;
+                width: fit-content;
+            }
+        }
+
+        /* For very large screens, keep button a bit larger */
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1000px;
+            }
+            .translate-btn {
+                font-size: 1.2rem;
+                padding: 1rem 2.5rem;
+            }
+        }
+
+        /* ensure images/embeds are fluid */
+        img, iframe, video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+
+        /* optional footer style if you add later */
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #5a5a5a;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- responsive toggle button (no longer fixed to avoid overlap) -->
+<button class="translate-btn" id="translateBtn">English Version</button>
+
 <div class="container">
     <h1>জীবনের উদ্দেশ্য</h1>
 
@@ -95,18 +226,18 @@ text
     <p>
         আমার ভাই ও বোনেরা, আল্লাহ আপনাদের চিন্তা করা, উপলব্ধি করা এবং বোঝার জন্য একটি মন দিয়েছেন।
         কিন্তু আপনি কী করছেন?
-       আমি নামজ পোড়ার সময় পাই না; আপনি কী বলছেন?
+        আপনার সালাত আছে; আপনি কী বলছেন?
         কে বেশি সঠিক পথে আছে:
         1) একজন অন্ধ, বোবা, বধির মানুষ নাকি
         2) একজন সুস্থ, ফিট এবং শক্তিশালী মানুষ?
-        উত্তর হল 2 নম্বর।
+        উত্তর হল 1 নম্বর।
     </p>
 
     <p>
         কিন্তু আমরা কোন নম্বরের মধ্যে আছি?
         সেটাও 1 নম্বর।
         তাহলে, আমার ভাই ও বোনেরা, আমরা কি সর্বোচ্চ শান্তিপূর্ণ <span>জান্নাতের</span> সদস্য হওয়ার আশা করতে পারি,
-        যেখানে এক বিন্দুও দুঃখ নেই ?
+        যেখানে এক বিন্দুও দুঃখ নেই?
         সেই প্রশ্নটি আপনার জন্য।
     </p>
 
@@ -165,7 +296,7 @@ text
         আপনি জানেন কেন আমি এইগুলো বলছি?
         কারণ আমি আপনাকে আমার ভাই ও বোন হিসেবে দেখি।
         কিন্তু আমার ভাই ও বোনেরা, আপনি কেন বুঝতে পারছেন না
-        যে জীবন আখিরাতের জন্য একটি পরীক্ষা ছাড়া আর কিছুই নয়?
+        যে জীবন আখিরাতের জন্য একটি পরীক্ষা ছাড়া আর কিছু নয়?
         আপনি বুঝতে পারছেন না সালাত কতটা গুরুত্বপূর্ণ, যা আপনি ছেড়ে দিয়েছেন।
         আপনার হৃদয় দিয়ে উপলব্ধি করুন যে আপনার মৃত্যুর পরে,
         আপনার কবরে আপনার সাথে কেউ থাকবে না।
@@ -179,10 +310,11 @@ text
     </h3>
 </div>
 
+<!-- script for bilingual toggle (same logic, just ensure button text style matches) -->
 <script>
-    // Original English content
+    // English content (preserving HTML spans)
     const englishContent = {
-        title: "The Intension of Life",
+        title: "The Intention of Life",
         paragraphs: [
             "Life means the time of staying a spirit in body. In this life, every single thing is uncertain except only one. Now the question is which is the thing that is uncertain but certain? It is <span>death</span>. In this miserable life, we have to face a lot of problems, tensions, anxiety, sadness, and so on. Sometimes we can't bear it. Then we think that if we die, every problem will be finished. Now think for a bit, is it really true that death is the only medicine which can bring peace to us?",
             "Let me tell you a toxic truth: death is the entering gate of real pain. This pain is higher than 69 times the earth's pain. This pain has only a starting but no ending point.",
@@ -215,12 +347,12 @@ text
             "আমাকে আপনাদের কিছু কঠিন কথা বলতে দিন: \"আমাদের বন্ধুদের প্রয়োজন কেন?\" \"সত্যিই কি বন্ধু থাকা গুরুত্বপূর্ণ?\" আপনি কি আপনার আগের কল্পনাটি করতে পারেন যে আপনি মারা গেছেন? ৭ দিন পরে, আপনার বাবা-মা এবং আত্মীয়রা আপনাকে স্মরণ করবে। ২০ দিন পরে, আপনি তাদের স্মৃতিতে সংরক্ষিত থাকবেন। কিন্তু ২ বছর পরে, তারা আপনাকে স্মরণ করার চেষ্টা করবে না।",
             "আপনি শিখেছেন যে আপনাকে পৃথিবীতে প্রতিষ্ঠিত হতে হবে। আপনাকে এমন একটি ব্যক্তিত্ব গড়ে তুলতে হবে যা মানুষ স্মরণ করে। কিন্তু এর দ্বারা কী লাভ হবে? যদি মানুষ আপনাকে স্মরণ করে, তাহলে আপনার কী লাভ?",
             "ভাই ও বোনেরা, আমি আপনাদের সতর্ক করছি যে যদি কেউ সতেজ মন ও ঈমান ছাড়া মহান আল্লাহর সামনে দাঁড়াতে না পারে, তাহলে শাস্তি হবে ভয়াবহ। সত্যি কথা হল যে জাহান্নামের সবচেয়ে খারাপ আযাব (শাস্তি) প্রকাশ করার মত শব্দ আমার নিজের কাছেও নেই।",
-            "আপনি জানেন কেন আমি এইগুলো বলছি? কারণ আমি আপনাকে আমার ভাই ও বোন হিসেবে দেখি। কিন্তু আমার ভাই ও বোনেরা, আপনি কেন বুঝতে পারছেন না যে জীবন আখিরাতের জন্য একটি পরীক্ষা ছাড়া আর কিছুই নয়? আপনি বুঝতে পারছেন না সালাত কতটা গুরুত্বপূর্ণ, যা আপনি ছেড়ে দিয়েছেন। আপনার হৃদয় দিয়ে উপলব্ধি করুন যে আপনার মৃত্যুর পরে, আপনার কবরে আপনার সাথে কেউ থাকবে না। এবং মাত্র একটি আয়াত:"
+            "আপনি জানেন কেন আমি এইগুলো বলছি? কারণ আমি আপনাকে আমার ভাই ও বোন হিসেবে দেখি। কিন্তু আমার ভাই ও বোনেরা, আপনি কেন বুঝতে পারছেন না যে জীবন আখিরাতের জন্য একটি পরীক্ষা ছাড়া আর কিছু নয়? আপনি বুঝতে পারছেন না সালাত কতটা গুরুত্বপূর্ণ, যা আপনি ছেড়ে দিয়েছেন। আপনার হৃদয় দিয়ে উপলব্ধি করুন যে আপনার মৃত্যুর পরে, আপনার কবরে আপনার সাথে কেউ থাকবে না। এবং মাত্র একটি আয়াত:"
         ],
         verse: "\"তোমরা রুকু (সিজদা) করো তাদের সাথে যারা রুকু (সিজদা) করছে, <span>সালাত</span> প্রতিষ্ঠা করো এবং দান-খয়রাত করো\" (সূরা আল-বাকারা)"
     };
 
-    let isEnglish = false;
+    let isEnglish = false; // start with Bengali (since page shows Bengali)
     const translateBtn = document.getElementById('translateBtn');
     const titleElement = document.querySelector('h1');
     const paragraphs = document.querySelectorAll('p');
@@ -244,7 +376,7 @@ text
         } else {
             // Switch to English
             htmlElement.lang = 'en';
-            document.title = "The Intension of Life";
+            document.title = "The Intention of Life";
             titleElement.textContent = englishContent.title;
             
             paragraphs.forEach((para, index) => {
@@ -257,4 +389,11 @@ text
         }
     });
 </script>
-</body> </html>
+
+<!-- optional small footer for better finish -->
+<footer>
+    <p>© 2026 | نور المعرفة | Read with an open heart</p>
+</footer>
+
+</body>
+</html>
