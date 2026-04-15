@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <title>نور المعرفة | ইসলামিক জ্ঞান</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #0b5e3c;
+      --primary-dark: #064e2f;
+      --primary-light: #1a7a52;
+      --secondary: #f4f7f6;
+      --accent: #d4af37;
+      --accent-light: #f0d060;
+      --accent-glow: rgba(212, 175, 55, 0.35);
+      --dark: #102820;
+      --text-dark: #1e2a2e;
+      --text-light: #f0f5f3;
+      --text-muted: #6b7e76;
+      --glass-bg: rgba(255,255,255,0.88);
+      --shadow-lg: 0 24px 48px -12px rgba(0,0,0,0.18);
+      --shadow-sm: 0 6px 24px rgba(0,20,10,0.07);
+      --shadow-card: 0 2px 12px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.06);
+      --transition: all 0.32s cubic-bezier(0.4,0,0.2,1);
+      --bg-gradient: linear-gradient(150deg,#f0f6f2 0%,#eaf3ee 50%,#e8f0ec 100%);
+      --card-bg: rgba(255,255,255,0.97);
+      --border-color: rgba(212,175,55,0.18);
+      --nav-bg: rgba(255,255,255,0.94);
+      --radius: 20px;
+      --radius-sm: 12px;
+    }
+
+    body.dark {
+      --primary: #2daf7a;
+      --primary-dark: #1f8a5e;
+      --primary-light: #3ec989;
+      --secondary: #1a2922;
+      --accent: #e8c84a;
+      --accent-glow: rgba(232,200,74,0.3);
+      --dark: #0d1a12;
+      --text-dark: #ddeee5;
+      --text-muted: #8aaa96;
+      --bg-gradient: linear-gradient(150deg,#0f1c16 0%,#0c1810 100%);
+      --card-bg: rgba(20,35,27,0.97);
+      --border-color: rgba(232,200,74,0.2);
+      --nav-bg: rgba(14,24,18,0.95);
+      --glass-bg: rgba(18,28,22,0.92);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family: 'Hind Siliguri', system-ui, sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-dark);
+      line-height: 1.65;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content:''; position:fixed; inset:0;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230b5e3c' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events:none; z-index:0;
+      animation: driftBg 90s linear infinite;
+    }
+    @keyframes driftBg { 100% { background-position: 120px 120px; } }
+
+    /* ---- HERO ---- */
+    .hero-profile {
+      background: linear-gradient(135deg, rgba(6,78,47,0.96) 0%, rgba(11,40,24,0.98) 100%);
+      padding: 2.8rem 1.5rem 2.2rem;
+      text-align: center;
+      border-bottom: 3px solid var(--accent);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .hero-profile::before {
+      content:''; position:absolute; inset:0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212,175,55,0.15) 0%, transparent 70%);
+      pointer-events:none;
+    }
+    .hero-ornament {
+      position:absolute; top:12px; left:50%; transform:translateX(-50%);
+      font-family:'Amiri',serif; font-size:1.1rem; color:rgba(212,175,55,0.5);
+      letter-spacing:8px; white-space:nowrap;
+    }
+    .profile-container {
+      max-width:1100px; margin:0 auto;
+      display:flex; flex-wrap:wrap; align-items:center;
+      justify-content:center; gap:2rem; position:relative; z-index:2;
+    }
+    .avatar-frame {
+      width:120px; height:120px;
+      background: linear-gradient(135deg,var(--accent),#f5e070);
+      border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow: 0 0 0 5px rgba(212,175,55,0.2), 0 16px 32px rgba(0,0,0,0.3);
+      animation: floatAvatar 4s ease-in-out infinite;
+      flex-shrink:0;
+    }
+    .avatar-frame img {
+      width:110px; height:110px; border-radius:50%;
+      object-fit:cover; border:3px solid white;
+    }
+    @keyframes floatAvatar {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .brand-text { text-align:left; }
+    .brand-text h2 {
+      font-family:'Amiri',serif;
+      font-size: clamp(1.8rem,5vw,2.6rem);
+      font-weight:700; color:#fff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      line-height:1.2;
+    }
+    .brand-text p { color:rgba(255,255,255,0.75); font-size:0.95rem; margin:0.4rem 0; }
+    .badge-light {
+      display:inline-block;
+      background: rgba(212,175,55,0.18);
+      border:1px solid rgba(212,175,55,0.4);
+      color: #f0d888;
+      padding:0.25rem 1rem; border-radius:50px;
+      font-size:0.78rem; margin-top:0.4rem;
+      backdrop-filter:blur(4px);
+    }
+
+    /* ---- SITE HEADER ---- */
+    .site-header {
+      background: var(--card-bg);
+      padding:1.4rem 1rem 1rem;
+      text-align:center;
+      border-bottom:1px solid var(--border-color);
+      position:relative; z-index:1;
+    }
+    .site-header h1 {
+      font-family:'Amiri',serif;
+      font-size: clamp(2rem,7vw,3rem);
+      font-weight:700;
+      background: linear-gradient(120deg,var(--primary),var(--primary-light));
+      background-clip:text; -webkit-background-clip:text; color:transparent;
+    }
+    .site-header p { color:var(--text-muted); font-size:0.9rem; }
+    .pattern { height:4px; background: repeating-linear-gradient(90deg,var(--accent),var(--accent) 14px,#ffe89a 14px,#ffe89a 28px); }
+
+    /* ---- NAV ---- */
+    nav {
+      display:flex; justify-content:center; flex-wrap:wrap; gap:0.6rem;
+      background: var(--nav-bg);
+      backdrop-filter:blur(14px);
+      padding:0.9rem 1rem;
+      position:sticky; top:0; z-index:900;
+      box-shadow:0 4px 20px rgba(0,0,0,0.07);
+      border-bottom:1px solid var(--border-color);
+    }
+    nav button {
+      background:transparent; border:none;
+      padding:0.6rem 1.3rem;
+      font-family:'Hind Siliguri',sans-serif;
+      font-size:0.9rem; font-weight:600;
+      border-radius:50px; cursor:pointer;
+      color:var(--primary);
+      transition:var(--transition);
+      position:relative; overflow:hidden;
+    }
+    nav button:hover, nav button.active {
+      background: linear-gradient(115deg,var(--primary),var(--dark));
+      color:white;
+      box-shadow:0 6px 16px rgba(11,94,60,0.35);
+      transform:translateY(-2px);
+    }
+
+    /* ---- MAIN LAYOUT ---- */
+    .main-wrapper { position:relative; z-index:1; }
+    .container {
+      max-width:1340px; margin:0 auto;
+      padding:2rem 1.5rem;
+    }
+
+    /* ---- CONTROLS ---- */
+    .controls-bar {
+      display:flex; justify-content:space-between; align-items:center;
+      flex-wrap:wrap; gap:1rem; margin-bottom:2rem;
+      background:var(--card-bg);
+      padding:0.75rem 1.2rem;
+      border-radius:50px;
+      box-shadow:var(--shadow-sm);
+      border:1px solid var(--border-color);
+    }
+    .search-box {
+      flex:1; display:flex; align-items:center; gap:0.5rem;
+      background:var(--secondary); padding:0.5rem 1rem; border-radius:40px;
+      min-width:200px;
+    }
+    .search-box i { color:var(--primary); }
+    .search-box input {
+      background:transparent; border:none; outline:none;
+      width:100%; font-size:0.9rem; color:var(--text-dark);
+      font-family:'Hind Siliguri',sans-serif;
+    }
+    .dark-toggle {
+      background:var(--primary); color:white; border:none;
+      padding:0.5rem 1.1rem; border-radius:40px; cursor:pointer;
+      font-weight:600; display:flex; gap:6px; align-items:center;
+      font-family:'Hind Siliguri',sans-serif;
+      transition:var(--transition);
+    }
+    .dark-toggle:hover { background:var(--primary-dark); transform:scale(1.02); }
+
+    /* ---- GRID ---- */
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+      gap:1.8rem;
+    }
+    .card {
+      background:var(--card-bg);
+      border-radius:var(--radius);
+      padding:1.6rem;
+      box-shadow:var(--shadow-card);
+      border:1px solid var(--border-color);
+      transition:var(--transition);
+      position:relative; overflow:hidden;
+      animation:fadeInUp 0.55s cubic-bezier(0.2,0.9,0.4,1.1) both;
+    }
+    .card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      background:linear-gradient(90deg,var(--accent),var(--primary));
+      opacity:0; transition:opacity 0.3s;
+    }
+    .card:hover { transform:translateY(-8px); box-shadow:var(--shadow-lg); border-color:var(--accent); }
+    .card:hover::before { opacity:1; }
+    @keyframes fadeInUp {
+      from { opacity:0; transform:translateY(28px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+    .card h3 { font-size:1.15rem; font-weight:700; margin-bottom:0.6rem; }
+    .card h3 a {
+      text-decoration:none;
+      background:linear-gradient(120deg,var(--primary),var(--primary-light));
+      background-clip:text; -webkit-background-clip:text; color:transparent;
+      transition:var(--transition);
+    }
+    .card h3 a:hover { text-decoration:underline; }
+    .card p { color:var(--text-muted); font-size:0.88rem; line-height:1.7; }
+    .card-badge {
+      display:inline-block;
+      background:rgba(11,94,60,0.1); color:var(--primary);
+      padding:0.15rem 0.7rem; border-radius:30px; font-size:0.72rem;
+      font-weight:600; margin-bottom:0.6rem; border:1px solid rgba(11,94,60,0.15);
+    }
+    body.dark .card-badge { background:rgba(45,175,122,0.15); border-color:rgba(45,175,122,0.25); }
+    .delete-btn {
+      position:absolute; top:12px; right:12px;
+      background:rgba(200,50,50,0.1); color:#c83232;
+      border:none; border-radius:50%; width:30px; height:30px;
+      cursor:pointer; display:flex; align-items:center; justify-content:center;
+      opacity:0; transition:var(--transition); font-size:0.75rem;
+    }
+    .card:hover .delete-btn { opacity:1; }
+    .delete-btn:hover { background:#c83232; color:white; transform:scale(1.1); }
+
+    /* ---- SECTION ---- */
+    .content.hidden { display:none; }
+    .section-header {
+      display:flex; align-items:center; gap:1rem;
+      margin-bottom:1.6rem; padding-bottom:0.8rem;
+      border-bottom:2px solid var(--border-color);
+    }
+    .section-header h2 {
+      font-family:'Amiri',serif; font-size:1.7rem; font-weight:700; color:var(--primary);
+    }
+    .section-count {
+      background:var(--accent); color:var(--dark);
+      padding:0.15rem 0.7rem; border-radius:30px; font-size:0.78rem; font-weight:700;
+    }
+
+    /* ---- EMPTY STATE ---- */
+    .empty-state {
+      text-align:center; padding:3rem 1rem; color:var(--text-muted);
+    }
+    .empty-state i { font-size:2.5rem; margin-bottom:0.8rem; opacity:0.4; }
+    .empty-state p { font-size:0.9rem; }
+
+    /* ---- ABOUT ---- */
+    .about-card {
+      max-width:720px; margin:0 auto;
+      background:var(--card-bg); border-radius:var(--radius);
+      padding:2.2rem; box-shadow:var(--shadow-sm);
+      border:1px solid var(--border-color);
+    }
+    .about-card h3 { font-family:'Amiri',serif; font-size:1.5rem; color:var(--primary); margin-bottom:1rem; }
+    .about-card p { color:var(--text-muted); line-height:1.9; margin-bottom:0.8rem; }
+    .about-card .ayah {
+      font-family:'Amiri',serif; font-size:1.05rem;
+      border-left:3px solid var(--accent); padding-left:1rem; margin:1.2rem 0;
+      color:var(--text-dark);
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      text-align:center; padding:1.4rem 1rem;
+      background:var(--card-bg); border-top:1px solid var(--border-color);
+      color:var(--text-muted); font-size:0.85rem; position:relative; z-index:1;
+    }
+    footer span { color:var(--primary); font-weight:600; }
+
+    /* ---- FAB ---- */
+    .admin-fab {
+      position:fixed; bottom:28px; right:28px;
+      width:58px; height:58px; border-radius:50%;
+      background:linear-gradient(135deg,var(--accent),#c9a020);
+      color:var(--dark); display:flex; align-items:center; justify-content:center;
+      font-size:1.5rem; cursor:pointer; border:none;
+      box-shadow:0 6px 20px rgba(0,0,0,0.3);
+      z-index:800; transition:var(--transition);
+    }
+    .admin-fab:hover { transform:scale(1.1) rotate(15deg); box-shadow:0 8px 24px rgba(0,0,0,0.4); }
+
+    /* ---- MODALS ---- */
+    .modal {
+      display:none; position:fixed; inset:0;
+      background:rgba(0,0,0,0.7); backdrop-filter:blur(6px);
+      z-index:2000; justify-content:center; align-items:center;
+      animation:fadeIn 0.25s;
+    }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+    .modal-content {
+      background:var(--card-bg);
+      border-radius:var(--radius);
+      max-width:520px; width:92%;
+      padding:2rem;
+      position:relative;
+      border-top:4px solid var(--accent);
+      box-shadow:var(--shadow-lg);
+      max-height:90vh; overflow-y:auto;
+      animation:slideUp 0.28s cubic-bezier(0.2,0.9,0.4,1.1);
+    }
+    .modal-content.large { max-width:700px; }
+    .modal-content.admin-modal-content { max-width:750px; }
+    @keyframes slideUp { from{transform:translateY(32px);opacity:0} to{transform:translateY(0);opacity:1} }
+    .close-modal {
+      position:absolute; top:14px; right:18px;
+      font-size:1.6rem; cursor:pointer; color:var(--text-muted);
+      width:32px; height:32px; display:flex; align-items:center; justify-content:center;
+      border-radius:50%; transition:var(--transition); background:none; border:none;
+      font-family:inherit; line-height:1;
+    }
+    .close-modal:hover { background:rgba(200,50,50,0.1); color:#c83232; }
+
+    /* ---- ADMIN PANEL ---- */
+    .admin-panel-header {
+      display:flex; align-items:center; gap:1rem; margin-bottom:1.5rem;
+      padding-bottom:1rem; border-bottom:2px solid var(--border-color);
+    }
+    .admin-panel-header .icon {
+      width:44px; height:44px; border-radius:12px;
+      background:linear-gradient(135deg,var(--accent),#c9a020);
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.2rem; color:var(--dark);
+    }
+    .admin-panel-header h3 { font-size:1.3rem; font-weight:700; color:var(--text-dark); }
+    .admin-panel-header p { font-size:0.8rem; color:var(--text-muted); }
+
+    /* Tabs inside admin panel */
+    .admin-tabs {
+      display:flex; gap:0.5rem; margin-bottom:1.4rem;
+      background:var(--secondary); padding:5px; border-radius:12px;
+    }
+    .admin-tab {
+      flex:1; padding:0.6rem; border:none; border-radius:9px; cursor:pointer;
+      font-family:'Hind Siliguri',sans-serif; font-size:0.85rem; font-weight:600;
+      background:transparent; color:var(--text-muted); transition:var(--transition);
+    }
+    .admin-tab.active { background:var(--card-bg); color:var(--primary); box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+
+    /* Form fields */
+    .form-group { margin-bottom:1.1rem; }
+    .form-group label {
+      display:block; font-weight:600; font-size:0.85rem;
+      color:var(--text-dark); margin-bottom:0.4rem;
+    }
+    .form-group label span { color:var(--accent); margin-left:2px; }
+    .form-control {
+      width:100%; padding:0.7rem 1rem;
+      border-radius:var(--radius-sm); border:1.5px solid var(--border-color);
+      background:var(--secondary); color:var(--text-dark);
+      font-family:'Hind Siliguri',sans-serif; font-size:0.9rem;
+      transition:var(--transition); outline:none;
+    }
+    .form-control:focus { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-glow); }
+    textarea.form-control { resize:vertical; min-height:120px; }
+
+    /* Category selector */
+    .cat-grid {
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:0.6rem;
+      margin-bottom:1rem;
+    }
+    .cat-btn {
+      padding:0.6rem; border:1.5px solid var(--border-color);
+      border-radius:var(--radius-sm); background:var(--secondary);
+      color:var(--text-muted); font-family:'Hind Siliguri',sans-serif;
+      font-size:0.82rem; font-weight:600; cursor:pointer; transition:var(--transition);
+      text-align:center;
+    }
+    .cat-btn:hover { border-color:var(--accent); color:var(--primary); }
+    .cat-btn.selected {
+      background:linear-gradient(115deg,var(--primary),var(--dark));
+      border-color:var(--primary); color:white;
+      box-shadow:0 4px 12px rgba(11,94,60,0.3);
+    }
+    body.dark .cat-btn.selected { background:linear-gradient(115deg,var(--primary),var(--primary-dark)); }
+
+    /* Submit btn */
+    .btn-submit {
+      width:100%; padding:0.85rem; border:none; border-radius:var(--radius-sm);
+      background:linear-gradient(115deg,var(--primary),var(--dark));
+      color:white; font-family:'Hind Siliguri',sans-serif;
+      font-size:1rem; font-weight:700; cursor:pointer; transition:var(--transition);
+      display:flex; align-items:center; justify-content:center; gap:8px;
+    }
+    .btn-submit:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(11,94,60,0.4); }
+
+    /* List tab */
+    .entry-list { display:flex; flex-direction:column; gap:0.75rem; }
+    .entry-row {
+      display:flex; align-items:center; gap:0.8rem;
+      background:var(--secondary); padding:0.8rem 1rem;
+      border-radius:var(--radius-sm); border:1px solid var(--border-color);
+    }
+    .entry-row-info { flex:1; min-width:0; }
+    .entry-row-info h4 { font-size:0.9rem; font-weight:600; truncate; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .entry-row-info p { font-size:0.75rem; color:var(--text-muted); }
+    .entry-row-del {
+      background:rgba(200,50,50,0.1); color:#c83232; border:none;
+      width:32px; height:32px; border-radius:8px; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      transition:var(--transition); flex-shrink:0;
+    }
+    .entry-row-del:hover { background:#c83232; color:white; }
+    .filter-section-select {
+      padding:0.5rem 0.9rem; border-radius:var(--radius-sm);
+      border:1.5px solid var(--border-color);
+      background:var(--secondary); color:var(--text-dark);
+      font-family:'Hind Siliguri',sans-serif; font-size:0.85rem;
+      margin-bottom:0.8rem; outline:none; cursor:pointer;
+    }
+    .filter-section-select:focus { border-color:var(--accent); }
+
+    /* Password modal */
+    .pwd-icon { text-align:center; font-size:2.5rem; margin-bottom:0.5rem; color:var(--accent); }
+    .pwd-title { text-align:center; font-size:1.2rem; font-weight:700; margin-bottom:0.3rem; color:var(--text-dark); }
+    .pwd-sub { text-align:center; font-size:0.82rem; color:var(--text-muted); margin-bottom:1.2rem; }
+    .pwd-input-wrap { position:relative; }
+    .pwd-input-wrap input { padding-right:2.8rem; }
+    .pwd-eye { position:absolute; right:12px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; color:var(--text-muted); padding:0; }
+
+    /* Stats */
+    .admin-stats {
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(110px,1fr)); gap:0.7rem;
+      margin-bottom:1.4rem;
+    }
+    .stat-box {
+      background:var(--secondary); border-radius:var(--radius-sm);
+      padding:0.9rem 0.6rem; text-align:center;
+      border:1px solid var(--border-color);
+    }
+    .stat-box .num { font-size:1.4rem; font-weight:800; color:var(--primary); }
+    .stat-box .lbl { font-size:0.72rem; color:var(--text-muted); margin-top:2px; }
+
+    /* Toast */
+    .toast {
+      position:fixed; bottom:100px; left:50%; transform:translateX(-50%) translateY(20px);
+      background:var(--dark); color:white; padding:0.75rem 1.6rem;
+      border-radius:50px; font-size:0.88rem; font-weight:600;
+      z-index:3000; opacity:0; transition:all 0.3s; pointer-events:none;
+      border-left:3px solid var(--accent);
+    }
+    .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+    /* Responsive */
+    @media (max-width:700px) {
+      .profile-container { flex-direction:column; text-align:center; }
+      .brand-text { text-align:center; }
+      nav button { padding:0.5rem 0.9rem; font-size:0.82rem; }
+      .controls-bar { flex-direction:column; border-radius:var(--radius); }
+      .grid { gap:1.2rem; }
+      .admin-tabs { flex-wrap:wrap; }
+      .admin-tab { flex:1 0 40%; }
+    }
+    @media (max-width:480px) {
+      .avatar-frame { width:96px; height:96px; }
+      .avatar-frame img { width:88px; height:88px; }
+      nav button { min-width:60px; flex:1 0 35%; }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width:6px; }
+    ::-webkit-scrollbar-track { background:transparent; }
+    ::-webkit-scrollbar-thumb { background:var(--accent); border-radius:10px; opacity:.6; }
+
+    /* Hidden util */
+    .hidden { display:none !important; }
+  </style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero-profile">
+  <div class="hero-ornament">﴾ بسم الله الرحمن الرحيم ﴿</div>
+  <div class="profile-container" style="margin-top:1.5rem;">
+    <div class="avatar-frame">
+      <img id="profilePhoto" src="https://ui-avatars.com/api/?background=0b5e3c&color=fff&rounded=true&bold=true&size=110&name=Abdur+Rahim" alt="Abdur Rahim">
+    </div>
+    <div class="brand-text">
+      <h2>আব্দুর রহীম</h2>
+      <p>📖 ইসলামিক লেখক | আলোর সন্ধানী ✨</p>
+      <div class="badge-light">🌙 نور المعرفة — প্রজ্ঞা ও প্রতিফলন বিস্তার</div>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="site-header">
+  <h1>نور المعرفة</h1>
+  <p>কবিতা • উপন্যাস • প্রশ্নোত্তর • চিন্তা • জ্ঞান</p>
+</header>
+<div class="pattern"></div>
+
+<!-- Nav -->
+<nav>
+  <button class="active" onclick="showSection('poems',this)">📜 কবিতা</button>
+  <button onclick="showSection('novels',this)">📚 উপন্যাস</button>
+  <button onclick="showSection('qa',this)">❓ প্রশ্ন ও উত্তর</button>
+  <button onclick="showSection('thoughts',this)">💭 চিন্তা-ভাবনা</button>
+  <button onclick="showSection('about',this)">🧑‍🕋 আমার সম্পর্কে</button>
+</nav>
+
+<div class="main-wrapper">
+<div class="container">
+
+  <!-- Controls -->
+  <div class="controls-bar">
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="শিরোনাম বা বিবরণ দিয়ে অনুসন্ধান করুন...">
+    </div>
+    <button id="darkModeToggle" class="dark-toggle"><i class="fas fa-moon"></i> ডার্ক মোড</button>
+  </div>
+
+  <!-- Poems -->
+  <section id="poems" class="content">
+    <div class="section-header">
+      <h2>📜 কবিতা</h2>
+      <span class="section-count" id="poemsCount">0</span>
+    </div>
+    <div class="grid" id="poemsGrid"></div>
+  </section>
+
+  <!-- Novels -->
+  <section id="novels" class="content hidden">
+    <div class="section-header">
+      <h2>📚 উপন্যাস</h2>
+      <span class="section-count" id="novelsCount">0</span>
+    </div>
+    <div class="grid" id="novelsGrid"></div>
+  </section>
+
+  <!-- Q&A -->
+  <section id="qa" class="content hidden">
+    <div class="section-header">
+      <h2>❓ প্রশ্ন ও উত্তর</h2>
+      <span class="section-count" id="qaCount">0</span>
+    </div>
+    <div class="grid" id="qaGrid"></div>
+  </section>
+
+  <!-- Thoughts -->
+  <section id="thoughts" class="content hidden">
+    <div class="section-header">
+      <h2>💭 চিন্তা-ভাবনা</h2>
+      <span class="section-count" id="thoughtsCount">0</span>
+    </div>
+    <div class="grid" id="thoughtsGrid"></div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="content hidden">
+    <div class="about-card">
+      <h3>✨ আমার সম্পর্কে — আব্দুর রহীম ✨</h3>
+      <p>আমি আব্দুর রহীম, ইসলামী জ্ঞান, হৃদয়গ্রাহী কবিতা, আত্মিক উপন্যাস এবং উম্মাহর জন্য চিন্তা-ভাবনা ছড়িয়ে দিতে আগ্রহী।</p>
+      <p>এই প্ল্যাটফর্ম <strong>نور المعرفة (নূর আল-মা'রিফাহ)</strong> হৃদয়কে সৎপথে, ধৈর্য ও ঈমানের আলোয় উদ্বুদ্ধ করার একটি নম্র প্রচেষ্টা।</p>
+      <div class="ayah">📩 "আপনার প্রভুর পথে প্রজ্ঞা ও সুন্দর উপদেশের মাধ্যমে আহ্বান করুন।" (কুরআন ১৬:১২৫)</div>
+    </div>
+  </section>
+
+</div>
+</div>
+
+<footer>
+  <p>© ২০২৬ | নির্মাতা <span>আব্দুর রহীম</span> | মুসলিম উম্মাহর জন্য <span>ﷺ</span></p>
+</footer>
+
+<!-- FAB -->
+<button class="admin-fab" id="adminFab" title="অ্যাডমিন প্যানেল">
+  <i class="fas fa-cog"></i>
+</button>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- ===== PASSWORD MODAL ===== -->
+<div id="passwordModal" class="modal">
+  <div class="modal-content" style="max-width:400px;">
+    <button class="close-modal" onclick="closeModal('passwordModal')">&times;</button>
+    <div class="pwd-icon">🔐</div>
+    <div class="pwd-title">অ্যাডমিন অ্যাক্সেস</div>
+    <div class="pwd-sub">নিরাপত্তার জন্য পাসওয়ার্ড প্রয়োজন</div>
+    <div class="form-group">
+      <div class="pwd-input-wrap">
+        <input class="form-control" type="password" id="adminPassword" placeholder="পাসওয়ার্ড লিখুন" onkeydown="if(event.key==='Enter')checkPassword()">
+        <button class="pwd-eye" onclick="togglePwdVis()"><i class="fas fa-eye" id="pwdEyeIcon"></i></button>
+      </div>
+    </div>
+    <button class="btn-submit" onclick="checkPassword()"><i class="fas fa-unlock-alt"></i> প্রবেশ করুন</button>
+    <p id="pwdError" style="color:#c83232;font-size:0.82rem;text-align:center;margin-top:0.8rem;display:none;">❌ ভুল পাসওয়ার্ড! আবার চেষ্টা করুন।</p>
+  </div>
+</div>
+
+<!-- ===== ADMIN PANEL MODAL ===== -->
+<div id="adminModal" class="modal">
+  <div class="modal-content admin-modal-content">
+    <button class="close-modal" onclick="closeModal('adminModal')">&times;</button>
+
+    <div class="admin-panel-header">
+      <div class="icon"><i class="fas fa-shield-alt"></i></div>
+      <div>
+        <h3>অ্যাডমিন প্যানেল</h3>
+        <p>কন্টেন্ট যোগ, সম্পাদনা ও পরিচালনা করুন</p>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="admin-stats" id="adminStats"></div>
+
+    <!-- Tabs -->
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="switchAdminTab('add',this)"><i class="fas fa-plus"></i> নতুন যোগ</button>
+      <button class="admin-tab" onclick="switchAdminTab('manage',this)"><i class="fas fa-list"></i> পরিচালনা</button>
+      <button class="admin-tab" onclick="switchAdminTab('settings',this)"><i class="fas fa-sliders-h"></i> সেটিংস</button>
+    </div>
+
+    <!-- ADD TAB -->
+    <div id="adminTabAdd">
+      <div class="form-group">
+        <label>বিভাগ নির্বাচন করুন <span>*</span></label>
+        <div class="cat-grid" id="catGrid">
+          <button class="cat-btn selected" data-cat="poems" onclick="selectCat(this)">📜 কবিতা</button>
+          <button class="cat-btn" data-cat="novels" onclick="selectCat(this)">📚 উপন্যাস</button>
+          <button class="cat-btn" data-cat="thoughts" onclick="selectCat(this)">💭 চিন্তা-ভাবনা</button>
+          <button class="cat-btn" data-cat="qa" onclick="selectCat(this)">❓ প্রশ্ন ও উত্তর</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>শিরোনাম <span>*</span></label>
+        <input type="text" class="form-control" id="entryTitle" placeholder="লেখার শিরোনাম লিখুন...">
+      </div>
+      <div class="form-group">
+        <label>সংক্ষিপ্ত বিবরণ</label>
+        <input type="text" class="form-control" id="entryDesc" placeholder="কার্ডে দেখানো সংক্ষিপ্ত বিবরণ (ঐচ্ছিক)">
+      </div>
+      <div class="form-group">
+        <label>পূর্ণ বিষয়বস্তু <span>*</span></label>
+        <textarea class="form-control" id="entryContent" rows="5" placeholder="লেখার পূর্ণ বিষয়বস্তু এখানে লিখুন..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>লিঙ্ক <small style="color:var(--text-muted);font-weight:400;">(ঐচ্ছিক — যদি পৃথক পেজ থাকে)</small></label>
+        <input type="text" class="form-control" id="entryLink" placeholder="যেমন: poem.html অথবা https://example.com">
+      </div>
+      <button class="btn-submit" onclick="addDynamicEntry()"><i class="fas fa-plus-circle"></i> এন্ট্রি যোগ করুন</button>
+    </div>
+
+    <!-- MANAGE TAB -->
+    <div id="adminTabManage" class="hidden">
+      <div style="display:flex;gap:0.7rem;align-items:center;margin-bottom:1rem;flex-wrap:wrap;">
+        <select class="filter-section-select" id="manageFilter" onchange="renderManageList()">
+          <option value="all">সব বিভাগ</option>
+          <option value="poems">📜 কবিতা</option>
+          <option value="novels">📚 উপন্যাস</option>
+          <option value="thoughts">💭 চিন্তা-ভাবনা</option>
+          <option value="qa">❓ প্রশ্ন ও উত্তর</option>
+        </select>
+        <span style="font-size:0.82rem;color:var(--text-muted)" id="manageCountLabel"></span>
+      </div>
+      <div class="entry-list" id="adminEntryList"></div>
+    </div>
+
+    <!-- SETTINGS TAB -->
+    <div id="adminTabSettings" class="hidden">
+      <div class="form-group">
+        <label>প্রোফাইল ছবির URL</label>
+        <input type="text" class="form-control" id="settingPhoto" placeholder="ছবির লিঙ্ক...">
+      </div>
+      <div class="form-group">
+        <label>সাইট শিরোনাম</label>
+        <input type="text" class="form-control" id="settingTitle" placeholder="نور المعرفة">
+      </div>
+      <div class="form-group">
+        <label>লেখকের নাম</label>
+        <input type="text" class="form-control" id="settingAuthor" placeholder="আব্দুর রহীম">
+      </div>
+      <div class="form-group">
+        <label>পরিচয় বাক্য</label>
+        <input type="text" class="form-control" id="settingTagline" placeholder="📖 ইসলামিক লেখক | আলোর সন্ধানী ✨">
+      </div>
+      <div style="display:flex;gap:0.8rem;flex-wrap:wrap;">
+        <button class="btn-submit" style="flex:1;" onclick="saveSettings()"><i class="fas fa-save"></i> সেটিংস সংরক্ষণ</button>
+        <button onclick="clearAllData()" style="flex:1;padding:0.85rem;border:none;border-radius:var(--radius-sm);background:rgba(200,50,50,0.1);color:#c83232;font-family:'Hind Siliguri',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;transition:var(--transition);">
+          <i class="fas fa-trash"></i> সব ডেটা মুছুন
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== CONTENT VIEW MODAL ===== -->
+<div id="contentModal" class="modal">
+  <div class="modal-content large">
+    <button class="close-modal" onclick="closeModal('contentModal')">&times;</button>
+    <h3 id="modalTitle" style="font-family:'Amiri',serif;font-size:1.4rem;color:var(--primary);margin-bottom:1rem;"></h3>
+    <div style="height:2px;background:linear-gradient(90deg,var(--accent),transparent);margin-bottom:1.2rem;"></div>
+    <p id="modalBody" style="white-space:pre-wrap;color:var(--text-muted);line-height:1.9;"></p>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// STATIC DATA — Links Preserved
+// ============================================================
+const staticData = {
+  poems: [
+    { title:"ভালো যদি হতে চাও", desc:"আরও এগিয়ে যাও মঙ্গলের সন্ধানে।", link:"valoo.html" },
+    { title:"নামাজ", desc:"সর্বশক্তিমান আল্লাহর নির্দেশনা লাভের জন্য সালাত আদায় করুন।", link:"namaj.html" },
+    { title:"অনুভূতি", desc:"মনের কল্পনা।", link:"onuvuti.html" },
+    { title:"ধৈর্য (সবর)", desc:"সহনশীলতা ও আস্থা।", link:"d.html" }
+  ],
+  novels: [
+    { title:"জীবনের উদ্দেশ্য", desc:"এই জীবন কেন?", link:"yes.html" },
+    { title:"যোগ্যতা: চরম সাফল্য", desc:"আধ্যাত্মিক যাত্রা।", link:"merit.html" },
+    { title:"মানবতার আদর্শ (নবী ﷺ)", desc:"সকল অনুসরণকারীর জন্য অনুকরণীয় ব্যক্তিত্ব।", link:"e.html" },
+    { title:"কিভাবে শত্রুকে কষ্ট দিতে হয়", desc:"গোপন পদ্ধতি", link:"f.html" },
+    { title:"প্রত্যেক মানুষের দায়িত্ব", desc:"পাঠ করুন আপনার প্রভুর নামে", link:"g.html" }
+  ],
+  qa: [
+    { title:"জীবনের চাবিকাঠি", desc:"মূল বিশ্বাস।", link:"h.html" }
+  ],
+  thoughts: [
+    { title:"আমার চিন্তা", desc:"আমার ভালোবাসার ভাগাভাগি..", link:"n.html" }
+  ]
+};
+
+const CATEGORY_META = {
+  poems:   { emoji:"📜", label:"কবিতা" },
+  novels:  { emoji:"📚", label:"উপন্যাস" },
+  thoughts:{ emoji:"💭", label:"চিন্তা-ভাবনা" },
+  qa:      { emoji:"❓", label:"প্রশ্ন ও উত্তর" }
+};
+
+// ============================================================
+// STATE
+// ============================================================
+let dynamicEntries = { poems:[], novels:[], thoughts:[], qa:[] };
+let siteSettings = {
+  photo: '', title:'نور المعرفة', author:'আব্দুর রহীম',
+  tagline:'📖 ইসলামিক লেখক | আলোর সন্ধানী ✨'
+};
+let selectedCat = 'poems';
+
+// ============================================================
+// STORAGE
+// ============================================================
+function loadData() {
+  try {
+    const e = localStorage.getItem('noor_entries');
+    if (e) dynamicEntries = Object.assign({poems:[],novels:[],thoughts:[],qa:[]}, JSON.parse(e));
+    const s = localStorage.getItem('noor_settings');
+    if (s) siteSettings = Object.assign({}, siteSettings, JSON.parse(s));
+  } catch(err) {}
+}
+function saveData() {
+  localStorage.setItem('noor_entries', JSON.stringify(dynamicEntries));
+}
+function saveSettingsData() {
+  localStorage.setItem('noor_settings', JSON.stringify(siteSettings));
+}
+
+// ============================================================
+// TOAST
+// ============================================================
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ============================================================
+// RENDER
+// ============================================================
+function renderGrid(sectionId, staticList, dynamicList) {
+  const container = document.getElementById(sectionId + 'Grid');
+  const countEl = document.getElementById(sectionId + 'Count');
+  if (!container) return;
+  const total = staticList.length + dynamicList.length;
+  if (countEl) countEl.textContent = total;
+
+  if (total === 0) {
+    container.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><i class="fas fa-feather-alt"></i><p>এখনও কোনো এন্ট্রি নেই।</p></div>`;
+    return;
+  }
+  let html = '';
+  const allCards = [
+    ...staticList.map(c=>({...c, isStatic:true})),
+    ...dynamicList.map(c=>({...c, isStatic:false}))
+  ];
+  allCards.forEach((card, i) => {
+    const delay = Math.min(i * 0.05, 0.5);
+    const label = CATEGORY_META[sectionId]?.label || '';
+    const desc = card.desc || card.preview || '';
+    html += `<div class="card" style="animation-delay:${delay}s">`;
+    if (!card.isStatic) html += `<button class="delete-btn" onclick="deleteEntry('${sectionId}',${card.id})" title="মুছুন"><i class="fas fa-trash-alt"></i></button>`;
+    html += `<span class="card-badge">${CATEGORY_META[sectionId]?.emoji||''} ${label}</span>`;
+    if (card.link) {
+      html += `<h3><a href="${card.link}">${card.title}</a></h3>`;
+    } else {
+      html += `<h3 style="cursor:pointer;" onclick="openContentModal(${JSON.stringify(card.title)},${JSON.stringify(card.content||'')})">${card.title}</h3>`;
+    }
+    html += `<p>${desc}</p></div>`;
+  });
+  container.innerHTML = html;
+}
+
+function renderAllSections() {
+  renderGrid('poems', staticData.poems, dynamicEntries.poems || []);
+  renderGrid('novels', staticData.novels, dynamicEntries.novels || []);
+  renderGrid('thoughts', staticData.thoughts, dynamicEntries.thoughts || []);
+  renderGrid('qa', staticData.qa, dynamicEntries.qa || []);
+}
+
+function updateAdminStats() {
+  const stats = document.getElementById('adminStats');
+  if (!stats) return;
+  let html = '';
+  let total = 0;
+  Object.entries(CATEGORY_META).forEach(([key, meta]) => {
+    const dyn = (dynamicEntries[key]||[]).length;
+    const stat = (staticData[key]||[]).length;
+    const count = dyn + stat;
+    total += count;
+    html += `<div class="stat-box"><div class="num">${count}</div><div class="lbl">${meta.emoji} ${meta.label}</div></div>`;
+  });
+  html = `<div class="stat-box"><div class="num">${total}</div><div class="lbl">📦 মোট</div></div>` + html;
+  stats.innerHTML = html;
+}
+
+// ============================================================
+// SEARCH
+// ============================================================
+function filterCards() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  document.querySelectorAll('.grid .card').forEach(card => {
+    const txt = card.textContent.toLowerCase();
+    card.style.display = txt.includes(q) ? '' : 'none';
+  });
+}
+
+// ============================================================
+// SECTION SWITCH
+// ============================================================
+function showSection(id, btn) {
+  document.querySelectorAll('.content').forEach(s=>s.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  filterCards();
+}
+
+// ============================================================
+// ADD ENTRY
+// ============================================================
+function selectCat(btn) {
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedCat = btn.dataset.cat;
+}
+
+function addDynamicEntry() {
+  const title   = document.getElementById('entryTitle').value.trim();
+  const content = document.getElementById('entryContent').value.trim();
+  const desc    = document.getElementById('entryDesc').value.trim();
+  const link    = document.getElementById('entryLink').value.trim();
+
+  if (!title) { toast('❗ শিরোনাম আবশ্যক!'); return; }
+  if (!content && !link) { toast('❗ বিষয়বস্তু বা লিঙ্ক দিন!'); return; }
+
+  if (!dynamicEntries[selectedCat]) dynamicEntries[selectedCat] = [];
+  dynamicEntries[selectedCat].push({
+    id: Date.now(),
+    title, content,
+    desc: desc || (content ? content.substring(0,90)+(content.length>90?'…':'') : ''),
+    preview: content ? content.substring(0,90)+(content.length>90?'…':'') : desc,
+    link: link || null
+  });
+  saveData();
+  renderAllSections();
+  updateAdminStats();
+  document.getElementById('entryTitle').value = '';
+  document.getElementById('entryContent').value = '';
+  document.getElementById('entryDesc').value = '';
+  document.getElementById('entryLink').value = '';
+  toast(`✅ "${title}" সফলভাবে যোগ করা হয়েছে!`);
+}
+
+// ============================================================
+// DELETE
+// ============================================================
+function deleteEntry(section, id) {
+  if (!confirm('এই এন্ট্রিটি মুছতে চান?')) return;
+  dynamicEntries[section] = (dynamicEntries[section]||[]).filter(e=>e.id!=id);
+  saveData();
+  renderAllSections();
+  updateAdminStats();
+  renderManageList();
+  toast('🗑️ এন্ট্রি মুছে ফেলা হয়েছে।');
+}
+
+// ============================================================
+// MANAGE LIST
+// ============================================================
+function renderManageList() {
+  const filter = document.getElementById('manageFilter').value;
+  const list = document.getElementById('adminEntryList');
+  const label = document.getElementById('manageCountLabel');
+  let entries = [];
+  const sections = filter === 'all' ? Object.keys(CATEGORY_META) : [filter];
+  sections.forEach(key => {
+    (dynamicEntries[key]||[]).forEach(e => entries.push({...e, section:key}));
+  });
+  if (label) label.textContent = `মোট ${entries.length}টি ডাইনামিক এন্ট্রি`;
+  if (!entries.length) {
+    list.innerHTML = `<div class="empty-state"><i class="fas fa-inbox"></i><p>কোনো ডাইনামিক এন্ট্রি নেই।</p></div>`;
+    return;
+  }
+  list.innerHTML = entries.map(e => `
+    <div class="entry-row">
+      <div class="entry-row-info">
+        <h4>${e.title}</h4>
+        <p>${CATEGORY_META[e.section]?.emoji||''} ${CATEGORY_META[e.section]?.label||''} ${e.link?'· 🔗 লিঙ্ক আছে':''}</p>
+      </div>
+      <button class="entry-row-del" onclick="deleteEntry('${e.section}',${e.id})" title="মুছুন"><i class="fas fa-trash-alt"></i></button>
+    </div>
+  `).join('');
+}
+
+// ============================================================
+// ADMIN TABS
+// ============================================================
+function switchAdminTab(tab, btn) {
+  document.querySelectorAll('.admin-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('adminTabAdd').classList.add('hidden');
+  document.getElementById('adminTabManage').classList.add('hidden');
+  document.getElementById('adminTabSettings').classList.add('hidden');
+  document.getElementById('adminTab'+tab.charAt(0).toUpperCase()+tab.slice(1)).classList.remove('hidden');
+  if (tab === 'manage') renderManageList();
+  if (tab === 'settings') loadSettingsForm();
+}
+
+// ============================================================
+// SETTINGS
+// ============================================================
+function loadSettingsForm() {
+  document.getElementById('settingPhoto').value = siteSettings.photo || '';
+  document.getElementById('settingTitle').value = siteSettings.title || '';
+  document.getElementById('settingAuthor').value = siteSettings.author || '';
+  document.getElementById('settingTagline').value = siteSettings.tagline || '';
+}
+function saveSettings() {
+  siteSettings.photo   = document.getElementById('settingPhoto').value.trim();
+  siteSettings.title   = document.getElementById('settingTitle').value.trim();
+  siteSettings.author  = document.getElementById('settingAuthor').value.trim();
+  siteSettings.tagline = document.getElementById('settingTagline').value.trim();
+  saveSettingsData();
+  applySettings();
+  toast('✅ সেটিংস সংরক্ষণ করা হয়েছে!');
+}
+function applySettings() {
+  if (siteSettings.photo) document.getElementById('profilePhoto').src = siteSettings.photo;
+  if (siteSettings.author) document.querySelector('.brand-text h2').textContent = siteSettings.author;
+  if (siteSettings.tagline) document.querySelector('.brand-text p').textContent = siteSettings.tagline;
+}
+function clearAllData() {
+  if (!confirm('সমস্ত ডাইনামিক এন্ট্রি মুছতে চান? এটি অপরিবর্তনীয়!')) return;
+  dynamicEntries = { poems:[], novels:[], thoughts:[], qa:[] };
+  saveData();
+  renderAllSections();
+  updateAdminStats();
+  renderManageList();
+  toast('🗑️ সব ডাইনামিক ডেটা মুছে ফেলা হয়েছে।');
+}
+
+// ============================================================
+// MODALS
+// ============================================================
+function openPasswordModal() {
+  document.getElementById('adminPassword').value = '';
+  document.getElementById('pwdError').style.display = 'none';
+  document.getElementById('passwordModal').style.display = 'flex';
+  setTimeout(()=>document.getElementById('adminPassword').focus(), 100);
+}
+function checkPassword() {
+  const pass = document.getElementById('adminPassword').value;
+  if (pass === '501in0ed') {
+    closeModal('passwordModal');
+    updateAdminStats();
+    document.getElementById('adminModal').style.display = 'flex';
+  } else {
+    document.getElementById('pwdError').style.display = 'block';
+    document.getElementById('adminPassword').value = '';
+    document.getElementById('adminPassword').focus();
+  }
+}
+function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+function openContentModal(title, content) {
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalBody').textContent = content;
+  document.getElementById('contentModal').style.display = 'flex';
+}
+function togglePwdVis() {
+  const inp = document.getElementById('adminPassword');
+  const ico = document.getElementById('pwdEyeIcon');
+  if (inp.type === 'password') { inp.type='text'; ico.className='fas fa-eye-slash'; }
+  else { inp.type='password'; ico.className='fas fa-eye'; }
+}
+
+// ============================================================
+// DARK MODE
+// ============================================================
+function initDarkMode() {
+  const toggle = document.getElementById('darkModeToggle');
+  if (localStorage.getItem('darkMode') === 'enabled') {
+    document.body.classList.add('dark');
+    toggle.innerHTML = '<i class="fas fa-sun"></i> লাইট মোড';
+  }
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    const isDark = document.body.classList.contains('dark');
+    localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+    toggle.innerHTML = isDark ? '<i class="fas fa-sun"></i> লাইট মোড' : '<i class="fas fa-moon"></i> ডার্ক মোড';
+  });
+}
+
+// ============================================================
+// INIT
+// ============================================================
+window.addEventListener('load', () => {
+  loadData();
+  applySettings();
+  renderAllSections();
+  initDarkMode();
+
+  document.getElementById('searchInput').addEventListener('input', filterCards);
+  document.getElementById('adminFab').addEventListener('click', openPasswordModal);
+
+  window.addEventListener('click', e => {
+    if (e.target.classList.contains('modal')) e.target.style.display = 'none';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+    if (e.key === 'Enter' && document.getElementById('passwordModal').style.display === 'flex') checkPassword();
+  });
+});
+</script>
+</body>
+</html>
