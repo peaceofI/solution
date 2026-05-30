@@ -4,520 +4,1037 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
   <title>نور المعرفة | ইসলামিক জ্ঞান</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Noto+Serif+Bengali:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
+    /* ══════════════════════════════════════
+       DESIGN TOKENS & CUSTOM PROPERTIES
+    ══════════════════════════════════════ */
     :root {
-      --primary: #0b5e3c;
-      --primary-dark: #064e2f;
-      --primary-light: #1a7a52;
-      --secondary: #f4f7f6;
-      --accent: #d4af37;
-      --accent-light: #f0d060;
-      --accent-glow: rgba(212, 175, 55, 0.35);
-      --dark: #102820;
-      --text-dark: #1e2a2e;
-      --text-light: #f0f5f3;
-      --text-muted: #6b7e76;
-      --glass-bg: rgba(255,255,255,0.88);
-      --shadow-lg: 0 24px 48px -12px rgba(0,0,0,0.18);
-      --shadow-sm: 0 6px 24px rgba(0,20,10,0.07);
-      --shadow-card: 0 2px 12px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.06);
-      --transition: all 0.32s cubic-bezier(0.4,0,0.2,1);
-      --bg-gradient: linear-gradient(150deg,#f0f6f2 0%,#eaf3ee 50%,#e8f0ec 100%);
-      --card-bg: rgba(255,255,255,0.97);
-      --border-color: rgba(212,175,55,0.18);
-      --nav-bg: rgba(255,255,255,0.94);
-      --radius: 20px;
-      --radius-sm: 12px;
+      --emerald-1: #0a4f33;
+      --emerald-2: #0d6647;
+      --emerald-3: #12825c;
+      --emerald-glow: rgba(13, 102, 71, 0.5);
+      --gold-1: #c9a227;
+      --gold-2: #e2b842;
+      --gold-3: #f5d06a;
+      --gold-glow: rgba(201, 162, 39, 0.45);
+      --glass-white: rgba(255,255,255,0.10);
+      --glass-border: rgba(255,255,255,0.18);
+      --glass-white-strong: rgba(255,255,255,0.85);
+      --glass-border-strong: rgba(255,255,255,0.40);
+      --bg-light-1: #eef5f1;
+      --bg-light-2: #e5f0ea;
+      --card-bg-light: rgba(255,255,255,0.82);
+      --text-primary-light: #0d2a1e;
+      --text-secondary-light: #2f5543;
+      --shadow-card: 0 8px 32px rgba(10,79,51,0.12);
+      --shadow-hover: 0 20px 50px rgba(10,79,51,0.22), 0 0 0 1px var(--gold-1);
+      --shadow-glow: 0 0 30px rgba(201,162,39,0.25);
+      --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --nav-bg-light: rgba(255,255,255,0.78);
+      --footer-bg: linear-gradient(135deg, #061e12, #0a3020);
     }
 
     body.dark {
-      --primary: #2daf7a;
-      --primary-dark: #1f8a5e;
-      --primary-light: #3ec989;
-      --secondary: #1a2922;
-      --accent: #e8c84a;
-      --accent-glow: rgba(232,200,74,0.3);
-      --dark: #0d1a12;
-      --text-dark: #ddeee5;
-      --text-muted: #8aaa96;
-      --bg-gradient: linear-gradient(150deg,#0f1c16 0%,#0c1810 100%);
-      --card-bg: rgba(20,35,27,0.97);
-      --border-color: rgba(232,200,74,0.2);
-      --nav-bg: rgba(14,24,18,0.95);
-      --glass-bg: rgba(18,28,22,0.92);
+      --bg-light-1: #08160e;
+      --bg-light-2: #0b1d12;
+      --card-bg-light: rgba(12, 30, 20, 0.88);
+      --text-primary-light: #d4ead8;
+      --text-secondary-light: #7eba94;
+      --glass-white: rgba(255,255,255,0.05);
+      --glass-border: rgba(255,255,255,0.10);
+      --glass-white-strong: rgba(15, 35, 22, 0.92);
+      --glass-border-strong: rgba(255,255,255,0.15);
+      --shadow-card: 0 8px 32px rgba(0,0,0,0.45);
+      --shadow-hover: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px var(--gold-2);
+      --nav-bg-light: rgba(8, 20, 13, 0.88);
     }
 
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    /* ══════════════════════════════════════
+       GLOBAL RESET & BASE
+    ══════════════════════════════════════ */
+    *, *::before, *::after {
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+    }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Hind Siliguri', system-ui, sans-serif;
-      background: var(--bg-gradient);
-      color: var(--text-dark);
-      line-height: 1.65;
+      font-family: 'Noto Serif Bengali', 'Rajdhani', system-ui, sans-serif;
+      background-color: var(--bg-light-1);
+      background-image:
+        radial-gradient(ellipse at 20% 10%, rgba(13,102,71,0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 90%, rgba(201,162,39,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 60% 40%, rgba(13,102,71,0.06) 0%, transparent 50%);
+      color: var(--text-primary-light);
       min-height: 100vh;
       overflow-x: hidden;
+      position: relative;
+      transition: background-color 0.4s ease, color 0.3s ease;
     }
 
+    /* Mesh noise overlay */
     body::before {
-      content:''; position:fixed; inset:0;
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230b5e3c' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      pointer-events:none; z-index:0;
-      animation: driftBg 90s linear infinite;
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
     }
-    @keyframes driftBg { 100% { background-position: 120px 120px; } }
 
-    /* ---- HERO ---- */
+    body > * { position: relative; z-index: 1; }
+
+    /* ══════════════════════════════════════
+       HERO / PROFILE SECTION
+    ══════════════════════════════════════ */
     .hero-profile {
-      background: linear-gradient(135deg, rgba(6,78,47,0.96) 0%, rgba(11,40,24,0.98) 100%);
-      padding: 2.8rem 1.5rem 2.2rem;
+      background: linear-gradient(145deg, #062218 0%, #0a3828 40%, #083020 100%);
+      padding: 3rem 1.5rem 2.2rem;
       text-align: center;
-      border-bottom: 3px solid var(--accent);
+      border-bottom: 1px solid var(--gold-1);
       position: relative;
       overflow: hidden;
-      z-index: 1;
     }
+
+    /* Starfield effect */
     .hero-profile::before {
-      content:''; position:absolute; inset:0;
-      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212,175,55,0.15) 0%, transparent 70%);
-      pointer-events:none;
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px);
+      background-size: 80px 80px, 120px 120px, 200px 200px;
+      background-position: 10px 10px, 40px 60px, 100px 20px;
+      opacity: 0.25;
+      animation: starShimmer 8s ease-in-out infinite alternate;
     }
-    .hero-ornament {
-      position:absolute; top:12px; left:50%; transform:translateX(-50%);
-      font-family:'Amiri',serif; font-size:1.1rem; color:rgba(212,175,55,0.5);
-      letter-spacing:8px; white-space:nowrap;
+
+    @keyframes starShimmer {
+      0%  { opacity: 0.15; }
+      100% { opacity: 0.35; }
     }
+
+    /* Gold bokeh orbs */
+    .hero-profile::after {
+      content: '';
+      position: absolute;
+      top: -40%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(201,162,39,0.18) 0%, transparent 65%);
+      animation: orbPulse 6s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes orbPulse {
+      0%  { transform: translateX(-50%) scale(1);   opacity: 0.5; }
+      100% { transform: translateX(-50%) scale(1.3); opacity: 0.9; }
+    }
+
     .profile-container {
-      max-width:1100px; margin:0 auto;
-      display:flex; flex-wrap:wrap; align-items:center;
-      justify-content:center; gap:2rem; position:relative; z-index:2;
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 2.2rem;
+      position: relative;
+      z-index: 2;
     }
+
     .avatar-frame {
-      width:120px; height:120px;
-      background: linear-gradient(135deg,var(--accent),#f5e070);
-      border-radius:50%;
-      display:flex; align-items:center; justify-content:center;
-      box-shadow: 0 0 0 5px rgba(212,175,55,0.2), 0 16px 32px rgba(0,0,0,0.3);
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-1), var(--gold-3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.15), 0 0 40px var(--gold-glow), 0 15px 30px rgba(0,0,0,0.3);
       animation: floatAvatar 4s ease-in-out infinite;
-      flex-shrink:0;
+      font-size: 2.8rem;
     }
-    .avatar-frame img {
-      width:110px; height:110px; border-radius:50%;
-      object-fit:cover; border:3px solid white;
-    }
+
     @keyframes floatAvatar {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
     }
-    .brand-text { text-align:left; }
+
     .brand-text h2 {
-      font-family:'Amiri',serif;
-      font-size: clamp(1.8rem,5vw,2.6rem);
-      font-weight:700; color:#fff;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-      line-height:1.2;
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.3rem, 4vw, 2rem);
+      font-weight: 700;
+      background: linear-gradient(120deg, #fff 0%, var(--gold-3) 50%, #fff 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.4rem;
     }
-    .brand-text p { color:rgba(255,255,255,0.75); font-size:0.95rem; margin:0.4rem 0; }
+
+    .brand-text p {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.9rem;
+      margin-bottom: 0.6rem;
+    }
+
     .badge-light {
-      display:inline-block;
-      background: rgba(212,175,55,0.18);
-      border:1px solid rgba(212,175,55,0.4);
-      color: #f0d888;
-      padding:0.25rem 1rem; border-radius:50px;
-      font-size:0.78rem; margin-top:0.4rem;
-      backdrop-filter:blur(4px);
+      display: inline-block;
+      background: rgba(201,162,39,0.15);
+      border: 1px solid rgba(201,162,39,0.4);
+      backdrop-filter: blur(8px);
+      color: var(--gold-3);
+      padding: 0.25rem 1rem;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      letter-spacing: 0.3px;
     }
 
-    /* ---- SITE HEADER ---- */
-    .site-header {
-      background: var(--card-bg);
-      padding:1.4rem 1rem 1rem;
-      text-align:center;
-      border-bottom:1px solid var(--border-color);
-      position:relative; z-index:1;
+    /* ══════════════════════════════════════
+       SITE HEADER
+    ══════════════════════════════════════ */
+    header {
+      background: linear-gradient(145deg, #05180f, #0a2e1c);
+      padding: 1.6rem 1rem 1.4rem;
+      text-align: center;
+      border-bottom: 2px solid transparent;
+      border-image: linear-gradient(90deg, transparent, var(--gold-1), transparent) 1;
     }
-    .site-header h1 {
-      font-family:'Amiri',serif;
-      font-size: clamp(2rem,7vw,3rem);
-      font-weight:700;
-      background: linear-gradient(120deg,var(--primary),var(--primary-light));
-      background-clip:text; -webkit-background-clip:text; color:transparent;
-    }
-    .site-header p { color:var(--text-muted); font-size:0.9rem; }
-    .pattern { height:4px; background: repeating-linear-gradient(90deg,var(--accent),var(--accent) 14px,#ffe89a 14px,#ffe89a 28px); }
 
-    /* ---- NAV ---- */
+    header h1 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.6rem, 6vw, 2.8rem);
+      font-weight: 900;
+      background: linear-gradient(125deg, var(--gold-3) 0%, var(--gold-1) 50%, var(--gold-3) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: none;
+      filter: drop-shadow(0 0 15px rgba(201,162,39,0.4));
+      letter-spacing: 1px;
+    }
+
+    header p {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .pattern {
+      height: 4px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--gold-1) 0px, var(--gold-1) 12px,
+        transparent 12px, transparent 16px,
+        var(--gold-3) 16px, var(--gold-3) 20px,
+        transparent 20px, transparent 24px
+      );
+    }
+
+    /* ══════════════════════════════════════
+       NAVIGATION — GLASSMORPHISM BUTTONS
+    ══════════════════════════════════════ */
     nav {
-      display:flex; justify-content:center; flex-wrap:wrap; gap:0.6rem;
-      background: var(--nav-bg);
-      backdrop-filter:blur(14px);
-      padding:0.9rem 1rem;
-      position:sticky; top:0; z-index:900;
-      box-shadow:0 4px 20px rgba(0,0,0,0.07);
-      border-bottom:1px solid var(--border-color);
-    }
-    nav button {
-      background:transparent; border:none;
-      padding:0.6rem 1.3rem;
-      font-family:'Hind Siliguri',sans-serif;
-      font-size:0.9rem; font-weight:600;
-      border-radius:50px; cursor:pointer;
-      color:var(--primary);
-      transition:var(--transition);
-      position:relative; overflow:hidden;
-    }
-    nav button:hover, nav button.active {
-      background: linear-gradient(115deg,var(--primary),var(--dark));
-      color:white;
-      box-shadow:0 6px 16px rgba(11,94,60,0.35);
-      transform:translateY(-2px);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      background: var(--nav-bg-light);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      padding: 0.9rem 1.2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--glass-border-strong);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      transition: background 0.4s;
     }
 
-    /* ---- MAIN LAYOUT ---- */
-    .main-wrapper { position:relative; z-index:1; }
+    /* ← THE INDIVIDUAL NAV BUTTONS */
+    nav .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--glass-white);
+      border: 1.5px solid var(--glass-border);
+      padding: 0.55rem 1.35rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: 'Noto Serif Bengali', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-primary-light);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s var(--ease-spring);
+      backdrop-filter: blur(8px);
+      letter-spacing: 0.2px;
+    }
+
+    nav .nav-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--emerald-2), var(--emerald-1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: inherit;
+    }
+
+    nav .nav-btn .btn-icon,
+    nav .nav-btn .btn-label {
+      position: relative;
+      z-index: 1;
+      transition: color 0.3s;
+    }
+
+    nav .nav-btn:hover,
+    nav .nav-btn.active {
+      border-color: var(--gold-1);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--emerald-glow), 0 0 0 1px var(--gold-1);
+    }
+
+    nav .nav-btn:hover::before,
+    nav .nav-btn.active::before {
+      opacity: 1;
+    }
+
+    nav .nav-btn.active {
+      background: linear-gradient(135deg, var(--emerald-2), var(--emerald-1));
+      box-shadow: 0 8px 28px var(--emerald-glow), 0 0 20px var(--gold-glow), inset 0 1px 0 rgba(255,255,255,0.15);
+    }
+
+    /* Ripple */
+    .ripple-effect {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      transform: scale(0);
+      animation: ripple 0.5s linear;
+      pointer-events: none;
+    }
+
+    @keyframes ripple {
+      to { transform: scale(4); opacity: 0; }
+    }
+
+    /* ══════════════════════════════════════
+       MAIN CONTAINER
+    ══════════════════════════════════════ */
     .container {
-      max-width:1340px; margin:0 auto;
-      padding:2rem 1.5rem;
+      max-width: 1300px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
     }
 
-    /* ---- CONTROLS ---- */
+    /* Controls Bar */
     .controls-bar {
-      display:flex; justify-content:space-between; align-items:center;
-      flex-wrap:wrap; gap:1rem; margin-bottom:2rem;
-      background:var(--card-bg);
-      padding:0.75rem 1.2rem;
-      border-radius:50px;
-      box-shadow:var(--shadow-sm);
-      border:1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      background: var(--card-bg-light);
+      backdrop-filter: blur(16px);
+      padding: 0.8rem 1.4rem;
+      border-radius: 60px;
+      border: 1px solid var(--glass-border-strong);
+      box-shadow: var(--shadow-card);
+      transition: background 0.4s;
     }
+
     .search-box {
-      flex:1; display:flex; align-items:center; gap:0.5rem;
-      background:var(--secondary); padding:0.5rem 1rem; border-radius:40px;
-      min-width:200px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(13,102,71,0.07);
+      padding: 0.5rem 1.1rem;
+      border-radius: 40px;
+      border: 1px solid rgba(13,102,71,0.15);
+      min-width: 160px;
     }
-    .search-box i { color:var(--primary); }
+
+    .search-box i { color: var(--emerald-2); font-size: 0.9rem; }
+
     .search-box input {
-      background:transparent; border:none; outline:none;
-      width:100%; font-size:0.9rem; color:var(--text-dark);
-      font-family:'Hind Siliguri',sans-serif;
+      background: transparent;
+      border: none;
+      outline: none;
+      width: 100%;
+      font-size: 0.88rem;
+      font-family: 'Noto Serif Bengali', sans-serif;
+      color: var(--text-primary-light);
     }
+
+    .search-box input::placeholder { color: var(--text-secondary-light); opacity: 0.7; }
+
+    /* Dark mode toggle */
     .dark-toggle {
-      background:var(--primary); color:white; border:none;
-      padding:0.5rem 1.1rem; border-radius:40px; cursor:pointer;
-      font-weight:600; display:flex; gap:6px; align-items:center;
-      font-family:'Hind Siliguri',sans-serif;
-      transition:var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--emerald-1), var(--emerald-2));
+      border: 1px solid rgba(255,255,255,0.15);
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      cursor: pointer;
+      font-family: 'Noto Serif Bengali', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s var(--ease-spring);
+      box-shadow: 0 4px 16px var(--emerald-glow);
+      white-space: nowrap;
     }
-    .dark-toggle:hover { background:var(--primary-dark); transform:scale(1.02); }
 
-    /* ---- GRID ---- */
+    .dark-toggle:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 8px 24px var(--emerald-glow), 0 0 15px var(--gold-glow);
+    }
+
+    /* Section headings */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 1.8rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(201,162,39,0.2);
+    }
+
+    .section-title h2 {
+      font-family: 'Noto Serif Bengali', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary-light);
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(201,162,39,0.3), transparent);
+    }
+
+    /* Grid */
     .grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
-      gap:1.8rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 1.8rem;
     }
+
+    /* ══════════════════════════════════════
+       CONTENT CARDS — GLASSMORPHISM
+    ══════════════════════════════════════ */
     .card {
-      background:var(--card-bg);
-      border-radius:var(--radius);
-      padding:1.6rem;
-      box-shadow:var(--shadow-card);
-      border:1px solid var(--border-color);
-      transition:var(--transition);
-      position:relative; overflow:hidden;
-      animation:fadeInUp 0.55s cubic-bezier(0.2,0.9,0.4,1.1) both;
+      background: var(--card-bg-light);
+      backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
+      border: 1px solid var(--glass-border-strong);
+      border-radius: 20px;
+      padding: 1.6rem 1.5rem;
+      box-shadow: var(--shadow-card);
+      transition: all 0.35s var(--ease-spring);
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.5s var(--ease-out) forwards;
+      opacity: 0;
     }
-    .card::before {
-      content:''; position:absolute; top:0; left:0; right:0; height:3px;
-      background:linear-gradient(90deg,var(--accent),var(--primary));
-      opacity:0; transition:opacity 0.3s;
-    }
-    .card:hover { transform:translateY(-8px); box-shadow:var(--shadow-lg); border-color:var(--accent); }
-    .card:hover::before { opacity:1; }
+
     @keyframes fadeInUp {
-      from { opacity:0; transform:translateY(28px); }
-      to { opacity:1; transform:translateY(0); }
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-    .card h3 { font-size:1.15rem; font-weight:700; margin-bottom:0.6rem; }
+
+    /* Shimmer sweep */
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(125deg, transparent 30%, rgba(201,162,39,0.06) 50%, transparent 70%);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+
+    .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); border-color: var(--gold-1); }
+    .card:hover::after { transform: translateX(100%); }
+
+    /* Top accent stripe */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-1), var(--gold-3), var(--emerald-3));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    .card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+      line-height: 1.4;
+    }
+
     .card h3 a {
-      text-decoration:none;
-      background:linear-gradient(120deg,var(--primary),var(--primary-light));
-      background-clip:text; -webkit-background-clip:text; color:transparent;
-      transition:var(--transition);
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--emerald-2), var(--emerald-1));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      transition: filter 0.2s;
     }
-    .card h3 a:hover { text-decoration:underline; }
-    .card p { color:var(--text-muted); font-size:0.88rem; line-height:1.7; }
+
+    .card h3 a:hover { filter: brightness(1.3); }
+
+    .card p {
+      color: var(--text-secondary-light);
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+
     .card-badge {
-      display:inline-block;
-      background:rgba(11,94,60,0.1); color:var(--primary);
-      padding:0.15rem 0.7rem; border-radius:30px; font-size:0.72rem;
-      font-weight:600; margin-bottom:0.6rem; border:1px solid rgba(11,94,60,0.15);
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(201,162,39,0.12), rgba(201,162,39,0.06));
+      border: 1px solid rgba(201,162,39,0.25);
+      color: var(--gold-1);
+      font-size: 0.7rem;
+      padding: 0.15rem 0.6rem;
+      border-radius: 30px;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
     }
-    body.dark .card-badge { background:rgba(45,175,122,0.15); border-color:rgba(45,175,122,0.25); }
+
     .delete-btn {
-      position:absolute; top:12px; right:12px;
-      background:rgba(200,50,50,0.1); color:#c83232;
-      border:none; border-radius:50%; width:30px; height:30px;
-      cursor:pointer; display:flex; align-items:center; justify-content:center;
-      opacity:0; transition:var(--transition); font-size:0.75rem;
-    }
-    .card:hover .delete-btn { opacity:1; }
-    .delete-btn:hover { background:#c83232; color:white; transform:scale(1.1); }
-
-    /* ---- SECTION ---- */
-    .content.hidden { display:none; }
-    .section-header {
-      display:flex; align-items:center; gap:1rem;
-      margin-bottom:1.6rem; padding-bottom:0.8rem;
-      border-bottom:2px solid var(--border-color);
-    }
-    .section-header h2 {
-      font-family:'Amiri',serif; font-size:1.7rem; font-weight:700; color:var(--primary);
-    }
-    .section-count {
-      background:var(--accent); color:var(--dark);
-      padding:0.15rem 0.7rem; border-radius:30px; font-size:0.78rem; font-weight:700;
+      position: absolute;
+      top: 0.8rem;
+      right: 0.8rem;
+      background: rgba(220, 53, 69, 0.1);
+      border: 1px solid rgba(220,53,69,0.2);
+      color: #dc3545;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      opacity: 0;
     }
 
-    /* ---- EMPTY STATE ---- */
-    .empty-state {
-      text-align:center; padding:3rem 1rem; color:var(--text-muted);
-    }
-    .empty-state i { font-size:2.5rem; margin-bottom:0.8rem; opacity:0.4; }
-    .empty-state p { font-size:0.9rem; }
+    .card:hover .delete-btn { opacity: 1; }
+    .delete-btn:hover { background: rgba(220,53,69,0.9); color: white; transform: scale(1.1); }
 
-    /* ---- ABOUT ---- */
-    .about-card {
-      max-width:720px; margin:0 auto;
-      background:var(--card-bg); border-radius:var(--radius);
-      padding:2.2rem; box-shadow:var(--shadow-sm);
-      border:1px solid var(--border-color);
-    }
-    .about-card h3 { font-family:'Amiri',serif; font-size:1.5rem; color:var(--primary); margin-bottom:1rem; }
-    .about-card p { color:var(--text-muted); line-height:1.9; margin-bottom:0.8rem; }
-    .about-card .ayah {
-      font-family:'Amiri',serif; font-size:1.05rem;
-      border-left:3px solid var(--accent); padding-left:1rem; margin:1.2rem 0;
-      color:var(--text-dark);
-    }
+    /* Sections */
+    .content { display: block; }
+    .content.hidden { display: none; }
 
-    /* ---- FOOTER ---- */
+    /* About section card */
+    #about .card { max-width: 750px; margin: 0 auto; }
+    #about .card h3 { font-size: 1.35rem; margin-bottom: 1rem; }
+    #about .card p { margin-bottom: 0.8rem; }
+
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
     footer {
-      text-align:center; padding:1.4rem 1rem;
-      background:var(--card-bg); border-top:1px solid var(--border-color);
-      color:var(--text-muted); font-size:0.85rem; position:relative; z-index:1;
+      background: var(--footer-bg);
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 4rem;
+      border-top: 1px solid rgba(201,162,39,0.2);
     }
-    footer span { color:var(--primary); font-weight:600; }
 
-    /* ---- FAB ---- */
+    footer p {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.85rem;
+    }
+
+    footer span {
+      color: var(--gold-2);
+      font-weight: 600;
+    }
+
+    /* ══════════════════════════════════════
+       ADMIN FAB (FLOATING ACTION BUTTON)
+    ══════════════════════════════════════ */
     .admin-fab {
-      position:fixed; bottom:28px; right:28px;
-      width:58px; height:58px; border-radius:50%;
-      background:linear-gradient(135deg,var(--accent),#c9a020);
-      color:var(--dark); display:flex; align-items:center; justify-content:center;
-      font-size:1.5rem; cursor:pointer; border:none;
-      box-shadow:0 6px 20px rgba(0,0,0,0.3);
-      z-index:800; transition:var(--transition);
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--emerald-1), var(--emerald-2));
+      border: 2px solid var(--gold-1);
+      color: var(--gold-2);
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 8px 30px var(--emerald-glow), 0 0 20px var(--gold-glow);
+      z-index: 900;
+      transition: all 0.3s var(--ease-spring);
+      animation: fabEntrance 0.8s var(--ease-spring) 0.5s both;
     }
-    .admin-fab:hover { transform:scale(1.1) rotate(15deg); box-shadow:0 8px 24px rgba(0,0,0,0.4); }
 
-    /* ---- MODALS ---- */
+    @keyframes fabEntrance {
+      from { transform: scale(0) rotate(-90deg); opacity: 0; }
+      to   { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+
+    .admin-fab:hover {
+      transform: scale(1.12) rotate(45deg);
+      box-shadow: 0 12px 40px var(--emerald-glow), 0 0 30px var(--gold-glow);
+    }
+
+    /* ══════════════════════════════════════
+       MODALS — ADVANCED GLASSMORPHISM
+    ══════════════════════════════════════ */
     .modal {
-      display:none; position:fixed; inset:0;
-      background:rgba(0,0,0,0.7); backdrop-filter:blur(6px);
-      z-index:2000; justify-content:center; align-items:center;
-      animation:fadeIn 0.25s;
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      animation: modalFadeIn 0.3s ease;
     }
-    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+    .modal.open { display: flex; }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
     .modal-content {
-      background:var(--card-bg);
-      border-radius:var(--radius);
-      max-width:520px; width:92%;
-      padding:2rem;
-      position:relative;
-      border-top:4px solid var(--accent);
-      box-shadow:var(--shadow-lg);
-      max-height:90vh; overflow-y:auto;
-      animation:slideUp 0.28s cubic-bezier(0.2,0.9,0.4,1.1);
+      background: var(--glass-white-strong);
+      backdrop-filter: blur(30px) saturate(180%);
+      -webkit-backdrop-filter: blur(30px) saturate(180%);
+      border: 1px solid var(--glass-border-strong);
+      border-radius: 24px;
+      padding: 2.2rem;
+      width: 100%;
+      max-width: 480px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1);
+      animation: modalSlideIn 0.35s var(--ease-spring);
+      position: relative;
     }
-    .modal-content.large { max-width:700px; }
-    .modal-content.admin-modal-content { max-width:750px; }
-    @keyframes slideUp { from{transform:translateY(32px);opacity:0} to{transform:translateY(0);opacity:1} }
+
+    .modal-content.large { max-width: 680px; }
+
+    @keyframes modalSlideIn {
+      from { opacity: 0; transform: translateY(30px) scale(0.95); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .modal-content h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-primary-light);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(201,162,39,0.2);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
     .close-modal {
-      position:absolute; top:14px; right:18px;
-      font-size:1.6rem; cursor:pointer; color:var(--text-muted);
-      width:32px; height:32px; display:flex; align-items:center; justify-content:center;
-      border-radius:50%; transition:var(--transition); background:none; border:none;
-      font-family:inherit; line-height:1;
+      position: absolute;
+      top: 1rem;
+      right: 1.2rem;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--text-secondary-light);
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.2s;
     }
-    .close-modal:hover { background:rgba(200,50,50,0.1); color:#c83232; }
 
-    /* ---- ADMIN PANEL ---- */
-    .admin-panel-header {
-      display:flex; align-items:center; gap:1rem; margin-bottom:1.5rem;
-      padding-bottom:1rem; border-bottom:2px solid var(--border-color);
-    }
-    .admin-panel-header .icon {
-      width:44px; height:44px; border-radius:12px;
-      background:linear-gradient(135deg,var(--accent),#c9a020);
-      display:flex; align-items:center; justify-content:center;
-      font-size:1.2rem; color:var(--dark);
-    }
-    .admin-panel-header h3 { font-size:1.3rem; font-weight:700; color:var(--text-dark); }
-    .admin-panel-header p { font-size:0.8rem; color:var(--text-muted); }
+    .close-modal:hover { background: rgba(220,53,69,0.12); color: #dc3545; transform: rotate(90deg); }
 
-    /* Tabs inside admin panel */
+    /* ══════════════════════════════════════
+       PASSWORD MODAL — SPECIAL DESIGN
+    ══════════════════════════════════════ */
+    #passwordModal .modal-content {
+      max-width: 380px;
+      text-align: center;
+      background: linear-gradient(145deg, #06200f, #0b3320);
+      border-color: rgba(201,162,39,0.3);
+    }
+
+    #passwordModal .modal-content h3 {
+      color: var(--gold-3);
+      justify-content: center;
+      border-bottom-color: rgba(201,162,39,0.15);
+    }
+
+    .pw-lock-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(201,162,39,0.15), rgba(201,162,39,0.05));
+      border: 2px solid rgba(201,162,39,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 1.5rem;
+      color: var(--gold-2);
+      animation: lockPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes lockPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(201,162,39,0.3); }
+      50%       { box-shadow: 0 0 0 12px rgba(201,162,39,0); }
+    }
+
+    .pw-input-wrap {
+      position: relative;
+      margin: 1rem 0;
+    }
+
+    .pw-input-wrap input {
+      width: 100%;
+      padding: 0.75rem 3rem 0.75rem 1.2rem;
+      background: rgba(255,255,255,0.06);
+      border: 1.5px solid rgba(201,162,39,0.25);
+      border-radius: 12px;
+      color: rgba(255,255,255,0.9);
+      font-family: 'Noto Serif Bengali', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      text-align: center;
+      letter-spacing: 3px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .pw-input-wrap input:focus {
+      border-color: var(--gold-2);
+      box-shadow: 0 0 0 3px rgba(201,162,39,0.15);
+    }
+
+    .pw-input-wrap input::placeholder {
+      letter-spacing: 0;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .pw-toggle {
+      position: absolute;
+      right: 0.8rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.4);
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .pw-toggle:hover { color: var(--gold-2); }
+
+    /* ══════════════════════════════════════
+       ADMIN PANEL MODAL
+    ══════════════════════════════════════ */
+    #adminModal .modal-content {
+      max-width: 560px;
+    }
+
     .admin-tabs {
-      display:flex; gap:0.5rem; margin-bottom:1.4rem;
-      background:var(--secondary); padding:5px; border-radius:12px;
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      background: rgba(13,102,71,0.06);
+      padding: 0.3rem;
+      border-radius: 12px;
     }
-    .admin-tab {
-      flex:1; padding:0.6rem; border:none; border-radius:9px; cursor:pointer;
-      font-family:'Hind Siliguri',sans-serif; font-size:0.85rem; font-weight:600;
-      background:transparent; color:var(--text-muted); transition:var(--transition);
-    }
-    .admin-tab.active { background:var(--card-bg); color:var(--primary); box-shadow:0 2px 8px rgba(0,0,0,0.1); }
 
-    /* Form fields */
-    .form-group { margin-bottom:1.1rem; }
-    .form-group label {
-      display:block; font-weight:600; font-size:0.85rem;
-      color:var(--text-dark); margin-bottom:0.4rem;
+    .admin-tab-btn {
+      flex: 1;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 10px;
+      background: transparent;
+      cursor: pointer;
+      font-family: 'Noto Serif Bengali', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-secondary-light);
+      transition: all 0.25s;
     }
-    .form-group label span { color:var(--accent); margin-left:2px; }
-    .form-control {
-      width:100%; padding:0.7rem 1rem;
-      border-radius:var(--radius-sm); border:1.5px solid var(--border-color);
-      background:var(--secondary); color:var(--text-dark);
-      font-family:'Hind Siliguri',sans-serif; font-size:0.9rem;
-      transition:var(--transition); outline:none;
-    }
-    .form-control:focus { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-glow); }
-    textarea.form-control { resize:vertical; min-height:120px; }
 
-    /* Category selector */
-    .cat-grid {
-      display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:0.6rem;
-      margin-bottom:1rem;
+    .admin-tab-btn.active {
+      background: linear-gradient(135deg, var(--emerald-1), var(--emerald-2));
+      color: white;
+      box-shadow: 0 4px 12px var(--emerald-glow);
     }
-    .cat-btn {
-      padding:0.6rem; border:1.5px solid var(--border-color);
-      border-radius:var(--radius-sm); background:var(--secondary);
-      color:var(--text-muted); font-family:'Hind Siliguri',sans-serif;
-      font-size:0.82rem; font-weight:600; cursor:pointer; transition:var(--transition);
-      text-align:center;
-    }
-    .cat-btn:hover { border-color:var(--accent); color:var(--primary); }
-    .cat-btn.selected {
-      background:linear-gradient(115deg,var(--primary),var(--dark));
-      border-color:var(--primary); color:white;
-      box-shadow:0 4px 12px rgba(11,94,60,0.3);
-    }
-    body.dark .cat-btn.selected { background:linear-gradient(115deg,var(--primary),var(--primary-dark)); }
 
-    /* Submit btn */
-    .btn-submit {
-      width:100%; padding:0.85rem; border:none; border-radius:var(--radius-sm);
-      background:linear-gradient(115deg,var(--primary),var(--dark));
-      color:white; font-family:'Hind Siliguri',sans-serif;
-      font-size:1rem; font-weight:700; cursor:pointer; transition:var(--transition);
-      display:flex; align-items:center; justify-content:center; gap:8px;
-    }
-    .btn-submit:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(11,94,60,0.4); }
+    .admin-tab-panel { display: none; }
+    .admin-tab-panel.active { display: block; }
 
-    /* List tab */
-    .entry-list { display:flex; flex-direction:column; gap:0.75rem; }
-    .entry-row {
-      display:flex; align-items:center; gap:0.8rem;
-      background:var(--secondary); padding:0.8rem 1rem;
-      border-radius:var(--radius-sm); border:1px solid var(--border-color);
+    /* Form elements */
+    .admin-form label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-secondary-light);
+      margin-bottom: 0.35rem;
+      margin-top: 1rem;
     }
-    .entry-row-info { flex:1; min-width:0; }
-    .entry-row-info h4 { font-size:0.9rem; font-weight:600; truncate; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .entry-row-info p { font-size:0.75rem; color:var(--text-muted); }
-    .entry-row-del {
-      background:rgba(200,50,50,0.1); color:#c83232; border:none;
-      width:32px; height:32px; border-radius:8px; cursor:pointer;
-      display:flex; align-items:center; justify-content:center;
-      transition:var(--transition); flex-shrink:0;
-    }
-    .entry-row-del:hover { background:#c83232; color:white; }
-    .filter-section-select {
-      padding:0.5rem 0.9rem; border-radius:var(--radius-sm);
-      border:1.5px solid var(--border-color);
-      background:var(--secondary); color:var(--text-dark);
-      font-family:'Hind Siliguri',sans-serif; font-size:0.85rem;
-      margin-bottom:0.8rem; outline:none; cursor:pointer;
-    }
-    .filter-section-select:focus { border-color:var(--accent); }
 
-    /* Password modal */
-    .pwd-icon { text-align:center; font-size:2.5rem; margin-bottom:0.5rem; color:var(--accent); }
-    .pwd-title { text-align:center; font-size:1.2rem; font-weight:700; margin-bottom:0.3rem; color:var(--text-dark); }
-    .pwd-sub { text-align:center; font-size:0.82rem; color:var(--text-muted); margin-bottom:1.2rem; }
-    .pwd-input-wrap { position:relative; }
-    .pwd-input-wrap input { padding-right:2.8rem; }
-    .pwd-eye { position:absolute; right:12px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; color:var(--text-muted); padding:0; }
+    .admin-form label:first-child { margin-top: 0; }
 
-    /* Stats */
-    .admin-stats {
-      display:grid; grid-template-columns:repeat(auto-fill,minmax(110px,1fr)); gap:0.7rem;
-      margin-bottom:1.4rem;
+    .admin-form input,
+    .admin-form textarea,
+    .admin-form select {
+      width: 100%;
+      padding: 0.65rem 1rem;
+      background: var(--card-bg-light);
+      border: 1.5px solid var(--glass-border-strong);
+      border-radius: 12px;
+      color: var(--text-primary-light);
+      font-family: 'Noto Serif Bengali', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      backdrop-filter: blur(8px);
     }
-    .stat-box {
-      background:var(--secondary); border-radius:var(--radius-sm);
-      padding:0.9rem 0.6rem; text-align:center;
-      border:1px solid var(--border-color);
-    }
-    .stat-box .num { font-size:1.4rem; font-weight:800; color:var(--primary); }
-    .stat-box .lbl { font-size:0.72rem; color:var(--text-muted); margin-top:2px; }
 
-    /* Toast */
+    .admin-form input:focus,
+    .admin-form textarea:focus,
+    .admin-form select:focus {
+      border-color: var(--emerald-2);
+      box-shadow: 0 0 0 3px rgba(13,102,71,0.12);
+    }
+
+    .admin-form textarea { resize: vertical; min-height: 110px; }
+
+    /* ══════════════════════════════════════
+       BUTTON STYLES (GLOBAL)
+    ══════════════════════════════════════ */
+
+    /* Primary action button */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--emerald-2), var(--emerald-1));
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      color: white;
+      font-family: 'Noto Serif Bengali', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      transition: all 0.3s var(--ease-spring);
+      box-shadow: 0 6px 20px var(--emerald-glow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px var(--emerald-glow), 0 0 20px var(--gold-glow);
+    }
+
+    .btn-primary:hover::before { opacity: 1; }
+    .btn-primary:active { transform: translateY(0); }
+
+    /* Gold accent button (for password modal) */
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold-1), var(--gold-2));
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 6px 20px var(--gold-glow);
+      color: #06200f;
+      font-weight: 800;
+    }
+
+    .btn-gold:hover {
+      box-shadow: 0 10px 30px var(--gold-glow), 0 0 20px rgba(201,162,39,0.5);
+      background: linear-gradient(135deg, var(--gold-2), var(--gold-3));
+    }
+
+    /* Danger button */
+    .btn-danger {
+      background: linear-gradient(135deg, #c0392b, #e74c3c);
+      box-shadow: 0 6px 20px rgba(192,57,43,0.3);
+    }
+
+    /* Manage entries section */
+    .manage-entry-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 1rem;
+      background: var(--glass-white);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      margin-bottom: 0.6rem;
+      gap: 0.5rem;
+    }
+
+    .manage-entry-item span {
+      font-size: 0.85rem;
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .manage-entry-item .del-small {
+      background: rgba(220,53,69,0.1);
+      border: 1px solid rgba(220,53,69,0.2);
+      color: #dc3545;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .manage-entry-item .del-small:hover {
+      background: rgba(220,53,69,0.9);
+      color: white;
+    }
+
+    .manage-section-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--gold-1);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 1rem 0 0.5rem;
+    }
+
+    /* Content modal */
+    #contentModal h3#modalTitle {
+      font-size: 1.4rem;
+      padding-right: 2rem;
+    }
+
+    #contentModal p#modalBody {
+      white-space: pre-wrap;
+      line-height: 1.85;
+      color: var(--text-secondary-light);
+      font-size: 0.95rem;
+    }
+
+    /* Toast notification */
     .toast {
-      position:fixed; bottom:100px; left:50%; transform:translateX(-50%) translateY(20px);
-      background:var(--dark); color:white; padding:0.75rem 1.6rem;
-      border-radius:50px; font-size:0.88rem; font-weight:600;
-      z-index:3000; opacity:0; transition:all 0.3s; pointer-events:none;
-      border-left:3px solid var(--accent);
+      position: fixed;
+      bottom: 6rem;
+      right: 2rem;
+      background: linear-gradient(135deg, var(--emerald-1), var(--emerald-2));
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 12px;
+      border: 1px solid rgba(201,162,39,0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      font-size: 0.9rem;
+      font-weight: 600;
+      z-index: 99999;
+      animation: toastIn 0.4s var(--ease-spring) forwards;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
     }
-    .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
 
-    /* Responsive */
-    @media (max-width:700px) {
-      .profile-container { flex-direction:column; text-align:center; }
-      .brand-text { text-align:center; }
-      nav button { padding:0.5rem 0.9rem; font-size:0.82rem; }
-      .controls-bar { flex-direction:column; border-radius:var(--radius); }
-      .grid { gap:1.2rem; }
-      .admin-tabs { flex-wrap:wrap; }
-      .admin-tab { flex:1 0 40%; }
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.95); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
     }
-    @media (max-width:480px) {
-      .avatar-frame { width:96px; height:96px; }
-      .avatar-frame img { width:88px; height:88px; }
-      nav button { min-width:60px; flex:1 0 35%; }
+
+    .toast.exit { animation: toastOut 0.3s ease forwards; }
+
+    @keyframes toastOut {
+      to { opacity: 0; transform: translateY(10px); }
+    }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════ */
+    @media (max-width: 768px) {
+      nav { gap: 0.4rem; padding: 0.7rem 0.8rem; }
+      nav .nav-btn { padding: 0.45rem 0.9rem; font-size: 0.8rem; }
+      .grid { grid-template-columns: 1fr; }
+      .modal-content { padding: 1.5rem; }
+      .admin-fab { bottom: 1.2rem; right: 1.2rem; width: 50px; height: 50px; font-size: 1.1rem; }
+    }
+
+    @media (max-width: 480px) {
+      nav .nav-btn .btn-label { display: none; }
+      nav .nav-btn .btn-icon { font-size: 1.1rem; }
+      nav .nav-btn { padding: 0.5rem 0.7rem; border-radius: 12px; }
     }
 
     /* Scrollbar */
-    ::-webkit-scrollbar { width:6px; }
-    ::-webkit-scrollbar-track { background:transparent; }
-    ::-webkit-scrollbar-thumb { background:var(--accent); border-radius:10px; opacity:.6; }
-
-    /* Hidden util */
-    .hidden { display:none !important; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(13,102,71,0.3); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--emerald-2); }
   </style>
 </head>
 <body>
 
-<!-- Hero -->
+<!-- ═══════════════════ HERO ═══════════════════ -->
 <div class="hero-profile">
-  <div class="hero-ornament">﴾ بسم الله الرحمن الرحيم ﴿</div>
-  <div class="profile-container" style="margin-top:1.5rem;">
-    <div class="avatar-frame">
-      <img id="profilePhoto" src="https://ui-avatars.com/api/?background=0b5e3c&color=fff&rounded=true&bold=true&size=110&name=Abdur+Rahim" alt="Abdur Rahim">
-    </div>
+  <div class="profile-container">
+    <div class="avatar-frame">🕌</div>
     <div class="brand-text">
       <h2>আব্দুর রহীম</h2>
       <p>📖 ইসলামিক লেখক | আলোর সন্ধানী ✨</p>
@@ -526,566 +1043,459 @@
   </div>
 </div>
 
-<!-- Header -->
-<header class="site-header">
+<!-- ═══════════════════ HEADER ═══════════════════ -->
+<header>
   <h1>نور المعرفة</h1>
-  <p>কবিতা • উপন্যাস • প্রশ্নোত্তর • চিন্তা • জ্ঞান</p>
+  <p>কবিতা &nbsp;•&nbsp; উপন্যাস &nbsp;•&nbsp; প্রশ্নোত্তর &nbsp;•&nbsp; চিন্তা &nbsp;•&nbsp; জ্ঞান</p>
 </header>
+
 <div class="pattern"></div>
 
-<!-- Nav -->
-<nav>
-  <button class="active" onclick="showSection('poems',this)">📜 কবিতা</button>
-  <button onclick="showSection('novels',this)">📚 উপন্যাস</button>
-  <button onclick="showSection('qa',this)">❓ প্রশ্ন ও উত্তর</button>
-  <button onclick="showSection('thoughts',this)">💭 চিন্তা-ভাবনা</button>
-  <button onclick="showSection('about',this)">🧑‍🕋 আমার সম্পর্কে</button>
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<nav id="mainNav">
+  <button class="nav-btn active" onclick="showSection('poems', this)">
+    <span class="btn-icon">📜</span>
+    <span class="btn-label">কবিতা</span>
+  </button>
+  <button class="nav-btn" onclick="showSection('novels', this)">
+    <span class="btn-icon">📚</span>
+    <span class="btn-label">উপন্যাস</span>
+  </button>
+  <button class="nav-btn" onclick="showSection('qa', this)">
+    <span class="btn-icon">❓</span>
+    <span class="btn-label">প্রশ্ন ও উত্তর</span>
+  </button>
+  <button class="nav-btn" onclick="showSection('thoughts', this)">
+    <span class="btn-icon">💭</span>
+    <span class="btn-label">চিন্তা-ভাবনা</span>
+  </button>
+  <button class="nav-btn" onclick="showSection('about', this)">
+    <span class="btn-icon">🧑‍🕋</span>
+    <span class="btn-label">আমার সম্পর্কে</span>
+  </button>
 </nav>
 
-<div class="main-wrapper">
+<!-- ═══════════════════ MAIN ═══════════════════ -->
 <div class="container">
-
-  <!-- Controls -->
   <div class="controls-bar">
     <div class="search-box">
       <i class="fas fa-search"></i>
       <input type="text" id="searchInput" placeholder="শিরোনাম বা বিবরণ দিয়ে অনুসন্ধান করুন...">
     </div>
-    <button id="darkModeToggle" class="dark-toggle"><i class="fas fa-moon"></i> ডার্ক মোড</button>
+    <button id="darkModeToggle" class="dark-toggle">
+      <i class="fas fa-moon"></i> ডার্ক মোড
+    </button>
   </div>
 
-  <!-- Poems -->
   <section id="poems" class="content">
-    <div class="section-header">
-      <h2>📜 কবিতা</h2>
-      <span class="section-count" id="poemsCount">0</span>
-    </div>
+    <div class="section-title"><h2>📜 কবিতা</h2></div>
     <div class="grid" id="poemsGrid"></div>
   </section>
 
-  <!-- Novels -->
   <section id="novels" class="content hidden">
-    <div class="section-header">
-      <h2>📚 উপন্যাস</h2>
-      <span class="section-count" id="novelsCount">0</span>
-    </div>
+    <div class="section-title"><h2>📚 উপন্যাস</h2></div>
     <div class="grid" id="novelsGrid"></div>
   </section>
 
-  <!-- Q&A -->
   <section id="qa" class="content hidden">
-    <div class="section-header">
-      <h2>❓ প্রশ্ন ও উত্তর</h2>
-      <span class="section-count" id="qaCount">0</span>
-    </div>
+    <div class="section-title"><h2>❓ প্রশ্ন ও উত্তর</h2></div>
     <div class="grid" id="qaGrid"></div>
   </section>
 
-  <!-- Thoughts -->
   <section id="thoughts" class="content hidden">
-    <div class="section-header">
-      <h2>💭 চিন্তা-ভাবনা</h2>
-      <span class="section-count" id="thoughtsCount">0</span>
-    </div>
+    <div class="section-title"><h2>💭 চিন্তা-ভাবনা</h2></div>
     <div class="grid" id="thoughtsGrid"></div>
   </section>
 
-  <!-- About -->
   <section id="about" class="content hidden">
-    <div class="about-card">
-      <h3>✨ আমার সম্পর্কে — আব্দুর রহীম ✨</h3>
+    <div class="card" style="max-width:750px;margin:0 auto;">
+      <div class="card-badge">✨ লেখক পরিচিতি</div>
+      <h3>আব্দুর রহীম — আলোর সন্ধানী</h3>
       <p>আমি আব্দুর রহীম, ইসলামী জ্ঞান, হৃদয়গ্রাহী কবিতা, আত্মিক উপন্যাস এবং উম্মাহর জন্য চিন্তা-ভাবনা ছড়িয়ে দিতে আগ্রহী।</p>
-      <p>এই প্ল্যাটফর্ম <strong>نور المعرفة (নূর আল-মা'রিফাহ)</strong> হৃদয়কে সৎপথে, ধৈর্য ও ঈমানের আলোয় উদ্বুদ্ধ করার একটি নম্র প্রচেষ্টা।</p>
-      <div class="ayah">📩 "আপনার প্রভুর পথে প্রজ্ঞা ও সুন্দর উপদেশের মাধ্যমে আহ্বান করুন।" (কুরআন ১৬:১২৫)</div>
+      <p style="margin-top:0.8rem;">এই প্ল্যাটফর্ম <strong>نور المعرفة (নূর আল-মা'রিফাহ)</strong> হৃদয়কে সৎপথে, ধৈর্য ও ঈমানের আলোয় উদ্বুদ্ধ করার একটি নম্র প্রচেষ্টা।</p>
+      <p style="margin-top:0.8rem;font-style:italic;opacity:0.8;">📩 "আপনার প্রভুর পথে প্রজ্ঞা ও সুন্দর উপদেশের মাধ্যমে আহ্বান করুন।" (কুরআন ১৬:১২৫)</p>
     </div>
   </section>
-
-</div>
 </div>
 
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
 <footer>
   <p>© ২০২৬ | নির্মাতা <span>আব্দুর রহীম</span> | মুসলিম উম্মাহর জন্য <span>ﷺ</span></p>
 </footer>
 
-<!-- FAB -->
-<button class="admin-fab" id="adminFab" title="অ্যাডমিন প্যানেল">
+<!-- ═══════════════════ ADMIN FAB ═══════════════════ -->
+<div class="admin-fab" id="adminFab" title="অ্যাডমিন প্যানেল">
   <i class="fas fa-cog"></i>
-</button>
+</div>
 
-<!-- Toast -->
-<div class="toast" id="toast"></div>
-
-<!-- ===== PASSWORD MODAL ===== -->
+<!-- ═══════════════════ PASSWORD MODAL ═══════════════════ -->
 <div id="passwordModal" class="modal">
-  <div class="modal-content" style="max-width:400px;">
-    <button class="close-modal" onclick="closeModal('passwordModal')">&times;</button>
-    <div class="pwd-icon">🔐</div>
-    <div class="pwd-title">অ্যাডমিন অ্যাক্সেস</div>
-    <div class="pwd-sub">নিরাপত্তার জন্য পাসওয়ার্ড প্রয়োজন</div>
-    <div class="form-group">
-      <div class="pwd-input-wrap">
-        <input class="form-control" type="password" id="adminPassword" placeholder="পাসওয়ার্ড লিখুন" onkeydown="if(event.key==='Enter')checkPassword()">
-        <button class="pwd-eye" onclick="togglePwdVis()"><i class="fas fa-eye" id="pwdEyeIcon"></i></button>
-      </div>
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeModal('passwordModal')"><i class="fas fa-times"></i></span>
+    <div class="pw-lock-icon">🔐</div>
+    <h3 style="justify-content:center;border:none;margin-bottom:0.3rem;color:inherit;">অ্যাডমিন প্রবেশ</h3>
+    <p style="color:rgba(255,255,255,0.45);font-size:0.82rem;margin-bottom:1.2rem;text-align:center;">পাসওয়ার্ড দিয়ে প্রবেশ করুন</p>
+    <div class="pw-input-wrap">
+      <input type="password" id="adminPassword" placeholder="পাসওয়ার্ড লিখুন">
+      <button class="pw-toggle" onclick="togglePw()" id="pwToggleBtn"><i class="fas fa-eye"></i></button>
     </div>
-    <button class="btn-submit" onclick="checkPassword()"><i class="fas fa-unlock-alt"></i> প্রবেশ করুন</button>
-    <p id="pwdError" style="color:#c83232;font-size:0.82rem;text-align:center;margin-top:0.8rem;display:none;">❌ ভুল পাসওয়ার্ড! আবার চেষ্টা করুন।</p>
+    <div id="pwError" style="color:#ff6b6b;font-size:0.82rem;text-align:center;min-height:1.2rem;margin-top:0.3rem;"></div>
+    <button class="btn-primary btn-gold" onclick="checkPassword()">
+      <i class="fas fa-unlock-alt"></i> প্রবেশ করুন
+    </button>
   </div>
 </div>
 
-<!-- ===== ADMIN PANEL MODAL ===== -->
+<!-- ═══════════════════ ADMIN PANEL MODAL ═══════════════════ -->
 <div id="adminModal" class="modal">
-  <div class="modal-content admin-modal-content">
-    <button class="close-modal" onclick="closeModal('adminModal')">&times;</button>
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeModal('adminModal')"><i class="fas fa-times"></i></span>
+    <h3><i class="fas fa-shield-alt" style="color:var(--gold-1)"></i> অ্যাডমিন প্যানেল</h3>
 
-    <div class="admin-panel-header">
-      <div class="icon"><i class="fas fa-shield-alt"></i></div>
-      <div>
-        <h3>অ্যাডমিন প্যানেল</h3>
-        <p>কন্টেন্ট যোগ, সম্পাদনা ও পরিচালনা করুন</p>
-      </div>
-    </div>
-
-    <!-- Stats -->
-    <div class="admin-stats" id="adminStats"></div>
-
-    <!-- Tabs -->
     <div class="admin-tabs">
-      <button class="admin-tab active" onclick="switchAdminTab('add',this)"><i class="fas fa-plus"></i> নতুন যোগ</button>
-      <button class="admin-tab" onclick="switchAdminTab('manage',this)"><i class="fas fa-list"></i> পরিচালনা</button>
-      <button class="admin-tab" onclick="switchAdminTab('settings',this)"><i class="fas fa-sliders-h"></i> সেটিংস</button>
+      <button class="admin-tab-btn active" onclick="switchAdminTab('publish', this)">
+        <i class="fas fa-plus-circle"></i> প্রকাশ করুন
+      </button>
+      <button class="admin-tab-btn" onclick="switchAdminTab('manage', this)">
+        <i class="fas fa-list-ul"></i> পরিচালনা
+      </button>
     </div>
 
-    <!-- ADD TAB -->
-    <div id="adminTabAdd">
-      <div class="form-group">
-        <label>বিভাগ নির্বাচন করুন <span>*</span></label>
-        <div class="cat-grid" id="catGrid">
-          <button class="cat-btn selected" data-cat="poems" onclick="selectCat(this)">📜 কবিতা</button>
-          <button class="cat-btn" data-cat="novels" onclick="selectCat(this)">📚 উপন্যাস</button>
-          <button class="cat-btn" data-cat="thoughts" onclick="selectCat(this)">💭 চিন্তা-ভাবনা</button>
-          <button class="cat-btn" data-cat="qa" onclick="selectCat(this)">❓ প্রশ্ন ও উত্তর</button>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>শিরোনাম <span>*</span></label>
-        <input type="text" class="form-control" id="entryTitle" placeholder="লেখার শিরোনাম লিখুন...">
-      </div>
-      <div class="form-group">
-        <label>সংক্ষিপ্ত বিবরণ</label>
-        <input type="text" class="form-control" id="entryDesc" placeholder="কার্ডে দেখানো সংক্ষিপ্ত বিবরণ (ঐচ্ছিক)">
-      </div>
-      <div class="form-group">
-        <label>পূর্ণ বিষয়বস্তু <span>*</span></label>
-        <textarea class="form-control" id="entryContent" rows="5" placeholder="লেখার পূর্ণ বিষয়বস্তু এখানে লিখুন..."></textarea>
-      </div>
-      <div class="form-group">
-        <label>লিঙ্ক <small style="color:var(--text-muted);font-weight:400;">(ঐচ্ছিক — যদি পৃথক পেজ থাকে)</small></label>
-        <input type="text" class="form-control" id="entryLink" placeholder="যেমন: poem.html অথবা https://example.com">
-      </div>
-      <button class="btn-submit" onclick="addDynamicEntry()"><i class="fas fa-plus-circle"></i> এন্ট্রি যোগ করুন</button>
-    </div>
-
-    <!-- MANAGE TAB -->
-    <div id="adminTabManage" class="hidden">
-      <div style="display:flex;gap:0.7rem;align-items:center;margin-bottom:1rem;flex-wrap:wrap;">
-        <select class="filter-section-select" id="manageFilter" onchange="renderManageList()">
-          <option value="all">সব বিভাগ</option>
+    <!-- Publish Tab -->
+    <div id="admin-tab-publish" class="admin-tab-panel active">
+      <div class="admin-form">
+        <label><i class="fas fa-folder"></i> বিভাগ নির্বাচন</label>
+        <select id="entrySection">
           <option value="poems">📜 কবিতা</option>
           <option value="novels">📚 উপন্যাস</option>
           <option value="thoughts">💭 চিন্তা-ভাবনা</option>
-          <option value="qa">❓ প্রশ্ন ও উত্তর</option>
         </select>
-        <span style="font-size:0.82rem;color:var(--text-muted)" id="manageCountLabel"></span>
+
+        <label><i class="fas fa-heading"></i> শিরোনাম</label>
+        <input type="text" id="entryTitle" placeholder="বাংলায় শিরোনাম লিখুন">
+
+        <label><i class="fas fa-align-left"></i> বিষয়বস্তু</label>
+        <textarea id="entryContent" rows="5" placeholder="পূর্ণ বিষয়বস্তু লিখুন..."></textarea>
+
+        <label><i class="fas fa-link"></i> লিঙ্ক <small style="opacity:0.6">(ঐচ্ছিক)</small></label>
+        <input type="text" id="entryLink" placeholder="যেমন: poem.html অথবা https://...">
       </div>
-      <div class="entry-list" id="adminEntryList"></div>
+      <button class="btn-primary" onclick="addDynamicEntry()">
+        <i class="fas fa-paper-plane"></i> প্রকাশ করুন
+      </button>
     </div>
 
-    <!-- SETTINGS TAB -->
-    <div id="adminTabSettings" class="hidden">
-      <div class="form-group">
-        <label>প্রোফাইল ছবির URL</label>
-        <input type="text" class="form-control" id="settingPhoto" placeholder="ছবির লিঙ্ক...">
-      </div>
-      <div class="form-group">
-        <label>সাইট শিরোনাম</label>
-        <input type="text" class="form-control" id="settingTitle" placeholder="نور المعرفة">
-      </div>
-      <div class="form-group">
-        <label>লেখকের নাম</label>
-        <input type="text" class="form-control" id="settingAuthor" placeholder="আব্দুর রহীম">
-      </div>
-      <div class="form-group">
-        <label>পরিচয় বাক্য</label>
-        <input type="text" class="form-control" id="settingTagline" placeholder="📖 ইসলামিক লেখক | আলোর সন্ধানী ✨">
-      </div>
-      <div style="display:flex;gap:0.8rem;flex-wrap:wrap;">
-        <button class="btn-submit" style="flex:1;" onclick="saveSettings()"><i class="fas fa-save"></i> সেটিংস সংরক্ষণ</button>
-        <button onclick="clearAllData()" style="flex:1;padding:0.85rem;border:none;border-radius:var(--radius-sm);background:rgba(200,50,50,0.1);color:#c83232;font-family:'Hind Siliguri',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;transition:var(--transition);">
-          <i class="fas fa-trash"></i> সব ডেটা মুছুন
-        </button>
+    <!-- Manage Tab -->
+    <div id="admin-tab-manage" class="admin-tab-panel">
+      <div id="manageList">
+        <p style="color:var(--text-secondary-light);font-size:0.88rem;text-align:center;padding:1.5rem 0;opacity:0.7;">
+          কোনো এন্ট্রি নেই
+        </p>
       </div>
     </div>
-
   </div>
 </div>
 
-<!-- ===== CONTENT VIEW MODAL ===== -->
+<!-- ═══════════════════ CONTENT VIEW MODAL ═══════════════════ -->
 <div id="contentModal" class="modal">
   <div class="modal-content large">
-    <button class="close-modal" onclick="closeModal('contentModal')">&times;</button>
-    <h3 id="modalTitle" style="font-family:'Amiri',serif;font-size:1.4rem;color:var(--primary);margin-bottom:1rem;"></h3>
-    <div style="height:2px;background:linear-gradient(90deg,var(--accent),transparent);margin-bottom:1.2rem;"></div>
-    <p id="modalBody" style="white-space:pre-wrap;color:var(--text-muted);line-height:1.9;"></p>
+    <span class="close-modal" onclick="closeModal('contentModal')"><i class="fas fa-times"></i></span>
+    <h3 id="modalTitle"></h3>
+    <p id="modalBody"></p>
   </div>
 </div>
 
+<!-- ═══════════════════ JAVASCRIPT ═══════════════════ -->
 <script>
-// ============================================================
-// STATIC DATA — Links Preserved
-// ============================================================
-const staticData = {
-  poems: [
-    { title:"ভালো যদি হতে চাও", desc:"আরও এগিয়ে যাও মঙ্গলের সন্ধানে।", link:"valoo.html" },
-    { title:"নামাজ", desc:"সর্বশক্তিমান আল্লাহর নির্দেশনা লাভের জন্য সালাত আদায় করুন।", link:"namaj.html" },
-    { title:"অনুভূতি", desc:"মনের কল্পনা।", link:"onuvuti.html" },
-    { title:"ধৈর্য (সবর)", desc:"সহনশীলতা ও আস্থা।", link:"d.html" }
-  ],
-  novels: [
-    { title:"জীবনের উদ্দেশ্য", desc:"এই জীবন কেন?", link:"yes.html" },
-    { title:"যোগ্যতা: চরম সাফল্য", desc:"আধ্যাত্মিক যাত্রা।", link:"merit.html" },
-    { title:"মানবতার আদর্শ (নবী ﷺ)", desc:"সকল অনুসরণকারীর জন্য অনুকরণীয় ব্যক্তিত্ব।", link:"e.html" },
-    { title:"কিভাবে শত্রুকে কষ্ট দিতে হয়", desc:"গোপন পদ্ধতি", link:"f.html" },
-    { title:"প্রত্যেক মানুষের দায়িত্ব", desc:"পাঠ করুন আপনার প্রভুর নামে", link:"g.html" }
-  ],
-  qa: [
-    { title:"জীবনের চাবিকাঠি", desc:"মূল বিশ্বাস।", link:"h.html" }
-  ],
-  thoughts: [
-    { title:"আমার চিন্তা", desc:"আমার ভালোবাসার ভাগাভাগি..", link:"n.html" }
-  ]
-};
+  /* ─── Static Data ─── */
+  const staticData = {
+    poems: [
+      { title: "ভালো যদি হতে চাও", desc: "আরও এগিয়ে যাও মঙ্গলের সন্ধানে।", link: "valoo.html" },
+      { title: "নামাজ", desc: "সর্বশক্তিমান আল্লাহর নির্দেশনা লাভের জন্য সালাত আদায় করুন।", link: "namaj.html" },
+      { title: "অনুভূতি", desc: "মনের কল্পনা।", link: "onuvuti.html" },
+      { title: "ধৈর্য (সবর)", desc: "সহনশীলতা ও আস্থা।", link: "d.html" }
+    ],
+    novels: [
+      { title: "জীবনের উদ্দেশ্য", desc: "এই জীবন কেন?।", link: "yes.html" },
+      { title: "যোগ্যতা: চরম সাফল্য", desc: "আধ্যাত্মিক যাত্রা।", link: "merit.html" },
+      { title: "মানবতার আদর্শ (নবী ﷺ)", desc: "সকল অনুসরণকারীর জন্য অনুকরণীয় ব্যক্তিত্ব।", link: "e.html" },
+      { title: "কিভাবে শত্রুকে কষ্ট দিতে হয়", desc: "গোপন পদ্ধতি", link: "f.html" },
+      { title: "প্রত্যেক মানুষের দায়িত্ব", desc: "পাঠ করুন আপনার প্রভুর নামে", link: "g.html" }
+    ],
+    qa: [
+      { title: "জীবনের চাবিকাঠি", desc: "মূল বিশ্বাস।", link: "h.html" }
+    ],
+    thoughts: [
+      { title: "আমার চিন্তা", desc: "আমার ভালোবাসার ভাগাভাগি..", link: "n.html" }
+    ]
+  };
 
-const CATEGORY_META = {
-  poems:   { emoji:"📜", label:"কবিতা" },
-  novels:  { emoji:"📚", label:"উপন্যাস" },
-  thoughts:{ emoji:"💭", label:"চিন্তা-ভাবনা" },
-  qa:      { emoji:"❓", label:"প্রশ্ন ও উত্তর" }
-};
+  /* ─── Dynamic Entries ─── */
+  let dynamicEntries = { poems: [], novels: [], thoughts: [] };
 
-// ============================================================
-// STATE
-// ============================================================
-let dynamicEntries = { poems:[], novels:[], thoughts:[], qa:[] };
-let siteSettings = {
-  photo: '', title:'نور المعرفة', author:'আব্দুর রহীম',
-  tagline:'📖 ইসলামিক লেখক | আলোর সন্ধানী ✨'
-};
-let selectedCat = 'poems';
-
-// ============================================================
-// STORAGE
-// ============================================================
-function loadData() {
-  try {
-    const e = localStorage.getItem('noor_entries');
-    if (e) dynamicEntries = Object.assign({poems:[],novels:[],thoughts:[],qa:[]}, JSON.parse(e));
-    const s = localStorage.getItem('noor_settings');
-    if (s) siteSettings = Object.assign({}, siteSettings, JSON.parse(s));
-  } catch(err) {}
-}
-function saveData() {
-  localStorage.setItem('noor_entries', JSON.stringify(dynamicEntries));
-}
-function saveSettingsData() {
-  localStorage.setItem('noor_settings', JSON.stringify(siteSettings));
-}
-
-// ============================================================
-// TOAST
-// ============================================================
-function toast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2800);
-}
-
-// ============================================================
-// RENDER
-// ============================================================
-function renderGrid(sectionId, staticList, dynamicList) {
-  const container = document.getElementById(sectionId + 'Grid');
-  const countEl = document.getElementById(sectionId + 'Count');
-  if (!container) return;
-  const total = staticList.length + dynamicList.length;
-  if (countEl) countEl.textContent = total;
-
-  if (total === 0) {
-    container.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><i class="fas fa-feather-alt"></i><p>এখনও কোনো এন্ট্রি নেই।</p></div>`;
-    return;
+  function loadFromStorage() {
+    try {
+      const stored = localStorage.getItem('noor_dynamic_entries');
+      if (stored) dynamicEntries = JSON.parse(stored);
+    } catch(e) { dynamicEntries = { poems: [], novels: [], thoughts: [] }; }
   }
-  let html = '';
-  const allCards = [
-    ...staticList.map(c=>({...c, isStatic:true})),
-    ...dynamicList.map(c=>({...c, isStatic:false}))
-  ];
-  allCards.forEach((card, i) => {
-    const delay = Math.min(i * 0.05, 0.5);
-    const label = CATEGORY_META[sectionId]?.label || '';
-    const desc = card.desc || card.preview || '';
-    html += `<div class="card" style="animation-delay:${delay}s">`;
-    if (!card.isStatic) html += `<button class="delete-btn" onclick="deleteEntry('${sectionId}',${card.id})" title="মুছুন"><i class="fas fa-trash-alt"></i></button>`;
-    html += `<span class="card-badge">${CATEGORY_META[sectionId]?.emoji||''} ${label}</span>`;
-    if (card.link) {
-      html += `<h3><a href="${card.link}">${card.title}</a></h3>`;
-    } else {
-      html += `<h3 style="cursor:pointer;" onclick="openContentModal(${JSON.stringify(card.title)},${JSON.stringify(card.content||'')})">${card.title}</h3>`;
+
+  function saveToStorage() {
+    localStorage.setItem('noor_dynamic_entries', JSON.stringify(dynamicEntries));
+  }
+
+  /* ─── Rendering ─── */
+  const CATEGORY_LABELS = { poems: '📜 কবিতা', novels: '📚 উপন্যাস', thoughts: '💭 চিন্তা-ভাবনা' };
+
+  function renderGrid(sectionId, staticList, dynamicList) {
+    const container = document.getElementById(sectionId + 'Grid');
+    if (!container) return;
+    let html = '';
+    const delay = (i) => `animation-delay:${i * 0.07}s`;
+
+    staticList.forEach((card, i) => {
+      html += `
+        <div class="card" style="${delay(i)}">
+          <div class="card-badge">${CATEGORY_LABELS[sectionId] || '📄'}</div>
+          <h3><a href="${card.link}">${card.title}</a></h3>
+          <p>${card.desc}</p>
+        </div>`;
+    });
+
+    dynamicList.forEach((entry, i) => {
+      const idx = staticList.length + i;
+      const titleHtml = entry.link
+        ? `<h3><a href="${entry.link}" target="_blank">${entry.title}</a></h3>`
+        : `<h3 style="cursor:pointer" onclick="openContentModal('${escStr(entry.title)}', '${escStr(entry.content)}')">${entry.title}</h3>`;
+      html += `
+        <div class="card" style="${delay(idx)}">
+          <button class="delete-btn" onclick="deleteEntry('${sectionId}', ${entry.id})"><i class="fas fa-trash-alt"></i></button>
+          <div class="card-badge">${CATEGORY_LABELS[sectionId] || '📄'} · নতুন</div>
+          ${titleHtml}
+          <p>${entry.preview}</p>
+        </div>`;
+    });
+
+    container.innerHTML = html || '<p style="color:var(--text-secondary-light);opacity:0.6;padding:1rem 0">কোনো বিষয়বস্তু নেই।</p>';
+  }
+
+  function renderAllSections() {
+    renderGrid('poems', staticData.poems, dynamicEntries.poems);
+    renderGrid('novels', staticData.novels, dynamicEntries.novels);
+    renderGrid('thoughts', staticData.thoughts, dynamicEntries.thoughts);
+    const qa = document.getElementById('qaGrid');
+    if (qa) {
+      qa.innerHTML = staticData.qa.map((c, i) => `
+        <div class="card" style="animation-delay:${i*0.07}s">
+          <div class="card-badge">❓ প্রশ্নোত্তর</div>
+          <h3><a href="${c.link}">${c.title}</a></h3>
+          <p>${c.desc}</p>
+        </div>`).join('');
     }
-    html += `<p>${desc}</p></div>`;
-  });
-  container.innerHTML = html;
-}
-
-function renderAllSections() {
-  renderGrid('poems', staticData.poems, dynamicEntries.poems || []);
-  renderGrid('novels', staticData.novels, dynamicEntries.novels || []);
-  renderGrid('thoughts', staticData.thoughts, dynamicEntries.thoughts || []);
-  renderGrid('qa', staticData.qa, dynamicEntries.qa || []);
-}
-
-function updateAdminStats() {
-  const stats = document.getElementById('adminStats');
-  if (!stats) return;
-  let html = '';
-  let total = 0;
-  Object.entries(CATEGORY_META).forEach(([key, meta]) => {
-    const dyn = (dynamicEntries[key]||[]).length;
-    const stat = (staticData[key]||[]).length;
-    const count = dyn + stat;
-    total += count;
-    html += `<div class="stat-box"><div class="num">${count}</div><div class="lbl">${meta.emoji} ${meta.label}</div></div>`;
-  });
-  html = `<div class="stat-box"><div class="num">${total}</div><div class="lbl">📦 মোট</div></div>` + html;
-  stats.innerHTML = html;
-}
-
-// ============================================================
-// SEARCH
-// ============================================================
-function filterCards() {
-  const q = document.getElementById('searchInput').value.toLowerCase();
-  document.querySelectorAll('.grid .card').forEach(card => {
-    const txt = card.textContent.toLowerCase();
-    card.style.display = txt.includes(q) ? '' : 'none';
-  });
-}
-
-// ============================================================
-// SECTION SWITCH
-// ============================================================
-function showSection(id, btn) {
-  document.querySelectorAll('.content').forEach(s=>s.classList.add('hidden'));
-  document.getElementById(id).classList.remove('hidden');
-  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  filterCards();
-}
-
-// ============================================================
-// ADD ENTRY
-// ============================================================
-function selectCat(btn) {
-  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('selected'));
-  btn.classList.add('selected');
-  selectedCat = btn.dataset.cat;
-}
-
-function addDynamicEntry() {
-  const title   = document.getElementById('entryTitle').value.trim();
-  const content = document.getElementById('entryContent').value.trim();
-  const desc    = document.getElementById('entryDesc').value.trim();
-  const link    = document.getElementById('entryLink').value.trim();
-
-  if (!title) { toast('❗ শিরোনাম আবশ্যক!'); return; }
-  if (!content && !link) { toast('❗ বিষয়বস্তু বা লিঙ্ক দিন!'); return; }
-
-  if (!dynamicEntries[selectedCat]) dynamicEntries[selectedCat] = [];
-  dynamicEntries[selectedCat].push({
-    id: Date.now(),
-    title, content,
-    desc: desc || (content ? content.substring(0,90)+(content.length>90?'…':'') : ''),
-    preview: content ? content.substring(0,90)+(content.length>90?'…':'') : desc,
-    link: link || null
-  });
-  saveData();
-  renderAllSections();
-  updateAdminStats();
-  document.getElementById('entryTitle').value = '';
-  document.getElementById('entryContent').value = '';
-  document.getElementById('entryDesc').value = '';
-  document.getElementById('entryLink').value = '';
-  toast(`✅ "${title}" সফলভাবে যোগ করা হয়েছে!`);
-}
-
-// ============================================================
-// DELETE
-// ============================================================
-function deleteEntry(section, id) {
-  if (!confirm('এই এন্ট্রিটি মুছতে চান?')) return;
-  dynamicEntries[section] = (dynamicEntries[section]||[]).filter(e=>e.id!=id);
-  saveData();
-  renderAllSections();
-  updateAdminStats();
-  renderManageList();
-  toast('🗑️ এন্ট্রি মুছে ফেলা হয়েছে।');
-}
-
-// ============================================================
-// MANAGE LIST
-// ============================================================
-function renderManageList() {
-  const filter = document.getElementById('manageFilter').value;
-  const list = document.getElementById('adminEntryList');
-  const label = document.getElementById('manageCountLabel');
-  let entries = [];
-  const sections = filter === 'all' ? Object.keys(CATEGORY_META) : [filter];
-  sections.forEach(key => {
-    (dynamicEntries[key]||[]).forEach(e => entries.push({...e, section:key}));
-  });
-  if (label) label.textContent = `মোট ${entries.length}টি ডাইনামিক এন্ট্রি`;
-  if (!entries.length) {
-    list.innerHTML = `<div class="empty-state"><i class="fas fa-inbox"></i><p>কোনো ডাইনামিক এন্ট্রি নেই।</p></div>`;
-    return;
+    updateManageList();
   }
-  list.innerHTML = entries.map(e => `
-    <div class="entry-row">
-      <div class="entry-row-info">
-        <h4>${e.title}</h4>
-        <p>${CATEGORY_META[e.section]?.emoji||''} ${CATEGORY_META[e.section]?.label||''} ${e.link?'· 🔗 লিঙ্ক আছে':''}</p>
-      </div>
-      <button class="entry-row-del" onclick="deleteEntry('${e.section}',${e.id})" title="মুছুন"><i class="fas fa-trash-alt"></i></button>
-    </div>
-  `).join('');
-}
 
-// ============================================================
-// ADMIN TABS
-// ============================================================
-function switchAdminTab(tab, btn) {
-  document.querySelectorAll('.admin-tab').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('adminTabAdd').classList.add('hidden');
-  document.getElementById('adminTabManage').classList.add('hidden');
-  document.getElementById('adminTabSettings').classList.add('hidden');
-  document.getElementById('adminTab'+tab.charAt(0).toUpperCase()+tab.slice(1)).classList.remove('hidden');
-  if (tab === 'manage') renderManageList();
-  if (tab === 'settings') loadSettingsForm();
-}
+  function escStr(s) {
+    return s.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, '\\n');
+  }
 
-// ============================================================
-// SETTINGS
-// ============================================================
-function loadSettingsForm() {
-  document.getElementById('settingPhoto').value = siteSettings.photo || '';
-  document.getElementById('settingTitle').value = siteSettings.title || '';
-  document.getElementById('settingAuthor').value = siteSettings.author || '';
-  document.getElementById('settingTagline').value = siteSettings.tagline || '';
-}
-function saveSettings() {
-  siteSettings.photo   = document.getElementById('settingPhoto').value.trim();
-  siteSettings.title   = document.getElementById('settingTitle').value.trim();
-  siteSettings.author  = document.getElementById('settingAuthor').value.trim();
-  siteSettings.tagline = document.getElementById('settingTagline').value.trim();
-  saveSettingsData();
-  applySettings();
-  toast('✅ সেটিংস সংরক্ষণ করা হয়েছে!');
-}
-function applySettings() {
-  if (siteSettings.photo) document.getElementById('profilePhoto').src = siteSettings.photo;
-  if (siteSettings.author) document.querySelector('.brand-text h2').textContent = siteSettings.author;
-  if (siteSettings.tagline) document.querySelector('.brand-text p').textContent = siteSettings.tagline;
-}
-function clearAllData() {
-  if (!confirm('সমস্ত ডাইনামিক এন্ট্রি মুছতে চান? এটি অপরিবর্তনীয়!')) return;
-  dynamicEntries = { poems:[], novels:[], thoughts:[], qa:[] };
-  saveData();
-  renderAllSections();
-  updateAdminStats();
-  renderManageList();
-  toast('🗑️ সব ডাইনামিক ডেটা মুছে ফেলা হয়েছে।');
-}
+  /* ─── Add / Delete ─── */
+  function addDynamicEntry() {
+    const section = document.getElementById('entrySection').value;
+    const title   = document.getElementById('entryTitle').value.trim();
+    const content = document.getElementById('entryContent').value.trim();
+    const link    = document.getElementById('entryLink').value.trim();
+    if (!title || !content) { showToast('⚠️ শিরোনাম এবং বিষয়বস্তু পূরণ করুন!', 'error'); return; }
+    const entry = {
+      id: Date.now(), title, content,
+      preview: content.substring(0, 120) + (content.length > 120 ? '…' : ''),
+      link: link || null
+    };
+    dynamicEntries[section].push(entry);
+    saveToStorage();
+    renderAllSections();
+    closeModal('adminModal');
+    document.getElementById('entryTitle').value = '';
+    document.getElementById('entryContent').value = '';
+    document.getElementById('entryLink').value = '';
+    showToast('✅ সফলভাবে প্রকাশিত হয়েছে!');
+  }
 
-// ============================================================
-// MODALS
-// ============================================================
-function openPasswordModal() {
-  document.getElementById('adminPassword').value = '';
-  document.getElementById('pwdError').style.display = 'none';
-  document.getElementById('passwordModal').style.display = 'flex';
-  setTimeout(()=>document.getElementById('adminPassword').focus(), 100);
-}
-function checkPassword() {
-  const pass = document.getElementById('adminPassword').value;
-  if (pass === '501in0ed') {
-    closeModal('passwordModal');
-    updateAdminStats();
-    document.getElementById('adminModal').style.display = 'flex';
-  } else {
-    document.getElementById('pwdError').style.display = 'block';
+  function deleteEntry(section, id) {
+    dynamicEntries[section] = dynamicEntries[section].filter(e => e.id != id);
+    saveToStorage();
+    renderAllSections();
+    showToast('🗑️ এন্ট্রি মুছে ফেলা হয়েছে।');
+  }
+
+  /* ─── Manage List ─── */
+  function updateManageList() {
+    const container = document.getElementById('manageList');
+    if (!container) return;
+    let html = '';
+    let hasAny = false;
+    ['poems', 'novels', 'thoughts'].forEach(sec => {
+      if (!dynamicEntries[sec] || dynamicEntries[sec].length === 0) return;
+      hasAny = true;
+      html += `<div class="manage-section-label">${CATEGORY_LABELS[sec]}</div>`;
+      dynamicEntries[sec].forEach(e => {
+        html += `
+          <div class="manage-entry-item">
+            <span>${e.title}</span>
+            <button class="del-small" onclick="deleteEntry('${sec}', ${e.id})"><i class="fas fa-trash"></i></button>
+          </div>`;
+      });
+    });
+    container.innerHTML = hasAny ? html : '<p style="color:var(--text-secondary-light);font-size:0.88rem;text-align:center;padding:1.5rem 0;opacity:0.7">কোনো প্রকাশিত এন্ট্রি নেই।</p>';
+  }
+
+  /* ─── Content Modal ─── */
+  function openContentModal(title, content) {
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalBody').textContent  = content;
+    document.getElementById('contentModal').classList.add('open');
+  }
+
+  /* ─── Section Nav ─── */
+  function showSection(id, btn) {
+    document.querySelectorAll('.content').forEach(s => s.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
+    document.querySelectorAll('nav .nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filterCards();
+  }
+
+  /* ─── Search ─── */
+  function filterCards() {
+    const q = document.getElementById('searchInput').value.toLowerCase();
+    document.querySelectorAll('.grid').forEach(grid => {
+      grid.querySelectorAll('.card').forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = (!q || text.includes(q)) ? '' : 'none';
+      });
+    });
+  }
+
+  /* ─── Admin Modals ─── */
+  function openPasswordModal() {
     document.getElementById('adminPassword').value = '';
-    document.getElementById('adminPassword').focus();
+    document.getElementById('pwError').textContent = '';
+    document.getElementById('passwordModal').classList.add('open');
+    setTimeout(() => document.getElementById('adminPassword').focus(), 200);
   }
-}
-function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-function openContentModal(title, content) {
-  document.getElementById('modalTitle').textContent = title;
-  document.getElementById('modalBody').textContent = content;
-  document.getElementById('contentModal').style.display = 'flex';
-}
-function togglePwdVis() {
-  const inp = document.getElementById('adminPassword');
-  const ico = document.getElementById('pwdEyeIcon');
-  if (inp.type === 'password') { inp.type='text'; ico.className='fas fa-eye-slash'; }
-  else { inp.type='password'; ico.className='fas fa-eye'; }
-}
 
-// ============================================================
-// DARK MODE
-// ============================================================
-function initDarkMode() {
-  const toggle = document.getElementById('darkModeToggle');
-  if (localStorage.getItem('darkMode') === 'enabled') {
-    document.body.classList.add('dark');
-    toggle.innerHTML = '<i class="fas fa-sun"></i> লাইট মোড';
+  function checkPassword() {
+    const pass = document.getElementById('adminPassword').value;
+    const errEl = document.getElementById('pwError');
+    if (pass === '3625-369') {
+      closeModal('passwordModal');
+      updateManageList();
+      document.getElementById('adminModal').classList.add('open');
+      switchAdminTab('publish', document.querySelector('.admin-tab-btn'));
+    } else {
+      errEl.textContent = '❌ ভুল পাসওয়ার্ড! আবার চেষ্টা করুন।';
+      document.getElementById('adminPassword').value = '';
+      document.getElementById('adminPassword').focus();
+      // shake
+      const input = document.querySelector('.pw-input-wrap');
+      input.style.animation = 'shake 0.4s ease';
+      setTimeout(() => input.style.animation = '', 400);
+    }
   }
-  toggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-    const isDark = document.body.classList.contains('dark');
-    localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
-    toggle.innerHTML = isDark ? '<i class="fas fa-sun"></i> লাইট মোড' : '<i class="fas fa-moon"></i> ডার্ক মোড';
-  });
-}
 
-// ============================================================
-// INIT
-// ============================================================
-window.addEventListener('load', () => {
-  loadData();
-  applySettings();
-  renderAllSections();
-  initDarkMode();
+  function togglePw() {
+    const inp = document.getElementById('adminPassword');
+    const btn = document.getElementById('pwToggleBtn');
+    if (inp.type === 'password') {
+      inp.type = 'text';
+      btn.innerHTML = '<i class="fas fa-eye-slash"></i>';
+    } else {
+      inp.type = 'password';
+      btn.innerHTML = '<i class="fas fa-eye"></i>';
+    }
+  }
 
-  document.getElementById('searchInput').addEventListener('input', filterCards);
-  document.getElementById('adminFab').addEventListener('click', openPasswordModal);
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+  }
 
-  window.addEventListener('click', e => {
-    if (e.target.classList.contains('modal')) e.target.style.display = 'none';
-  });
+  function switchAdminTab(tab, btn) {
+    document.querySelectorAll('.admin-tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('admin-tab-' + tab).classList.add('active');
+    btn.classList.add('active');
+    if (tab === 'manage') updateManageList();
+  }
+
+  /* ─── Dark Mode ─── */
+  function initDarkMode() {
+    const toggle = document.getElementById('darkModeToggle');
+    if (localStorage.getItem('darkMode') === 'enabled') {
+      document.body.classList.add('dark');
+      toggle.innerHTML = '<i class="fas fa-sun"></i> লাইট মোড';
+    }
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+      toggle.innerHTML = isDark ? '<i class="fas fa-sun"></i> লাইট মোড' : '<i class="fas fa-moon"></i> ডার্ক মোড';
+    });
+  }
+
+  /* ─── Ripple ─── */
+  function addRipple(el) {
+    el.addEventListener('click', function(e) {
+      const r = document.createElement('span');
+      r.className = 'ripple-effect';
+      const rect = el.getBoundingClientRect();
+      const sz = Math.max(rect.width, rect.height);
+      r.style.cssText = `width:${sz}px;height:${sz}px;left:${e.clientX-rect.left-sz/2}px;top:${e.clientY-rect.top-sz/2}px`;
+      el.appendChild(r);
+      setTimeout(() => r.remove(), 600);
+    });
+  }
+
+  /* ─── Toast ─── */
+  function showToast(msg, type = 'success') {
+    const t = document.createElement('div');
+    t.className = 'toast';
+    t.textContent = msg;
+    if (type === 'error') t.style.background = 'linear-gradient(135deg, #8b0000, #c0392b)';
+    document.body.appendChild(t);
+    setTimeout(() => { t.classList.add('exit'); setTimeout(() => t.remove(), 350); }, 2800);
+  }
+
+  /* ─── Shake keyframe (CSS injection) ─── */
+  const shakeStyle = document.createElement('style');
+  shakeStyle.textContent = `@keyframes shake {
+    0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-8px)} 40%,80%{transform:translateX(8px)}
+  }`;
+  document.head.appendChild(shakeStyle);
+
+  /* ─── Enter key for password ─── */
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
-    if (e.key === 'Enter' && document.getElementById('passwordModal').style.display === 'flex') checkPassword();
+    if (e.key === 'Enter' && document.getElementById('passwordModal').classList.contains('open')) {
+      checkPassword();
+    }
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal.open').forEach(m => m.classList.remove('open'));
+    }
   });
-});
+
+  /* ─── Modal backdrop click ─── */
+  window.addEventListener('click', e => {
+    if (e.target.classList.contains('modal')) e.target.classList.remove('open');
+  });
+
+  /* ─── Init ─── */
+  window.onload = () => {
+    loadFromStorage();
+    renderAllSections();
+    initDarkMode();
+    document.getElementById('searchInput').addEventListener('input', filterCards);
+    document.getElementById('adminFab').addEventListener('click', openPasswordModal);
+    document.querySelectorAll('nav .nav-btn, .dark-toggle, .admin-fab').forEach(addRipple);
+  };
 </script>
 </body>
 </html>
