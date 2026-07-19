@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>আগরগঞ্জের বিচার · রাশেদ</title>
+  <!-- Google Font & Font Awesome for icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0c0b0e;
+      background-image: radial-gradient(circle at 10% 20%, #1e1a1f 0%, #080708 90%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Noto Serif Bengali', 'Segoe UI', serif;
+      padding: 2rem 1rem;
+      color: #f0ede8;
+      line-height: 1.7;
+    }
+
+    .story-card {
+      max-width: 820px;
+      width: 100%;
+      background: rgba(20, 18, 22, 0.82);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 2.5rem 2.5rem 2rem 2rem;
+      padding: 2.8rem 2.5rem;
+      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.8), 0 0 0 1px rgba(210, 180, 140, 0.1) inset;
+      border: 1px solid rgba(220, 180, 140, 0.15);
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    /* subtle grain texture overlay */
+    .story-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" opacity="0.03"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="1" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
+      pointer-events: none;
+      border-radius: inherit;
+      z-index: 0;
+    }
+
+    .story-card > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* opening quote / decoration */
+    .story-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      border-bottom: 1px solid rgba(200, 170, 140, 0.2);
+      padding-bottom: 1.2rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .story-header i {
+      font-size: 1.6rem;
+      color: #c9ab8b;
+      opacity: 0.7;
+    }
+
+    .story-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      background: linear-gradient(135deg, #f3e3d0, #dac2aa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .story-header h1 small {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #baa690;
+      background: none;
+      -webkit-background-clip: unset;
+      background-clip: unset;
+      color: #baa690;
+      margin-left: 0.5rem;
+      opacity: 0.8;
+    }
+
+    /* main text */
+    .story-content {
+      font-size: 1.08rem;
+      text-align: justify;
+      word-spacing: 0.04rem;
+    }
+
+    .story-content p {
+      margin-bottom: 1.5rem;
+      text-indent: 1.8rem;
+      transition: color 0.2s;
+    }
+
+    .story-content p:first-of-type {
+      margin-top: 0.2rem;
+    }
+
+    .story-content .highlight {
+      color: #e7d7c0;
+      font-weight: 600;
+      background: linear-gradient(90deg, #3a2e26, #2b211b);
+      padding: 0.1rem 0.5rem;
+      border-radius: 12px;
+      display: inline-block;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.5);
+      border-left: 2px solid #b59574;
+    }
+
+    .story-content .italic-memory {
+      font-style: italic;
+      color: #cbb7a2;
+      border-left: 2px solid #8b6f58;
+      padding-left: 1.2rem;
+      margin: 1.8rem 0;
+      background: rgba(50, 40, 34, 0.3);
+      border-radius: 0 12px 12px 0;
+    }
+
+    .story-content .dream-sequence {
+      background: rgba(60, 45, 38, 0.25);
+      padding: 1.2rem 1.8rem;
+      border-radius: 28px 8px 28px 8px;
+      border: 1px solid rgba(200, 160, 130, 0.15);
+      margin: 1.8rem 0;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+      font-weight: 400;
+    }
+
+    .story-content .dream-sequence i {
+      color: #b59574;
+      margin-right: 10px;
+    }
+
+    .story-content strong {
+      color: #e3cfb8;
+      font-weight: 700;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 2.2rem 0 1.8rem;
+      color: #6f5d4e;
+    }
+
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #6f5d4e, transparent);
+    }
+
+    .divider i {
+      font-size: 0.9rem;
+      opacity: 0.6;
+    }
+
+    /* footer / epilogue */
+    .story-footer {
+      margin-top: 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-top: 1px solid rgba(200, 170, 140, 0.15);
+      padding-top: 1.8rem;
+      font-size: 0.95rem;
+      color: #b09a86;
+    }
+
+    .story-footer .signature {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .story-footer .signature i {
+      color: #a58366;
+    }
+
+    .story-footer .footnote {
+      background: rgba(40, 32, 28, 0.5);
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      border: 1px solid #3f322b;
+      letter-spacing: 0.3px;
+    }
+
+    /* interactive hover effect on paragraphs */
+    .story-content p:hover {
+      color: #f2e7dc;
+      transition: 0.15s;
+    }
+
+    /* responsive */
+    @media (max-width: 600px) {
+      .story-card {
+        padding: 1.8rem 1.2rem;
+        border-radius: 2rem;
+      }
+      .story-header h1 {
+        font-size: 1.6rem;
+        flex-wrap: wrap;
+      }
+      .story-header h1 small {
+        display: block;
+        margin-left: 0;
+        font-size: 0.9rem;
+      }
+      .story-content {
+        font-size: 1rem;
+      }
+      .story-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    /* scrollbar style */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #1a1618;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #5e4b3b;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="story-card">
+    <div class="story-header">
+      <i class="fas fa-feather-alt"></i>
+      <h1>
+        আগরগঞ্জের বিচার
+        <small>— রাশেদের স্বপ্নভ্রমণ</small>
+      </h1>
+    </div>
+
+    <div class="story-content">
+      <p>
+        <span class="highlight">হ্যাঁ, সে বিচার চায়</span> — গ্রামের নাম আগরগঞ্জ। বিশেষত্বের সাথে এর বিচার বড়ো দায়। ৪০-৫০ পরিবারে গঠিত ছোট গ্রামই বলা যায়। তবে আধুনিকতার ছোঁয়ায় কেমন জানি, এ গ্রাম আসতে আসতে অজানায় পরিণত হচ্ছে। জ্ঞানের আলো দিকবিগিক প্রসারিত করতে এ গ্রামেই রয়েছে একটি প্রাথমিক ও মাধ্যমিক বিদ্যা অর্জনের আলয়। দিনে দিনে এটিও তার রূপ বদলাচ্ছে। আধুনিকতার পরশ এও পেয়েছে বৈ কি। এর উন্নতির জালে ধরা পড়েছে বেশ কয়েকটা জ্ঞানসম্পন্ন বিদ্যা দাতা আর গ্রহীতার সংখ্যাটিও অগণিত। কেননা চারিদিকে উন্নত স্কুল বলে এর বেশ নাম আছে। লোক চক্ষুর দৃষ্টি আকর্ষণে এ গ্রামের যে কিছুই নেই তা চরম মিথ্যা কথা। আছে তো! — এক বৃহদকার ঘন জঙ্গল। একে বন বলা যায় না— কেননা এর পরিবারে নিম্ন শ্রেণির জীব নেই বললেই চলে। কথিত আছে সময়ের পরিক্রমায় একদা এই জঙ্গলও ছিল অপরূপ সৌন্দর্যময়ী এক জায়গা। যার রূপে আকৃষ্ট হয়ে বেশ কিছু লোক একে নিজের বাস গৃহ হিসেবে গ্রহণ করেছিল। কল্যাণে অথবা অকল্যাণে এর অস্তিত্ব বিলুপ্তির দ্বার কোঠায়।
+      </p>
+
+      <p>
+        কিন্তু এখনো নিজের পরিচয় টাই দেওয়া হলো না— আমি <strong>রাশেদ</strong>, খুব বুদ্ধিমানও নই আবার সাধারণও বলা চলে না। কেননা, পারিপার্শ্বিক অবস্থার বাইরে থেকে চিন্তার ভালো বা খারাপ গুণটি আমার মধ্যে ছিল। গ্রামের সেই ছোট্ট প্রাথমিক বিদ্যার আলয় থেকেই শুরু হয় আমার বিদ্যা অর্জনের যাত্রা। এ যাত্রার প্রথম দিকটায় আমি ছিলাম ভবঘুরে, পরে হয়েছি মুসাফির।
+      </p>
+
+      <p>
+        শৈশবের আনন্দকে শূলে চড়িয়ে, মাধ্যমিক স্কুলে বুঝতে পারলাম বিদ্যার আংশিক গুরুত্ব। অবশ্য এ যাত্রার একজন সাথিও পেয়েছিলাম। আমাদের ইচ্ছা, বর্ণ, ভালোলাগার বিষয় প্রায় সর্বক্ষেত্রে বৈষম্য থাকা সত্ত্বেও কীভাবে বন্ধু হলো সেটিও রহস্য। এই রহস্যের রহস্যময় কারণটি খুঁজতেই পার করে ফেলে ছিলাম অনেক দিবস। তার নাম <strong>রুহিত</strong>।
+      </p>
+
+      <p>
+        শুরু শুরুতে সব কিছুই ভালোই চলছিল। তবে সমস্যা সম্পৃক্ত জীবনে সমস্যা থাকবেই। সেই সমস্যাটি হলো আমাদের প্রধান শিক্ষককে নিয়ে। তিনি তাঁর উদরপূর্তে এতোই মনোযোগী হয়ে গেলেন যে, বিদ্যা গ্রহীতাদের হৃদ ক্যান্সার হওয়ার মতো অবস্থা। এই রোগটা তাকে এমন ভালো আক্রমণ করলো, তার সংক্রমণে ধীরে ধীরে ছাত্রগণ অক্কা পেতে লাগলো। আমাদের ক্লাসে স্বাস্থ্যবিধির ভালো জ্ঞান ও পিতৃসচেতনতার দরুন সেই মহামারীর সংক্রমণটা খানিকটা কমই ছিল। এই রোগে আক্রান্ত বিদ্যার আলয়ে, আর যে, কোনো জ্ঞান গ্রহীতার দেখা মিলবে তা আমরা ভাবিনি। কিন্তু আমাদের ভাবনাকে অতিক্রম করে একজন বিদ্যার সন্ধানীর আবির্ভাব দেখা গেল। তার নাম <strong>আবদুল উজ্জাজ</strong>। নামের ভাবগাম্ভীরতার সাথে কাজের মিল রয়েছে। ক্লাসে তার সাথে কাউকে কোনোদিন কথা বলতে শুনিনি। কিন্তু আমার সঙ্গে ও রুহিতের সঙ্গে হতো নামাজে। যে নামায-পরে একথা ভেবে তার প্রতি ইন্দ্রিয় বহির্ভূত কোনো চিন্তা মাথায় না আসলেও ভাবাতো।
+      </p>
+
+      <p>
+        <em>“তোমার বাড়ি কোথায়?” “আরিগ্রামে”</em> — আগরগঞ্জ গ্রামের একরকম প্রবাসী ছিলাম আমি। কেননা পৈতৃক বাড়ি গড়েয়া তাই আরিগ্রাম কোথায় তা দিয়ে মাথা ঘামাইনি। <em>“তোমার বাবার নাম কি? তিনি কী করেন?”</em> রহিতের এমন প্রশ্নে সে তার মুখ কালো করে নীরবে বলল, <strong>“আমার বাবা নেই।”</strong>
+      </p>
+
+      <div class="divider">
+        <span class="divider-line"></span>
+        <i class="fas fa-moon"></i>
+        <span class="divider-line"></span>
+      </div>
+
+      <p>
+        দিনটি ছিল ২১ জুন। অবস্থান দক্ষিণ গোলার্ধে হওয়ায় আগেই অনুমান করে নিয়েছিলাম নিশি খুব শীঘ্রই আসছে। আবহাওয়াটা খানিকটা ঠাণ্ডা। তাই এটাও ভেবেছিলাম বৃষ্টি আর নেমন্তন্ন পাবে না। ধারণাটি ছিল ভুল। মানুষের কর্মকাণ্ডই নিজে গিয়ে তাকে লাল গালিচায় সসম্মানে আমন্ত্রণ জানিয়ে ছিল। আর আত্মমর্যাদাবান বৃষ্টিও তার কথার খেলাফ করেনি।
+      </p>
+
+      <p>
+        এরই ধারাবাহিকতায়, নিজ আলয়ে অবস্থান করে আমি পুস্তকের অক্ষর গিলছিলাম, যাতে করে শ্রেণিকক্ষে উগলানো বা বমি করাটা সহজ হয়। এর মাঝে হাতের কাছের মুঠোফোনটা বেজে উঠলো। ফোনটা রহিতের। <em>“খবর কিছু জানিস নাকি?” “কীসের খবর?” “আরে হেডমাস্টারের রোগের! , তার স্ত্রী'র তো যায় যায় অবস্থা” “বলিশ কী!” “সত্যি, আজ সকালেই পুলিশ হাতে নাতে পাকড়াও করেছে।”</em> এ কথা শ্রবণে দুঃখ বিতরণের বদলে সকল আনন্দিত ছাত্রের মুখ পরিদর্শনের জন্য আমি আর রোহিত আগে ভাগে বিদ্যার আলয়ে গমনের পরিকল্পনা করলাম।
+      </p>
+
+      <div class="dream-sequence">
+        <i class="fas fa-cloud-rain"></i>
+        <span style="font-weight: 600; color: #dac2aa;">বৃষ্টি · জঙ্গল · আব্দুল উজ্জাজ</span>
+        <p style="margin-top: 0.6rem; text-indent: 0;">
+          বাইরে থেকে বারি বর্ষিত হচ্ছিলো। পথে জানলাম রহিতের কাছে ছাতা নেই। তাই ঠিক করলাম দুজনই সেই জঙ্গলের প্রথম কোণটায় দেখা করে একসাথে যাব। যেই কথা সেই কাজ। আমরা দেখা করলাম কিন্তু রোহিতের অবস্থাটা ছিল শোচনীয়। আমারও তাই। কিছু দূর এগোতে না এগোতেই ভাঙলো ছাতা, শুরু হয় মুষল ধারে বৃষ্টি। আমরা আশ্রয় নিয়েছিলাম এক উপেক্ষিত দোকানের ছাদের তলায়। তার পিছন দিক থেকেই জঙ্গলের আরম্ভ। বৃষ্টি বাড়লেও স্বস্তি বাড়ছে না, অসহনীয় ঠান্ডা , কাঁপছি আমরা। হঠাৎ পেছন দিক থেকে ঘাড়ে কিছু ঠাণ্ডা অনুভূমি হলো। <strong>“আরে! উজ্জ্বল!! তুমি এখানে কী করছ?”</strong> সে বললো সে নাকি এ পাশ দিয়েই স্কুলে যাচ্ছিলো। এ অবস্থায় তার সাথে তর্ক বিস্তৃতি ঘটলো না। হঠাৎ করে সে বললো – চলো আমার বাড়ি। আমার জানা মতে এদিকটাই জঙ্গল ছাড়া আর কারো বাড়ি নেই। <em>‘কোথায়?’ ‘এই জঙ্গলের ও দিকটাতেই আমার পুরনো বাড়ি আছে, যেখানে এখন শুধু আমার মামা থাকেন।’</em>
+        </p>
+        <p style="text-indent: 0;">
+          আমরা কিছুতেই রাজি নই। অবস্থাও করুন। রাজি হলাম এটা জেনে সে নামায পড়ে। আরো বললো জঙ্গল দিয়ে যাওয়াটা হবে শর্টকার্ট। সে বৃষ্টির মধ্যেই আমি আর রহিত তার পেছন পেছন চলছি। আমার কেন জানি মনে হলো সে ভিজছে না, তার মাথায় ছাতাও নেই। আরেকটু আশ্বস্তি পেলাম সেই পুরোনো বাড়িটার কাছে কিছু লোককে কোনো কিছু কাটতে দেখে। মনে হলো কাঠুরে। জঙ্গলের কোণে বাড়িটি ছিল অনাদৃতি। অন্ধকার অনেকটা নেমে আসায় পর্যবেক্ষণ করতে পারিনি। সে দরজার কাছে এসেই দরজাটা খুলে গেল। নিমিষের মধ্যে কোথায় গেল বুঝলাম না।
+        </p>
+        <p style="text-indent: 0; font-weight: 500; color: #dac2aa;">
+          <i class="fas fa-skull" style="color: #a66e4b;"></i> “একি! এটা কী আব্দুল উজ্জাজ নয়! হ্যাঁ এটি উজ্জাজ। শুধু দেহের একটু বিকৃতি মাত্রই। হ্যাঁ দেহের রংটা রক্তের লাল দাগ। পদ দ্বয় ভূমি থেকে ওপরে। মানে ফাঁশি”। পায়ের তলে থেকে মাটি সরে গেল, তার হাতের ঠিক নিচেই রঙিন কাগজে কিছু একটা লেখা ছিল। রঙটা লাল।
+        </p>
+        <p style="text-indent: 0; background: #1f1713; padding: 0.6rem 1.2rem; border-radius: 30px; border-left: 4px solid #b1623b;">
+          <i class="fas fa-quote-right" style="color: #b1623b;"></i> “আমি আবদুল উজ্জাজ, আমি বিচার চাই। আমার মামাই আমাকে গৃহবন্দী করেছে। আমি আত্ম হত্যা করিনি। আমাকে রক্ষা করো। তারা আমাকে খুব মেরেছে,” — এতটুকু পড়তে না পড়তেই আমরা পেছনে তাকালাম। আসলে তারা কাঠুরে নয়। তারা কোনো দেহকে পুতছে মাটিতে!!
+        </p>
+      </div>
+
+      <p>
+        <strong>“রাশেদ! রাশেদ!! ও রাশেদ!!!”</strong> <em>‘কী! কী! উজ্জাজ, উজ্জাজ কোথায়?’</em> — ঘুম ভাঙল আমার। <em>‘আরে কে উজ্জাজ?’</em> আমি তোর বন্ধু রহিত। কয়েক মিনিটের জন্য আমি নিস্তব্ধ হয়ে গেলাম। কিছুক্ষণ পর সে বললো, <em>“জানিস খবর, আজ স্কুল আমাদের ক্লাসে এক নতুন ছাত্র এসেছে, নাম নাকি আবদুল উজ্জাজ,”</em> <em>“তুই কী নাকি স্বপ্ন দেখছিস, স্বপ্নে তুই সেই ছেলেটাকেই দেখলি”</em>।
+      </p>
+
+      <div class="italic-memory">
+        <i class="fas fa-tree" style="margin-right: 10px; color: #7f6a58;"></i>
+        পর দিন দাদুকে জিজ্ঞেস করলাম, <em>"আচ্ছা , তুমি কি জানো আরিগ্রাম কোথায়?"</em> <br>
+        <strong>“জানি , তো!!”</strong> <em>“কী! কই?”</em> <strong>“ আমাদের বাড়ি থকে ২ কিলোমিটার দক্ষিণে, সেই জঙ্গল টাই তো এককালের 'আরিগ্রাম' ।”</strong> <br>
+        <span style="display: block; margin-top: 0.5rem; font-size: 1rem; color: #c4af9a;">“আসলেই কী সেটা স্বপ্ন ছিল??”</span>
+      </div>
+    </div>
+
+    <div class="story-footer">
+      <div class="signature">
+        <i class="fas fa-pen-fancy"></i>
+        <span>— রাশেদের ডায়রি, ২১ জুন</span>
+      </div>
+      <div class="footnote">
+        <i class="fas fa-feather" style="margin-right: 6px;"></i> বিচার চায় আগরগঞ্জ
+      </div>
+    </div>
+  </div>
+
+  <!-- simple JS : subtle interaction – title pulse & footer animation -->
+  <script>
+    (function() {
+      // small playful effect: header icon pulse on click
+      const headerIcon = document.querySelector('.story-header i');
+      if (headerIcon) {
+        headerIcon.addEventListener('click', function(e) {
+          this.style.transition = 'transform 0.2s ease';
+          this.style.transform = 'scale(1.4)';
+          setTimeout(() => { this.style.transform = 'scale(1)'; }, 300);
+        });
+      }
+
+      // footer footnote subtle glow on hover
+      const footnote = document.querySelector('.story-footer .footnote');
+      if (footnote) {
+        footnote.addEventListener('mouseenter', function() {
+          this.style.transition = 'all 0.25s';
+          this.style.background = '#4f3d31';
+          this.style.borderColor = '#b59574';
+          this.style.color = '#f5ede4';
+        });
+        footnote.addEventListener('mouseleave', function() {
+          this.style.background = 'rgba(40, 32, 28, 0.5)';
+          this.style.borderColor = '#3f322b';
+          this.style.color = '#b09a86';
+        });
+      }
+
+      // every paragraph gets a tiny "breath" highlight on hover (already in css)
+      // extra: double-click on any paragraph shows a subtle alert with quote (just for fun)
+      const paragraphs = document.querySelectorAll('.story-content p');
+      paragraphs.forEach((p, index) => {
+        p.addEventListener('dblclick', function(e) {
+          const text = this.innerText.slice(0, 60) + (this.innerText.length > 60 ? '…' : '');
+          // show a soft notification style (no alert box)
+          const notif = document.createElement('div');
+          notif.style.position = 'fixed';
+          notif.style.bottom = '20px';
+          notif.style.left = '50%';
+          notif.style.transform = 'translateX(-50%)';
+          notif.style.background = '#2d241f';
+          notif.style.color = '#e4d3c2';
+          notif.style.padding = '10px 24px';
+          notif.style.borderRadius = '40px';
+          notif.style.fontFamily = "'Noto Serif Bengali', serif";
+          notif.style.fontSize = '0.95rem';
+          notif.style.boxShadow = '0 8px 24px rgba(0,0,0,0.7)';
+          notif.style.border = '1px solid #7a6352';
+          notif.style.zIndex = '999';
+          notif.style.backdropFilter = 'blur(6px)';
+          notif.style.background = 'rgba(30, 24, 20, 0.85)';
+          notif.innerHTML = `<i class="fas fa-quote-left" style="margin-right: 10px; color:#b59574;"></i> ${text}`;
+          document.body.appendChild(notif);
+          setTimeout(() => {
+            notif.style.transition = 'opacity 0.6s';
+            notif.style.opacity = '0';
+            setTimeout(() => notif.remove(), 700);
+          }, 1800);
+        });
+      });
+
+      console.log('🌟 আগরগঞ্জের বিচার · রাশেদের স্বপ্ন');
+    })();
+  </script>
+
+</body>
+</html>
