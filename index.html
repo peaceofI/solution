@@ -1,1501 +1,610 @@
-<!DOCTYPE html>
-<html lang="bn">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-  <title>نور المعرفة | ইসলামিক জ্ঞান</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Noto+Serif+Bengali:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <style>
-    /* ══════════════════════════════════════
-       DESIGN TOKENS & CUSTOM PROPERTIES
-    ══════════════════════════════════════ */
-    :root {
-      --emerald-1: #0a4f33;
-      --emerald-2: #0d6647;
-      --emerald-3: #12825c;
-      --emerald-glow: rgba(13, 102, 71, 0.5);
-      --gold-1: #c9a227;
-      --gold-2: #e2b842;
-      --gold-3: #f5d06a;
-      --gold-glow: rgba(201, 162, 39, 0.45);
-      --glass-white: rgba(255,255,255,0.10);
-      --glass-border: rgba(255,255,255,0.18);
-      --glass-white-strong: rgba(255,255,255,0.85);
-      --glass-border-strong: rgba(255,255,255,0.40);
-      --bg-light-1: #eef5f1;
-      --bg-light-2: #e5f0ea;
-      --card-bg-light: rgba(255,255,255,0.82);
-      --text-primary-light: #0d2a1e;
-      --text-secondary-light: #2f5543;
-      --shadow-card: 0 8px 32px rgba(10,79,51,0.12);
-      --shadow-hover: 0 20px 50px rgba(10,79,51,0.22), 0 0 0 1px var(--gold-1);
-      --shadow-glow: 0 0 30px rgba(201,162,39,0.25);
-      --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-      --nav-bg-light: rgba(255,255,255,0.78);
-      --footer-bg: linear-gradient(135deg, #061e12, #0a3020);
-    }
-
-    body.dark {
-      --bg-light-1: #08160e;
-      --bg-light-2: #0b1d12;
-      --card-bg-light: rgba(12, 30, 20, 0.88);
-      --text-primary-light: #d4ead8;
-      --text-secondary-light: #7eba94;
-      --glass-white: rgba(255,255,255,0.05);
-      --glass-border: rgba(255,255,255,0.10);
-      --glass-white-strong: rgba(15, 35, 22, 0.92);
-      --glass-border-strong: rgba(255,255,255,0.15);
-      --shadow-card: 0 8px 32px rgba(0,0,0,0.45);
-      --shadow-hover: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px var(--gold-2);
-      --nav-bg-light: rgba(8, 20, 13, 0.88);
-    }
-
-    /* ══════════════════════════════════════
-       GLOBAL RESET & BASE
-    ══════════════════════════════════════ */
-    *, *::before, *::after {
-      margin: 0; padding: 0;
-      box-sizing: border-box;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Noto Serif Bengali', 'Rajdhani', system-ui, sans-serif;
-      background-color: var(--bg-light-1);
-      background-image:
-        radial-gradient(ellipse at 20% 10%, rgba(13,102,71,0.12) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 90%, rgba(201,162,39,0.08) 0%, transparent 50%),
-        radial-gradient(ellipse at 60% 40%, rgba(13,102,71,0.06) 0%, transparent 50%);
-      color: var(--text-primary-light);
-      min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
-      transition: background-color 0.4s ease, color 0.3s ease;
-    }
-
-    /* Mesh noise overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.6;
-    }
-
-    body > * { position: relative; z-index: 1; }
-
-    /* ══════════════════════════════════════
-       HERO / PROFILE SECTION
-    ══════════════════════════════════════ */
-    .hero-profile {
-      background: linear-gradient(145deg, #062218 0%, #0a3828 40%, #083020 100%);
-      padding: 3rem 1.5rem 2.2rem;
-      text-align: center;
-      border-bottom: 1px solid var(--gold-1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Starfield effect */
-    .hero-profile::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px),
-        radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px),
-        radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px);
-      background-size: 80px 80px, 120px 120px, 200px 200px;
-      background-position: 10px 10px, 40px 60px, 100px 20px;
-      opacity: 0.25;
-      animation: starShimmer 8s ease-in-out infinite alternate;
-    }
-
-    @keyframes starShimmer {
-      0%  { opacity: 0.15; }
-      100% { opacity: 0.35; }
-    }
-
-    /* Gold bokeh orbs */
-    .hero-profile::after {
-      content: '';
-      position: absolute;
-      top: -40%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(201,162,39,0.18) 0%, transparent 65%);
-      animation: orbPulse 6s ease-in-out infinite alternate;
-      pointer-events: none;
-    }
-
-    @keyframes orbPulse {
-      0%  { transform: translateX(-50%) scale(1);   opacity: 0.5; }
-      100% { transform: translateX(-50%) scale(1.3); opacity: 0.9; }
-    }
-
-    .profile-container {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 2.2rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .avatar-frame {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold-1), var(--gold-3));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 0 3px rgba(255,255,255,0.15), 0 0 40px var(--gold-glow), 0 15px 30px rgba(0,0,0,0.3);
-      animation: floatAvatar 4s ease-in-out infinite;
-      font-size: 2.8rem;
-    }
-
-    @keyframes floatAvatar {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(-8px); }
-    }
-
-    .brand-text h2 {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: clamp(1.3rem, 4vw, 2rem);
-      font-weight: 700;
-      background: linear-gradient(120deg, #fff 0%, var(--gold-3) 50%, #fff 100%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      letter-spacing: 0.5px;
-      margin-bottom: 0.4rem;
-    }
-
-    .brand-text p {
-      color: rgba(255,255,255,0.75);
-      font-size: 0.9rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .badge-light {
-      display: inline-block;
-      background: rgba(201,162,39,0.15);
-      border: 1px solid rgba(201,162,39,0.4);
-      backdrop-filter: blur(8px);
-      color: var(--gold-3);
-      padding: 0.25rem 1rem;
-      border-radius: 50px;
-      font-size: 0.78rem;
-      letter-spacing: 0.3px;
-    }
-
-    /* ══════════════════════════════════════
-       SITE HEADER
-    ══════════════════════════════════════ */
-    header {
-      background: linear-gradient(145deg, #05180f, #0a2e1c);
-      padding: 1.6rem 1rem 1.4rem;
-      text-align: center;
-      border-bottom: 2px solid transparent;
-      border-image: linear-gradient(90deg, transparent, var(--gold-1), transparent) 1;
-    }
-
-    header h1 {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: clamp(1.6rem, 6vw, 2.8rem);
-      font-weight: 900;
-      background: linear-gradient(125deg, var(--gold-3) 0%, var(--gold-1) 50%, var(--gold-3) 100%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      text-shadow: none;
-      filter: drop-shadow(0 0 15px rgba(201,162,39,0.4));
-      letter-spacing: 1px;
-    }
-
-    header p {
-      color: rgba(255,255,255,0.55);
-      font-size: 0.85rem;
-      margin-top: 0.4rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .pattern {
-      height: 4px;
-      background: repeating-linear-gradient(
-        90deg,
-        var(--gold-1) 0px, var(--gold-1) 12px,
-        transparent 12px, transparent 16px,
-        var(--gold-3) 16px, var(--gold-3) 20px,
-        transparent 20px, transparent 24px
-      );
-    }
-
-    /* ══════════════════════════════════════
-       NAVIGATION — GLASSMORPHISM BUTTONS
-    ══════════════════════════════════════ */
-    nav {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      background: var(--nav-bg-light);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      padding: 0.9rem 1.2rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-bottom: 1px solid var(--glass-border-strong);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-      transition: background 0.4s;
-    }
-
-    /* ← THE INDIVIDUAL NAV BUTTONS */
-    nav .nav-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      background: var(--glass-white);
-      border: 1.5px solid var(--glass-border);
-      padding: 0.55rem 1.35rem;
-      border-radius: 50px;
-      cursor: pointer;
-      font-family: 'Noto Serif Bengali', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--text-primary-light);
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s var(--ease-spring);
-      backdrop-filter: blur(8px);
-      letter-spacing: 0.2px;
-    }
-
-    nav .nav-btn::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--emerald-2), var(--emerald-1));
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      border-radius: inherit;
-    }
-
-    nav .nav-btn .btn-icon,
-    nav .nav-btn .btn-label {
-      position: relative;
-      z-index: 1;
-      transition: color 0.3s;
-    }
-
-    nav .nav-btn:hover,
-    nav .nav-btn.active {
-      border-color: var(--gold-1);
-      color: #fff;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px var(--emerald-glow), 0 0 0 1px var(--gold-1);
-    }
-
-    nav .nav-btn:hover::before,
-    nav .nav-btn.active::before {
-      opacity: 1;
-    }
-
-    nav .nav-btn.active {
-      background: linear-gradient(135deg, var(--emerald-2), var(--emerald-1));
-      box-shadow: 0 8px 28px var(--emerald-glow), 0 0 20px var(--gold-glow), inset 0 1px 0 rgba(255,255,255,0.15);
-    }
-
-    /* Ripple */
-    .ripple-effect {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
-      transform: scale(0);
-      animation: ripple 0.5s linear;
-      pointer-events: none;
-    }
-
-    @keyframes ripple {
-      to { transform: scale(4); opacity: 0; }
-    }
-
-    /* ══════════════════════════════════════
-       MAIN CONTAINER
-    ══════════════════════════════════════ */
-    .container {
-      max-width: 1300px;
-      margin: 2rem auto;
-      padding: 0 1.5rem;
-    }
-
-    /* Controls Bar */
-    .controls-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 2.5rem;
-      background: var(--card-bg-light);
-      backdrop-filter: blur(16px);
-      padding: 0.8rem 1.4rem;
-      border-radius: 60px;
-      border: 1px solid var(--glass-border-strong);
-      box-shadow: var(--shadow-card);
-      transition: background 0.4s;
-    }
-
-    .search-box {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: rgba(13,102,71,0.07);
-      padding: 0.5rem 1.1rem;
-      border-radius: 40px;
-      border: 1px solid rgba(13,102,71,0.15);
-      min-width: 160px;
-    }
-
-    .search-box i { color: var(--emerald-2); font-size: 0.9rem; }
-
-    .search-box input {
-      background: transparent;
-      border: none;
-      outline: none;
-      width: 100%;
-      font-size: 0.88rem;
-      font-family: 'Noto Serif Bengali', sans-serif;
-      color: var(--text-primary-light);
-    }
-
-    .search-box input::placeholder { color: var(--text-secondary-light); opacity: 0.7; }
-
-    /* Dark mode toggle */
-    .dark-toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: linear-gradient(135deg, var(--emerald-1), var(--emerald-2));
-      border: 1px solid rgba(255,255,255,0.15);
-      color: white;
-      padding: 0.5rem 1.2rem;
-      border-radius: 40px;
-      cursor: pointer;
-      font-family: 'Noto Serif Bengali', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      transition: all 0.3s var(--ease-spring);
-      box-shadow: 0 4px 16px var(--emerald-glow);
-      white-space: nowrap;
-    }
-
-    .dark-toggle:hover {
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 8px 24px var(--emerald-glow), 0 0 15px var(--gold-glow);
-    }
-
-    /* Section headings */
-    .section-title {
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-      margin-bottom: 1.8rem;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid rgba(201,162,39,0.2);
-    }
-
-    .section-title h2 {
-      font-family: 'Noto Serif Bengali', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text-primary-light);
-    }
-
-    .section-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(201,162,39,0.3), transparent);
-    }
-
-    /* Grid */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 1.8rem;
-    }
-
-    /* ══════════════════════════════════════
-       CONTENT CARDS — GLASSMORPHISM
-    ══════════════════════════════════════ */
-    .card {
-      background: var(--card-bg-light);
-      backdrop-filter: blur(16px) saturate(140%);
-      -webkit-backdrop-filter: blur(16px) saturate(140%);
-      border: 1px solid var(--glass-border-strong);
-      border-radius: 20px;
-      padding: 1.6rem 1.5rem;
-      box-shadow: var(--shadow-card);
-      transition: all 0.35s var(--ease-spring);
-      position: relative;
-      overflow: hidden;
-      animation: fadeInUp 0.5s var(--ease-out) forwards;
-      opacity: 0;
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Shimmer sweep */
-    .card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(125deg, transparent 30%, rgba(201,162,39,0.06) 50%, transparent 70%);
-      transform: translateX(-100%);
-      transition: transform 0.6s ease;
-    }
-
-    .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); border-color: var(--gold-1); }
-    .card:hover::after { transform: translateX(100%); }
-
-    /* Top accent stripe */
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold-1), var(--gold-3), var(--emerald-3));
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .card:hover::before { opacity: 1; }
-
-    .card h3 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 0.7rem;
-      line-height: 1.4;
-    }
-
-    .card h3 a {
-      text-decoration: none;
-      background: linear-gradient(135deg, var(--emerald-2), var(--emerald-1));
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      transition: filter 0.2s;
-    }
-
-    .card h3 a:hover { filter: brightness(1.3); }
-
-    .card p {
-      color: var(--text-secondary-light);
-      font-size: 0.88rem;
-      line-height: 1.65;
-    }
-
-    .card-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, rgba(201,162,39,0.12), rgba(201,162,39,0.06));
-      border: 1px solid rgba(201,162,39,0.25);
-      color: var(--gold-1);
-      font-size: 0.7rem;
-      padding: 0.15rem 0.6rem;
-      border-radius: 30px;
-      margin-bottom: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-    }
-
-    .delete-btn {
-      position: absolute;
-      top: 0.8rem;
-      right: 0.8rem;
-      background: rgba(220, 53, 69, 0.1);
-      border: 1px solid rgba(220,53,69,0.2);
-      color: #dc3545;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s;
-      opacity: 0;
-    }
-
-    .card:hover .delete-btn { opacity: 1; }
-    .delete-btn:hover { background: rgba(220,53,69,0.9); color: white; transform: scale(1.1); }
-
-    /* Sections */
-    .content { display: block; }
-    .content.hidden { display: none; }
-
-    /* About section card */
-    #about .card { max-width: 750px; margin: 0 auto; }
-    #about .card h3 { font-size: 1.35rem; margin-bottom: 1rem; }
-    #about .card p { margin-bottom: 0.8rem; }
-
-    /* ══════════════════════════════════════
-       FOOTER
-    ══════════════════════════════════════ */
-    footer {
-      background: var(--footer-bg);
-      text-align: center;
-      padding: 2rem 1rem;
-      margin-top: 4rem;
-      border-top: 1px solid rgba(201,162,39,0.2);
-    }
-
-    footer p {
-      color: rgba(255,255,255,0.5);
-      font-size: 0.85rem;
-    }
-
-    footer span {
-      color: var(--gold-2);
-      font-weight: 600;
-    }
-
-    /* ══════════════════════════════════════
-       ADMIN FAB (FLOATING ACTION BUTTON)
-    ══════════════════════════════════════ */
-    .admin-fab {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--emerald-1), var(--emerald-2));
-      border: 2px solid var(--gold-1);
-      color: var(--gold-2);
-      font-size: 1.3rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 8px 30px var(--emerald-glow), 0 0 20px var(--gold-glow);
-      z-index: 900;
-      transition: all 0.3s var(--ease-spring);
-      animation: fabEntrance 0.8s var(--ease-spring) 0.5s both;
-    }
-
-    @keyframes fabEntrance {
-      from { transform: scale(0) rotate(-90deg); opacity: 0; }
-      to   { transform: scale(1) rotate(0deg); opacity: 1; }
-    }
-
-    .admin-fab:hover {
-      transform: scale(1.12) rotate(45deg);
-      box-shadow: 0 12px 40px var(--emerald-glow), 0 0 30px var(--gold-glow);
-    }
-
-    /* ══════════════════════════════════════
-       MODALS — ADVANCED GLASSMORPHISM
-    ══════════════════════════════════════ */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.65);
-      backdrop-filter: blur(8px);
-      z-index: 9999;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      animation: modalFadeIn 0.3s ease;
-    }
-
-    .modal.open { display: flex; }
-
-    @keyframes modalFadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-
-    .modal-content {
-      background: var(--glass-white-strong);
-      backdrop-filter: blur(30px) saturate(180%);
-      -webkit-backdrop-filter: blur(30px) saturate(180%);
-      border: 1px solid var(--glass-border-strong);
-      border-radius: 24px;
-      padding: 2.2rem;
-      width: 100%;
-      max-width: 480px;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1);
-      animation: modalSlideIn 0.35s var(--ease-spring);
-      position: relative;
-    }
-
-    .modal-content.large { max-width: 680px; }
-
-    @keyframes modalSlideIn {
-      from { opacity: 0; transform: translateY(30px) scale(0.95); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .modal-content h3 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--text-primary-light);
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid rgba(201,162,39,0.2);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .close-modal {
-      position: absolute;
-      top: 1rem;
-      right: 1.2rem;
-      font-size: 1.4rem;
-      cursor: pointer;
-      color: var(--text-secondary-light);
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      transition: all 0.2s;
-    }
-
-    .close-modal:hover { background: rgba(220,53,69,0.12); color: #dc3545; transform: rotate(90deg); }
-
-    /* ══════════════════════════════════════
-       PASSWORD MODAL — SPECIAL DESIGN
-    ══════════════════════════════════════ */
-    #passwordModal .modal-content {
-      max-width: 380px;
-      text-align: center;
-      background: linear-gradient(145deg, #06200f, #0b3320);
-      border-color: rgba(201,162,39,0.3);
-    }
-
-    #passwordModal .modal-content h3 {
-      color: var(--gold-3);
-      justify-content: center;
-      border-bottom-color: rgba(201,162,39,0.15);
-    }
-
-    .pw-lock-icon {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(201,162,39,0.15), rgba(201,162,39,0.05));
-      border: 2px solid rgba(201,162,39,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      margin: 0 auto 1.5rem;
-      color: var(--gold-2);
-      animation: lockPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes lockPulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(201,162,39,0.3); }
-      50%       { box-shadow: 0 0 0 12px rgba(201,162,39,0); }
-    }
-
-    .pw-input-wrap {
-      position: relative;
-      margin: 1rem 0;
-    }
-
-    .pw-input-wrap input {
-      width: 100%;
-      padding: 0.75rem 3rem 0.75rem 1.2rem;
-      background: rgba(255,255,255,0.06);
-      border: 1.5px solid rgba(201,162,39,0.25);
-      border-radius: 12px;
-      color: rgba(255,255,255,0.9);
-      font-family: 'Noto Serif Bengali', sans-serif;
-      font-size: 0.95rem;
-      outline: none;
-      text-align: center;
-      letter-spacing: 3px;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .pw-input-wrap input:focus {
-      border-color: var(--gold-2);
-      box-shadow: 0 0 0 3px rgba(201,162,39,0.15);
-    }
-
-    .pw-input-wrap input::placeholder {
-      letter-spacing: 0;
-      color: rgba(255,255,255,0.3);
-    }
-
-    .pw-toggle {
-      position: absolute;
-      right: 0.8rem;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: rgba(255,255,255,0.4);
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-
-    .pw-toggle:hover { color: var(--gold-2); }
-
-    /* ══════════════════════════════════════
-       ADMIN PANEL MODAL
-    ══════════════════════════════════════ */
-    #adminModal .modal-content {
-      max-width: 560px;
-    }
-
-    .admin-tabs {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-      background: rgba(13,102,71,0.06);
-      padding: 0.3rem;
-      border-radius: 12px;
-    }
-
-    .admin-tab-btn {
-      flex: 1;
-      padding: 0.5rem;
-      border: none;
-      border-radius: 10px;
-      background: transparent;
-      cursor: pointer;
-      font-family: 'Noto Serif Bengali', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-secondary-light);
-      transition: all 0.25s;
-    }
-
-    .admin-tab-btn.active {
-      background: linear-gradient(135deg, var(--emerald-1), var(--emerald-2));
-      color: white;
-      box-shadow: 0 4px 12px var(--emerald-glow);
-    }
-
-    .admin-tab-panel { display: none; }
-    .admin-tab-panel.active { display: block; }
-
-    /* Form elements */
-    .admin-form label {
-      display: block;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-secondary-light);
-      margin-bottom: 0.35rem;
-      margin-top: 1rem;
-    }
-
-    .admin-form label:first-child { margin-top: 0; }
-
-    .admin-form input,
-    .admin-form textarea,
-    .admin-form select {
-      width: 100%;
-      padding: 0.65rem 1rem;
-      background: var(--card-bg-light);
-      border: 1.5px solid var(--glass-border-strong);
-      border-radius: 12px;
-      color: var(--text-primary-light);
-      font-family: 'Noto Serif Bengali', sans-serif;
-      font-size: 0.9rem;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      backdrop-filter: blur(8px);
-    }
-
-    .admin-form input:focus,
-    .admin-form textarea:focus,
-    .admin-form select:focus {
-      border-color: var(--emerald-2);
-      box-shadow: 0 0 0 3px rgba(13,102,71,0.12);
-    }
-
-    .admin-form textarea { resize: vertical; min-height: 110px; }
-
-    /* ══════════════════════════════════════
-       BUTTON STYLES (GLOBAL)
-    ══════════════════════════════════════ */
-
-    /* Primary action button */
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      width: 100%;
-      padding: 0.75rem 1.5rem;
-      background: linear-gradient(135deg, var(--emerald-2), var(--emerald-1));
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      color: white;
-      font-family: 'Noto Serif Bengali', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 1.5rem;
-      transition: all 0.3s var(--ease-spring);
-      box-shadow: 0 6px 20px var(--emerald-glow);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px var(--emerald-glow), 0 0 20px var(--gold-glow);
-    }
-
-    .btn-primary:hover::before { opacity: 1; }
-    .btn-primary:active { transform: translateY(0); }
-
-    /* Gold accent button (for password modal) */
-    .btn-gold {
-      background: linear-gradient(135deg, var(--gold-1), var(--gold-2));
-      border: 1px solid rgba(255,255,255,0.15);
-      box-shadow: 0 6px 20px var(--gold-glow);
-      color: #06200f;
-      font-weight: 800;
-    }
-
-    .btn-gold:hover {
-      box-shadow: 0 10px 30px var(--gold-glow), 0 0 20px rgba(201,162,39,0.5);
-      background: linear-gradient(135deg, var(--gold-2), var(--gold-3));
-    }
-
-    /* Danger button */
-    .btn-danger {
-      background: linear-gradient(135deg, #c0392b, #e74c3c);
-      box-shadow: 0 6px 20px rgba(192,57,43,0.3);
-    }
-
-    /* Manage entries section */
-    .manage-entry-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.7rem 1rem;
-      background: var(--glass-white);
-      border: 1px solid var(--glass-border);
-      border-radius: 12px;
-      margin-bottom: 0.6rem;
-      gap: 0.5rem;
-    }
-
-    .manage-entry-item span {
-      font-size: 0.85rem;
-      flex: 1;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .manage-entry-item .del-small {
-      background: rgba(220,53,69,0.1);
-      border: 1px solid rgba(220,53,69,0.2);
-      color: #dc3545;
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      flex-shrink: 0;
-      transition: all 0.2s;
-    }
-
-    .manage-entry-item .del-small:hover {
-      background: rgba(220,53,69,0.9);
-      color: white;
-    }
-
-    .manage-section-label {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--gold-1);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin: 1rem 0 0.5rem;
-    }
-
-    /* Content modal */
-    #contentModal h3#modalTitle {
-      font-size: 1.4rem;
-      padding-right: 2rem;
-    }
-
-    #contentModal p#modalBody {
-      white-space: pre-wrap;
-      line-height: 1.85;
-      color: var(--text-secondary-light);
-      font-size: 0.95rem;
-    }
-
-    /* Toast notification */
-    .toast {
-      position: fixed;
-      bottom: 6rem;
-      right: 2rem;
-      background: linear-gradient(135deg, var(--emerald-1), var(--emerald-2));
-      color: white;
-      padding: 0.8rem 1.5rem;
-      border-radius: 12px;
-      border: 1px solid rgba(201,162,39,0.3);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      font-size: 0.9rem;
-      font-weight: 600;
-      z-index: 99999;
-      animation: toastIn 0.4s var(--ease-spring) forwards;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    @keyframes toastIn {
-      from { opacity: 0; transform: translateY(20px) scale(0.95); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .toast.exit { animation: toastOut 0.3s ease forwards; }
-
-    @keyframes toastOut {
-      to { opacity: 0; transform: translateY(10px); }
-    }
-
-    /* ══════════════════════════════════════
-       RESPONSIVE
-    ══════════════════════════════════════ */
-    @media (max-width: 768px) {
-      nav { gap: 0.4rem; padding: 0.7rem 0.8rem; }
-      nav .nav-btn { padding: 0.45rem 0.9rem; font-size: 0.8rem; }
-      .grid { grid-template-columns: 1fr; }
-      .modal-content { padding: 1.5rem; }
-      .admin-fab { bottom: 1.2rem; right: 1.2rem; width: 50px; height: 50px; font-size: 1.1rem; }
-    }
-
-    @media (max-width: 480px) {
-      nav .nav-btn .btn-label { display: none; }
-      nav .nav-btn .btn-icon { font-size: 1.1rem; }
-      nav .nav-btn { padding: 0.5rem 0.7rem; border-radius: 12px; }
-    }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: rgba(13,102,71,0.3); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--emerald-2); }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Peaceful Writings — Abdur Rahim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: linear-gradient(180deg,#e6f7ff 0%, #ffffff 60%);
+    --card:#ffffff;
+    --text:#123;
+    --muted:#456;
+    --accent:#2b9bd3;
+    --soft:#eaf6ff;
+    --shadow: 0 6px 18px rgba(15,40,60,0.08);
+  }
+  [data-theme="dark"]{
+    --bg: linear-gradient(180deg,#071428 0%, #0b2540 60%);
+    --card:#071a2a;
+    --text:#e6f7ff;
+    --muted:#9fbcd6;
+    --accent:#66b3e6;
+    --soft:#052233;
+    --shadow: 0 8px 24px rgba(0,0,0,0.6);
+  }
+
+  html,body{height:100%;margin:0;font-family: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    transition: background .35s ease, color .35s ease;
+  }
+
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:14px 20px;
+    backdrop-filter: blur(6px);
+    position:sticky;
+    top:0;
+    z-index:40;
+  }
+  .brand{
+    display:flex;align-items:center;gap:12px;
+  }
+  .logo{
+    width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#8fd7ff);
+    box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-family:'Playfair Display';
+  }
+  nav{display:flex;gap:8px;align-items:center;}
+  .nav-btn{
+    background:transparent;border:1px solid transparent;padding:8px 12px;border-radius:8px;color:var(--text);cursor:pointer;font-weight:600;
+  }
+  .nav-btn:hover{background:var(--soft);border-color:rgba(0,0,0,0.06)}
+  .controls{display:flex;gap:8px;align-items:center;}
+
+  main{max-width:1100px;margin:28px auto;padding:0 18px;}
+  .hero{
+    background:transparent;padding:28px;border-radius:14px;margin-bottom:18px;display:flex;gap:18px;align-items:center;
+  }
+  .hero .intro{flex:1}
+  .hero h1{font-family:'Playfair Display';font-size:28px;margin:0 0 8px;}
+  .hero p{margin:0;color:var(--muted)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+  .card{
+    background:var(--card);padding:14px;border-radius:12px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.03);
+  }
+  .meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;color:var(--muted);font-size:13px}
+  .title{font-weight:700;margin:6px 0 10px;font-size:18px}
+  .body-text{white-space:pre-wrap;color:var(--text);line-height:1.5}
+  .actions{display:flex;gap:8px;margin-top:12px;align-items:center}
+  .btn{padding:8px 12px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
+  .btn-like{background:transparent;border:1px solid var(--accent);color:var(--accent)}
+  .btn-comment{background:var(--accent);color:white}
+  .btn-share{background:transparent;border:1px dashed var(--muted);color:var(--muted)}
+  .small{font-size:13px;color:var(--muted)}
+
+  /* Admin panel */
+  #adminPanel{display:none;position:fixed;right:18px;bottom:18px;width:360px;max-width:calc(100% - 36px);z-index:60}
+  #adminPanel .panel{background:var(--card);padding:14px;border-radius:12px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.04)}
+  #adminPanel h3{margin:0 0 8px;font-family:'Playfair Display'}
+  textarea,input,select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);margin-bottom:8px;background:transparent;color:var(--text)}
+  .row{display:flex;gap:8px}
+  .row .half{flex:1}
+
+  /* Weather widget */
+  .weather{display:flex;gap:12px;align-items:center}
+  .weather .icon{width:64px;height:64px;border-radius:10px;background:linear-gradient(180deg,#fff 0%, #eaf6ff 100%);display:flex;align-items:center;justify-content:center;font-size:28px}
+  .weather .info{font-weight:600}
+
+  /* Translate toggle */
+  .translate-controls{display:flex;gap:8px;align-items:center}
+
+  footer{max-width:1100px;margin:28px auto;padding:18px;color:var(--muted);font-size:13px;text-align:center}
+
+  /* small screens */
+  @media (max-width:640px){
+    .hero{flex-direction:column;align-items:flex-start}
+    header{padding:10px}
+  }
+</style>
 </head>
 <body>
 
-<!-- ═══════════════════ HERO ═══════════════════ -->
-<div class="hero-profile">
-  <div class="profile-container">
-    <div class="avatar-frame">🕌</div>
-    <div class="brand-text">
-      <h2>আব্দুর রহীম</h2>
-      <p>📖 ইসলামিক লেখক | আলোর সন্ধানী ✨</p>
-      <div class="badge-light">🌙 نور المعرفة — প্রজ্ঞা ও প্রতিফলন বিস্তার</div>
+<header>
+  <div class="brand">
+    <div class="logo">PW</div>
+    <div>
+      <div style="font-weight:700">Peaceful Writings — <span id="ownerName">Abdur Rahim</span></div>
+      <div style="font-size:12px;color:var(--muted)">Poems • Novels • Thinking • Questions</div>
     </div>
   </div>
-</div>
 
-<!-- ═══════════════════ HEADER ═══════════════════ -->
-<header>
-  <h1>نور المعرفة</h1>
-  <p>কবিতা &nbsp;•&nbsp; উপন্যাস &nbsp;•&nbsp; প্রশ্নোত্তর &nbsp;•&nbsp; চিন্তা &nbsp;•&nbsp; জ্ঞান</p>
+  <nav aria-label="Main navigation">
+    <button class="nav-btn" data-section="Poems">Poems</button>
+    <button class="nav-btn" data-section="Novels">Novels</button>
+    <button class="nav-btn" data-section="Thinking">Thinking</button>
+    <button class="nav-btn" data-section="Entertainment">Entertainment</button>
+    <button class="nav-btn" data-section="About">About Us</button>
+  </nav>
+
+  <div class="controls">
+    <div class="translate-controls small">
+      <label for="langToggle">Bengali ↔ English</label>
+      <select id="langToggle" title="Translate between Bengali and English">
+        <option value="none">None</option>
+        <option value="bn-en">Bengali → English</option>
+        <option value="en-bn">English → Bengali</option>
+      </select>
+    </div>
+
+    <button id="themeToggle" class="nav-btn" title="Toggle light / dark">🌗</button>
+    <button id="loginBtn" class="nav-btn" title="Admin login">Admin</button>
+  </div>
 </header>
 
-<div class="pattern"></div>
-
-<!-- ═══════════════════ NAV ═══════════════════ -->
-<nav id="mainNav">
-  <button class="nav-btn active" onclick="showSection('poems', this)">
-    <span class="btn-icon">📜</span>
-    <span class="btn-label">কবিতা</span>
-  </button>
-  <button class="nav-btn" onclick="showSection('novels', this)">
-    <span class="btn-icon">📚</span>
-    <span class="btn-label">উপন্যাস</span>
-  </button>
-  <button class="nav-btn" onclick="showSection('qa', this)">
-    <span class="btn-icon">❓</span>
-    <span class="btn-label">প্রশ্ন ও উত্তর</span>
-  </button>
-  <button class="nav-btn" onclick="showSection('thoughts', this)">
-    <span class="btn-icon">💭</span>
-    <span class="btn-label">চিন্তা-ভাবনা</span>
-  </button>
-  <button class="nav-btn" onclick="showSection('about', this)">
-    <span class="btn-icon">🧑‍🕋</span>
-    <span class="btn-label">আমার সম্পর্কে</span>
-  </button>
-</nav>
-
-<!-- ═══════════════════ MAIN ═══════════════════ -->
-<div class="container">
-  <div class="controls-bar">
-    <div class="search-box">
-      <i class="fas fa-search"></i>
-      <input type="text" id="searchInput" placeholder="শিরোনাম বা বিবরণ দিয়ে অনুসন্ধান করুন...">
+<main>
+  <section class="hero card" aria-labelledby="heroTitle">
+    <div class="intro">
+      <h1 id="heroTitle">Welcome to Peaceful Writings</h1>
+      <p>Choose a section above. Publish poems, novels, thoughts, and questions from the admin panel.</p>
+      <div style="margin-top:12px" class="small">Theme: <span id="themeLabel">Light</span> • Translate: <span id="translateLabel">Off</span></div>
     </div>
-    <button id="darkModeToggle" class="dark-toggle">
-      <i class="fas fa-moon"></i> ডার্ক মোড
-    </button>
+
+    <div style="min-width:220px">
+      <div class="card weather" id="weatherCard">
+        <div class="icon" id="weatherIcon">☀️</div>
+        <div>
+          <div class="info" id="weatherTemp">--°C</div>
+          <div class="small" id="weatherDesc">Fetching weather…</div>
+        </div>
+      </div>
+      <div style="height:8px"></div>
+      <div class="card small" id="locationCard">Location: <span id="locName">Unknown</span></div>
+    </div>
+  </section>
+
+  <section id="contentArea">
+    <div class="grid" id="itemsGrid">
+      <!-- Published items will appear here -->
+    </div>
+
+    <!-- Preserve links and flash cards texts area (not removed) -->
+    <div id="linksAndFlashcards" style="margin-top:18px;">
+      <div class="card">
+        <div class="title">Links</div>
+        <div class="body-text small" id="preservedLinks">
+          <!-- Keep any existing links here; do not remove or alter -->
+          <!-- Example placeholder (you can replace with your actual links) -->
+          <a href="#" id="link1">Example Link 1</a> • <a href="#" id="link2">Example Link 2</a>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:12px;">
+        <div class="title">Flash Cards Texts</div>
+        <div class="body-text small" id="preservedFlashcards">
+          <!-- Keep flash cards texts intact here; do not remove or alter -->
+          <!-- Example placeholder (replace with your actual flash card texts) -->
+          Flash Card 1: Important note; Flash Card 2: Another note.
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Admin panel (hidden until login) -->
+<div id="adminPanel" aria-hidden="true">
+  <div class="panel">
+    <h3>Admin Panel</h3>
+    <div id="adminStatus" class="small">Not logged in</div>
+    <div id="loginForm">
+      <input id="adminEmail" placeholder="Gmail ID (example@example.com)" value="" />
+      <input id="adminPassword" placeholder="Password" type="password" />
+      <div class="row">
+        <button id="doLogin" class="btn" style="background:var(--accent);color:white">Login</button>
+        <button id="closeAdmin" class="btn" style="background:transparent;border:1px solid var(--muted)">Close</button>
+      </div>
+    </div>
+
+    <div id="publishForm" style="display:none;margin-top:8px">
+      <label class="small">Category</label>
+      <select id="publishCategory">
+        <option>Poems</option>
+        <option>Novels</option>
+        <option>Thinking</option>
+        <option>Entertainment</option>
+        <option>Questions</option>
+      </select>
+      <label class="small">Title</label>
+      <input id="publishTitle" placeholder="Title of your work" />
+      <label class="small">Content</label>
+      <textarea id="publishContent" placeholder="Write your poem, novel excerpt, thought, or question..."></textarea>
+      <div class="row">
+        <button id="publishBtn" class="btn" style="background:var(--accent);color:white">Publish</button>
+        <button id="clearBtn" class="btn" style="background:transparent;border:1px solid var(--muted)">Clear</button>
+      </div>
+      <div style="height:8px"></div>
+      <div class="small">Logged in as: <strong id="adminEmailLabel"></strong></div>
+    </div>
   </div>
-
-  <section id="poems" class="content">
-    <div class="section-title"><h2>📜 কবিতা</h2></div>
-    <div class="grid" id="poemsGrid"></div>
-  </section>
-
-  <section id="novels" class="content hidden">
-    <div class="section-title"><h2>📚 উপন্যাস</h2></div>
-    <div class="grid" id="novelsGrid"></div>
-  </section>
-
-  <section id="qa" class="content hidden">
-    <div class="section-title"><h2>❓ প্রশ্ন ও উত্তর</h2></div>
-    <div class="grid" id="qaGrid"></div>
-  </section>
-
-  <section id="thoughts" class="content hidden">
-    <div class="section-title"><h2>💭 চিন্তা-ভাবনা</h2></div>
-    <div class="grid" id="thoughtsGrid"></div>
-  </section>
-
-  <section id="about" class="content hidden">
-    <div class="card" style="max-width:750px;margin:0 auto;">
-      <div class="card-badge">✨ লেখক পরিচিতি</div>
-      <h3>আব্দুর রহীম — আলোর সন্ধানী</h3>
-      <p>আমি আব্দুর রহীম, ইসলামী জ্ঞান, হৃদয়গ্রাহী কবিতা, আত্মিক উপন্যাস এবং উম্মাহর জন্য চিন্তা-ভাবনা ছড়িয়ে দিতে আগ্রহী।</p>
-      <p style="margin-top:0.8rem;">এই প্ল্যাটফর্ম <strong>نور المعرفة (নূর আল-মা'রিফাহ)</strong> হৃদয়কে সৎপথে, ধৈর্য ও ঈমানের আলোয় উদ্বুদ্ধ করার একটি নম্র প্রচেষ্টা।</p>
-      <p style="margin-top:0.8rem;font-style:italic;opacity:0.8;">📩 "আপনার প্রভুর পথে প্রজ্ঞা ও সুন্দর উপদেশের মাধ্যমে আহ্বান করুন।" (কুরআন ১৬:১২৫)</p>
-    </div>
-  </section>
 </div>
 
-<!-- ═══════════════════ FOOTER ═══════════════════ -->
 <footer>
-  <p>© ২০২৬ | নির্মাতা <span>আব্দুর রহীম</span> | মুসলিম উম্মাহর জন্য <span>ﷺ</span></p>
+  <div class="small">Peaceful Writings — a calm place for words. Likes, comments, and shares are stored locally in your browser.</div>
 </footer>
 
-<!-- ═══════════════════ ADMIN FAB ═══════════════════ -->
-<div class="admin-fab" id="adminFab" title="অ্যাডমিন প্যানেল">
-  <i class="fas fa-cog"></i>
-</div>
-
-<!-- ═══════════════════ PASSWORD MODAL ═══════════════════ -->
-<div id="passwordModal" class="modal">
-  <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('passwordModal')"><i class="fas fa-times"></i></span>
-    <div class="pw-lock-icon">🔐</div>
-    <h3 style="justify-content:center;border:none;margin-bottom:0.3rem;color:inherit;">অ্যাডমিন প্রবেশ</h3>
-    <p style="color:rgba(255,255,255,0.45);font-size:0.82rem;margin-bottom:1.2rem;text-align:center;">পাসওয়ার্ড দিয়ে প্রবেশ করুন</p>
-    <div class="pw-input-wrap">
-      <input type="password" id="adminPassword" placeholder="পাসওয়ার্ড লিখুন">
-      <button class="pw-toggle" onclick="togglePw()" id="pwToggleBtn"><i class="fas fa-eye"></i></button>
-    </div>
-    <div id="pwError" style="color:#ff6b6b;font-size:0.82rem;text-align:center;min-height:1.2rem;margin-top:0.3rem;"></div>
-    <button class="btn-primary btn-gold" onclick="checkPassword()">
-      <i class="fas fa-unlock-alt"></i> প্রবেশ করুন
-    </button>
-  </div>
-</div>
-
-<!-- ═══════════════════ ADMIN PANEL MODAL ═══════════════════ -->
-<div id="adminModal" class="modal">
-  <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('adminModal')"><i class="fas fa-times"></i></span>
-    <h3><i class="fas fa-shield-alt" style="color:var(--gold-1)"></i> অ্যাডমিন প্যানেল</h3>
-
-    <div class="admin-tabs">
-      <button class="admin-tab-btn active" onclick="switchAdminTab('publish', this)">
-        <i class="fas fa-plus-circle"></i> প্রকাশ করুন
-      </button>
-      <button class="admin-tab-btn" onclick="switchAdminTab('manage', this)">
-        <i class="fas fa-list-ul"></i> পরিচালনা
-      </button>
-    </div>
-
-    <!-- Publish Tab -->
-    <div id="admin-tab-publish" class="admin-tab-panel active">
-      <div class="admin-form">
-        <label><i class="fas fa-folder"></i> বিভাগ নির্বাচন</label>
-        <select id="entrySection">
-          <option value="poems">📜 কবিতা</option>
-          <option value="novels">📚 উপন্যাস</option>
-          <option value="thoughts">💭 চিন্তা-ভাবনা</option>
-        </select>
-
-        <label><i class="fas fa-heading"></i> শিরোনাম</label>
-        <input type="text" id="entryTitle" placeholder="বাংলায় শিরোনাম লিখুন">
-
-        <label><i class="fas fa-align-left"></i> বিষয়বস্তু</label>
-        <textarea id="entryContent" rows="5" placeholder="পূর্ণ বিষয়বস্তু লিখুন..."></textarea>
-
-        <label><i class="fas fa-link"></i> লিঙ্ক <small style="opacity:0.6">(ঐচ্ছিক)</small></label>
-        <input type="text" id="entryLink" placeholder="যেমন: poem.html অথবা https://...">
-      </div>
-      <button class="btn-primary" onclick="addDynamicEntry()">
-        <i class="fas fa-paper-plane"></i> প্রকাশ করুন
-      </button>
-    </div>
-
-    <!-- Manage Tab -->
-    <div id="admin-tab-manage" class="admin-tab-panel">
-      <div id="manageList">
-        <p style="color:var(--text-secondary-light);font-size:0.88rem;text-align:center;padding:1.5rem 0;opacity:0.7;">
-          কোনো এন্ট্রি নেই
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════ CONTENT VIEW MODAL ═══════════════════ -->
-<div id="contentModal" class="modal">
-  <div class="modal-content large">
-    <span class="close-modal" onclick="closeModal('contentModal')"><i class="fas fa-times"></i></span>
-    <h3 id="modalTitle"></h3>
-    <p id="modalBody"></p>
-  </div>
-</div>
-
-<!-- ═══════════════════ JAVASCRIPT ═══════════════════ -->
 <script>
-  /* ─── Static Data ─── */
-  const staticData = {
-    poems: [
-      { title: "ভালো যদি হতে চাও", desc: "আরও এগিয়ে যাও মঙ্গলের সন্ধানে।", link: "valoo.html" },
-      { title: "নামাজ", desc: "সর্বশক্তিমান আল্লাহর নির্দেশনা লাভের জন্য সালাত আদায় করুন।", link: "namaj.html" },
-      { title: "অনুভূতি", desc: "মনের কল্পনা।", link: "onuvuti.html" },
-      { title: "ধৈর্য (সবর)", desc: "সহনশীলতা ও আস্থা।", link: "d.html" }
-    ],
-    novels: [
-      { title: "জীবনের উদ্দেশ্য", desc: "এই জীবন কেন?।", link: "yes.html" },
-      { title: "যোগ্যতা: চরম সাফল্য", desc: "আধ্যাত্মিক যাত্রা।", link: "merit.html" },
-      { title: "সে বিচার চায়", desc: "অন্যায় লুকানো যায় না।", link: "Justice.html" },
-      { title: "কিভাবে শত্রুকে কষ্ট দিতে হয়", desc: "গোপন পদ্ধতি", link: "f.html" },
-      { title: "প্রত্যেক মানুষের দায়িত্ব", desc: "পাঠ করুন আপনার প্রভুর নামে", link: "g.html" }
-    ],
-    qa: [
-      { title: "জীবনের চাবিকাঠি", desc: "মূল বিশ্বাস।", link: "h.html" }
-    ],
-    thoughts: [
-      { title: "আমার চিন্তা", desc: "আমার ভালোবাসার ভাগাভাগি..", link: "n.html" }
-    ]
-  };
+/* -------------------------
+   Theme (light / dark)
+   ------------------------- */
+const themeToggle = document.getElementById('themeToggle');
+const themeLabel = document.getElementById('themeLabel');
+const savedTheme = localStorage.getItem('pw_theme') || 'light';
+document.documentElement.setAttribute('data-theme', savedTheme === 'dark' ? 'dark' : 'light');
+themeLabel.textContent = savedTheme === 'dark' ? 'Dark' : 'Light';
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('pw_theme', next);
+  themeLabel.textContent = next === 'dark' ? 'Dark' : 'Light';
+});
 
-  /* ─── Dynamic Entries ─── */
-  let dynamicEntries = { poems: [], novels: [], thoughts: [] };
+/* -------------------------
+   Sections navigation
+   ------------------------- */
+document.querySelectorAll('.nav-btn[data-section]').forEach(btn=>{
+  btn.addEventListener('click', ()=> showSection(btn.dataset.section));
+});
+function showSection(section){
+  renderItems(section);
+}
 
-  function loadFromStorage() {
-    try {
-      const stored = localStorage.getItem('noor_dynamic_entries');
-      if (stored) dynamicEntries = JSON.parse(stored);
-    } catch(e) { dynamicEntries = { poems: [], novels: [], thoughts: [] }; }
+/* -------------------------
+   Data storage helpers
+   ------------------------- */
+const STORAGE_KEY = 'pw_items_v1';
+function loadItems(){
+  try{
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+  }catch(e){ return []; }
+}
+function saveItems(items){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+}
+
+/* -------------------------
+   Render items (cards)
+   ------------------------- */
+const itemsGrid = document.getElementById('itemsGrid');
+function renderItems(filter){
+  const items = loadItems();
+  const list = filter && filter !== 'All' ? items.filter(i=>i.category===filter) : items;
+  itemsGrid.innerHTML = '';
+  if(list.length === 0){
+    itemsGrid.innerHTML = `<div class="card small">No items yet in <strong>${filter || 'All'}</strong>. Use the admin panel to publish.</div>`;
+    return;
   }
+  list.slice().reverse().forEach(item=>{
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="meta"><div>${item.category}</div><div class="small">${new Date(item.created).toLocaleString()}</div></div>
+      <div class="title">${escapeHtml(item.title)}</div>
+      <div class="body-text" id="body-${item.id}">${escapeHtml(item.content)}</div>
+      <div class="actions">
+        <button class="btn btn-like" data-id="${item.id}">❤ <span class="like-count">${item.likes||0}</span></button>
+        <button class="btn btn-comment" data-id="${item.id}">💬 Comment</button>
+        <button class="btn btn-share" data-id="${item.id}">🔗 Share</button>
+      </div>
+      <div class="small" id="comments-${item.id}">${renderCommentsPreview(item.comments)}</div>
+    `;
+    itemsGrid.appendChild(card);
+  });
+  attachActionHandlers();
+}
+function renderCommentsPreview(comments){
+  if(!comments || comments.length===0) return 'No comments yet';
+  return `${comments.length} comment(s) • Latest: ${escapeHtml(comments[comments.length-1].text.slice(0,80))}`;
+}
+function escapeHtml(s){ return (s||'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
 
-  function saveToStorage() {
-    localStorage.setItem('noor_dynamic_entries', JSON.stringify(dynamicEntries));
-  }
-
-  /* ─── Rendering ─── */
-  const CATEGORY_LABELS = { poems: '📜 কবিতা', novels: '📚 উপন্যাস', thoughts: '💭 চিন্তা-ভাবনা' };
-
-  function renderGrid(sectionId, staticList, dynamicList) {
-    const container = document.getElementById(sectionId + 'Grid');
-    if (!container) return;
-    let html = '';
-    const delay = (i) => `animation-delay:${i * 0.07}s`;
-
-    staticList.forEach((card, i) => {
-      html += `
-        <div class="card" style="${delay(i)}">
-          <div class="card-badge">${CATEGORY_LABELS[sectionId] || '📄'}</div>
-          <h3><a href="${card.link}">${card.title}</a></h3>
-          <p>${card.desc}</p>
-        </div>`;
-    });
-
-    dynamicList.forEach((entry, i) => {
-      const idx = staticList.length + i;
-      const titleHtml = entry.link
-        ? `<h3><a href="${entry.link}" target="_blank">${entry.title}</a></h3>`
-        : `<h3 style="cursor:pointer" onclick="openContentModal('${escStr(entry.title)}', '${escStr(entry.content)}')">${entry.title}</h3>`;
-      html += `
-        <div class="card" style="${delay(idx)}">
-          <button class="delete-btn" onclick="deleteEntry('${sectionId}', ${entry.id})"><i class="fas fa-trash-alt"></i></button>
-          <div class="card-badge">${CATEGORY_LABELS[sectionId] || '📄'} · নতুন</div>
-          ${titleHtml}
-          <p>${entry.preview}</p>
-        </div>`;
-    });
-
-    container.innerHTML = html || '<p style="color:var(--text-secondary-light);opacity:0.6;padding:1rem 0">কোনো বিষয়বস্তু নেই।</p>';
-  }
-
-  function renderAllSections() {
-    renderGrid('poems', staticData.poems, dynamicEntries.poems);
-    renderGrid('novels', staticData.novels, dynamicEntries.novels);
-    renderGrid('thoughts', staticData.thoughts, dynamicEntries.thoughts);
-    const qa = document.getElementById('qaGrid');
-    if (qa) {
-      qa.innerHTML = staticData.qa.map((c, i) => `
-        <div class="card" style="animation-delay:${i*0.07}s">
-          <div class="card-badge">❓ প্রশ্নোত্তর</div>
-          <h3><a href="${c.link}">${c.title}</a></h3>
-          <p>${c.desc}</p>
-        </div>`).join('');
-    }
-    updateManageList();
-  }
-
-  function escStr(s) {
-    return s.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, '\\n');
-  }
-
-  /* ─── Add / Delete ─── */
-  function addDynamicEntry() {
-    const section = document.getElementById('entrySection').value;
-    const title   = document.getElementById('entryTitle').value.trim();
-    const content = document.getElementById('entryContent').value.trim();
-    const link    = document.getElementById('entryLink').value.trim();
-    if (!title || !content) { showToast('⚠️ শিরোনাম এবং বিষয়বস্তু পূরণ করুন!', 'error'); return; }
-    const entry = {
-      id: Date.now(), title, content,
-      preview: content.substring(0, 120) + (content.length > 120 ? '…' : ''),
-      link: link || null
+/* -------------------------
+   Like / Comment / Share
+   ------------------------- */
+function attachActionHandlers(){
+  document.querySelectorAll('.btn-like').forEach(btn=>{
+    btn.onclick = ()=>{
+      const id = btn.dataset.id;
+      const items = loadItems();
+      const it = items.find(x=>x.id===id);
+      if(!it) return;
+      it.likes = (it.likes||0) + 1;
+      saveItems(items);
+      renderItems(currentFilter || 'All');
     };
-    dynamicEntries[section].push(entry);
-    saveToStorage();
-    renderAllSections();
-    closeModal('adminModal');
-    document.getElementById('entryTitle').value = '';
-    document.getElementById('entryContent').value = '';
-    document.getElementById('entryLink').value = '';
-    showToast('✅ সফলভাবে প্রকাশিত হয়েছে!');
-  }
-
-  function deleteEntry(section, id) {
-    dynamicEntries[section] = dynamicEntries[section].filter(e => e.id != id);
-    saveToStorage();
-    renderAllSections();
-    showToast('🗑️ এন্ট্রি মুছে ফেলা হয়েছে।');
-  }
-
-  /* ─── Manage List ─── */
-  function updateManageList() {
-    const container = document.getElementById('manageList');
-    if (!container) return;
-    let html = '';
-    let hasAny = false;
-    ['poems', 'novels', 'thoughts'].forEach(sec => {
-      if (!dynamicEntries[sec] || dynamicEntries[sec].length === 0) return;
-      hasAny = true;
-      html += `<div class="manage-section-label">${CATEGORY_LABELS[sec]}</div>`;
-      dynamicEntries[sec].forEach(e => {
-        html += `
-          <div class="manage-entry-item">
-            <span>${e.title}</span>
-            <button class="del-small" onclick="deleteEntry('${sec}', ${e.id})"><i class="fas fa-trash"></i></button>
-          </div>`;
-      });
-    });
-    container.innerHTML = hasAny ? html : '<p style="color:var(--text-secondary-light);font-size:0.88rem;text-align:center;padding:1.5rem 0;opacity:0.7">কোনো প্রকাশিত এন্ট্রি নেই।</p>';
-  }
-
-  /* ─── Content Modal ─── */
-  function openContentModal(title, content) {
-    document.getElementById('modalTitle').textContent = title;
-    document.getElementById('modalBody').textContent  = content;
-    document.getElementById('contentModal').classList.add('open');
-  }
-
-  /* ─── Section Nav ─── */
-  function showSection(id, btn) {
-    document.querySelectorAll('.content').forEach(s => s.classList.add('hidden'));
-    document.getElementById(id).classList.remove('hidden');
-    document.querySelectorAll('nav .nav-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    filterCards();
-  }
-
-  /* ─── Search ─── */
-  function filterCards() {
-    const q = document.getElementById('searchInput').value.toLowerCase();
-    document.querySelectorAll('.grid').forEach(grid => {
-      grid.querySelectorAll('.card').forEach(card => {
-        const text = card.textContent.toLowerCase();
-        card.style.display = (!q || text.includes(q)) ? '' : 'none';
-      });
-    });
-  }
-
-  /* ─── Admin Modals ─── */
-  function openPasswordModal() {
-    document.getElementById('adminPassword').value = '';
-    document.getElementById('pwError').textContent = '';
-    document.getElementById('passwordModal').classList.add('open');
-    setTimeout(() => document.getElementById('adminPassword').focus(), 200);
-  }
-
-  function checkPassword() {
-    const pass = document.getElementById('adminPassword').value;
-    const errEl = document.getElementById('pwError');
-    if (pass === '3625-369') {
-      closeModal('passwordModal');
-      updateManageList();
-      document.getElementById('adminModal').classList.add('open');
-      switchAdminTab('publish', document.querySelector('.admin-tab-btn'));
-    } else {
-      errEl.textContent = '❌ ভুল পাসওয়ার্ড! আবার চেষ্টা করুন।';
-      document.getElementById('adminPassword').value = '';
-      document.getElementById('adminPassword').focus();
-      // shake
-      const input = document.querySelector('.pw-input-wrap');
-      input.style.animation = 'shake 0.4s ease';
-      setTimeout(() => input.style.animation = '', 400);
-    }
-  }
-
-  function togglePw() {
-    const inp = document.getElementById('adminPassword');
-    const btn = document.getElementById('pwToggleBtn');
-    if (inp.type === 'password') {
-      inp.type = 'text';
-      btn.innerHTML = '<i class="fas fa-eye-slash"></i>';
-    } else {
-      inp.type = 'password';
-      btn.innerHTML = '<i class="fas fa-eye"></i>';
-    }
-  }
-
-  function closeModal(id) {
-    document.getElementById(id).classList.remove('open');
-  }
-
-  function switchAdminTab(tab, btn) {
-    document.querySelectorAll('.admin-tab-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('admin-tab-' + tab).classList.add('active');
-    btn.classList.add('active');
-    if (tab === 'manage') updateManageList();
-  }
-
-  /* ─── Dark Mode ─── */
-  function initDarkMode() {
-    const toggle = document.getElementById('darkModeToggle');
-    if (localStorage.getItem('darkMode') === 'enabled') {
-      document.body.classList.add('dark');
-      toggle.innerHTML = '<i class="fas fa-sun"></i> লাইট মোড';
-    }
-    toggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      const isDark = document.body.classList.contains('dark');
-      localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
-      toggle.innerHTML = isDark ? '<i class="fas fa-sun"></i> লাইট মোড' : '<i class="fas fa-moon"></i> ডার্ক মোড';
-    });
-  }
-
-  /* ─── Ripple ─── */
-  function addRipple(el) {
-    el.addEventListener('click', function(e) {
-      const r = document.createElement('span');
-      r.className = 'ripple-effect';
-      const rect = el.getBoundingClientRect();
-      const sz = Math.max(rect.width, rect.height);
-      r.style.cssText = `width:${sz}px;height:${sz}px;left:${e.clientX-rect.left-sz/2}px;top:${e.clientY-rect.top-sz/2}px`;
-      el.appendChild(r);
-      setTimeout(() => r.remove(), 600);
-    });
-  }
-
-  /* ─── Toast ─── */
-  function showToast(msg, type = 'success') {
-    const t = document.createElement('div');
-    t.className = 'toast';
-    t.textContent = msg;
-    if (type === 'error') t.style.background = 'linear-gradient(135deg, #8b0000, #c0392b)';
-    document.body.appendChild(t);
-    setTimeout(() => { t.classList.add('exit'); setTimeout(() => t.remove(), 350); }, 2800);
-  }
-
-  /* ─── Shake keyframe (CSS injection) ─── */
-  const shakeStyle = document.createElement('style');
-  shakeStyle.textContent = `@keyframes shake {
-    0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-8px)} 40%,80%{transform:translateX(8px)}
-  }`;
-  document.head.appendChild(shakeStyle);
-
-  /* ─── Enter key for password ─── */
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Enter' && document.getElementById('passwordModal').classList.contains('open')) {
-      checkPassword();
-    }
-    if (e.key === 'Escape') {
-      document.querySelectorAll('.modal.open').forEach(m => m.classList.remove('open'));
-    }
   });
-
-  /* ─── Modal backdrop click ─── */
-  window.addEventListener('click', e => {
-    if (e.target.classList.contains('modal')) e.target.classList.remove('open');
+  document.querySelectorAll('.btn-comment').forEach(btn=>{
+    btn.onclick = async ()=>{
+      const id = btn.dataset.id;
+      const text = prompt('Add a comment (your name optional):');
+      if(!text) return;
+      const items = loadItems();
+      const it = items.find(x=>x.id===id);
+      it.comments = it.comments || [];
+      it.comments.push({text, at: Date.now()});
+      saveItems(items);
+      renderItems(currentFilter || 'All');
+    };
   });
+  document.querySelectorAll('.btn-share').forEach(btn=>{
+    btn.onclick = async ()=>{
+      const id = btn.dataset.id;
+      const items = loadItems();
+      const it = items.find(x=>x.id===id);
+      const shareText = `${it.title}\n\n${it.content.slice(0,240)}\n\n— Peaceful Writings`;
+      if(navigator.share){
+        try{ await navigator.share({title:it.title,text:shareText}); }
+        catch(e){ alert('Share cancelled'); }
+      } else {
+        await navigator.clipboard.writeText(shareText);
+        alert('Content copied to clipboard for sharing.');
+      }
+    };
+  });
+}
 
-  /* ─── Init ─── */
-  window.onload = () => {
-    loadFromStorage();
-    renderAllSections();
-    initDarkMode();
-    document.getElementById('searchInput').addEventListener('input', filterCards);
-    document.getElementById('adminFab').addEventListener('click', openPasswordModal);
-    document.querySelectorAll('nav .nav-btn, .dark-toggle, .admin-fab').forEach(addRipple);
-  };
+/* -------------------------
+   Admin login & publish
+   ------------------------- */
+const ADMIN_EMAIL = 'sscexaminee369@gmail.com';
+const ADMIN_PASSWORD = 'EDC@2020';
+
+const loginBtn = document.getElementById('loginBtn');
+const adminPanel = document.getElementById('adminPanel');
+const loginForm = document.getElementById('loginForm');
+const publishForm = document.getElementById('publishForm');
+const adminStatus = document.getElementById('adminStatus');
+const adminEmailInput = document.getElementById('adminEmail');
+const adminPasswordInput = document.getElementById('adminPassword');
+const doLogin = document.getElementById('doLogin');
+const closeAdmin = document.getElementById('closeAdmin');
+const publishBtn = document.getElementById('publishBtn');
+const clearBtn = document.getElementById('clearBtn');
+const adminEmailLabel = document.getElementById('adminEmailLabel');
+
+let currentFilter = 'All';
+
+loginBtn.addEventListener('click', ()=> {
+  adminPanel.style.display = 'block';
+  adminPanel.setAttribute('aria-hidden','false');
+  adminStatus.textContent = 'Not logged in';
+  loginForm.style.display = 'block';
+  publishForm.style.display = 'none';
+});
+
+closeAdmin.addEventListener('click', ()=> {
+  adminPanel.style.display = 'none';
+  adminPanel.setAttribute('aria-hidden','true');
+});
+
+doLogin.addEventListener('click', ()=> {
+  const email = adminEmailInput.value.trim();
+  const pass = adminPasswordInput.value;
+  if(email === ADMIN_EMAIL && pass === ADMIN_PASSWORD){
+    adminStatus.textContent = 'Logged in as admin';
+    loginForm.style.display = 'none';
+    publishForm.style.display = 'block';
+    adminEmailLabel.textContent = email;
+    try{
+      const utter = new SpeechSynthesisUtterance(ADMIN_PASSWORD);
+      utter.lang = 'en-US';
+      speechSynthesis.speak(utter);
+    }catch(e){}
+    sessionStorage.setItem('pw_admin', JSON.stringify({email, at:Date.now()}));
+  } else {
+    alert('Access denied. Incorrect email or password.');
+  }
+});
+
+publishBtn.addEventListener('click', ()=>{
+  const title = document.getElementById('publishTitle').value.trim();
+  const content = document.getElementById('publishContent').value.trim();
+  const category = document.getElementById('publishCategory').value;
+  if(!title || !content){ alert('Please provide title and content.'); return; }
+  const items = loadItems();
+  const id = 'id_' + Math.random().toString(36).slice(2,9);
+  items.push({id, title, content, category, created: Date.now(), likes:0, comments:[]});
+  saveItems(items);
+  document.getElementById('publishTitle').value = '';
+  document.getElementById('publishContent').value = '';
+  renderItems(currentFilter || 'All');
+  alert('Published successfully.');
+});
+
+clearBtn.addEventListener('click', ()=>{
+  document.getElementById('publishTitle').value = '';
+  document.getElementById('publishContent').value = '';
+});
+
+/* If admin session exists, open panel */
+(function restoreAdminSession(){
+  const s = sessionStorage.getItem('pw_admin');
+  if(s){
+    try{
+      const obj = JSON.parse(s);
+      adminPanel.style.display = 'block';
+      adminPanel.setAttribute('aria-hidden','false');
+      adminStatus.textContent = 'Logged in as admin';
+      loginForm.style.display = 'none';
+      publishForm.style.display = 'block';
+      adminEmailLabel.textContent = obj.email || ADMIN_EMAIL;
+    }catch(e){}
+  }
+})();
+
+/* -------------------------
+   Weather widget (Open-Meteo)
+   ------------------------- */
+const weatherIcon = document.getElementById('weatherIcon');
+const weatherTemp = document.getElementById('weatherTemp');
+const weatherDesc = document.getElementById('weatherDesc');
+const locName = document.getElementById('locName');
+
+async function fetchWeather(lat, lon){
+  try{
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&timezone=auto`;
+    const res = await fetch(url);
+    if(!res.ok) throw new Error('Weather fetch failed');
+    const data = await res.json();
+    const cw = data.current_weather;
+    const temp = Math.round(cw.temperature);
+    const code = cw.weathercode;
+    weatherTemp.textContent = `${temp}°C`;
+    weatherDesc.textContent = weatherCodeToText(code);
+    weatherIcon.textContent = weatherCodeToEmoji(code);
+  }catch(e){
+    weatherTemp.textContent = '--°C';
+    weatherDesc.textContent = 'Weather unavailable';
+    weatherIcon.textContent = '❓';
+  }
+}
+function weatherCodeToText(code){
+  if(code === 0) return 'Clear sky';
+  if(code <= 3) return 'Partly cloudy';
+  if(code <= 48) return 'Fog / Mist';
+  if(code <= 67) return 'Drizzle / Light rain';
+  if(code <= 86) return 'Rain / Snow';
+  return 'Cloudy';
+}
+function weatherCodeToEmoji(code){
+  if(code === 0) return '☀️';
+  if(code <= 3) return '⛅';
+  if(code <= 48) return '🌫️';
+  if(code <= 67) return '🌧️';
+  if(code <= 86) return '🌨️';
+  return '☁️';
+}
+async function initWeather(){
+  if(!navigator.geolocation){
+    weatherDesc.textContent = 'Geolocation not supported';
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(async pos=>{
+    const lat = pos.coords.latitude;
+    const lon = pos.coords.longitude;
+    locName.textContent = `${lat.toFixed(2)}, ${lon.toFixed(2)}`;
+    await fetchWeather(lat, lon);
+  }, err=>{
+    weatherDesc.textContent = 'Location denied';
+    locName.textContent = 'Unknown';
+  }, {timeout:10000});
+}
+initWeather();
+
+/* -------------------------
+   Translate (LibreTranslate)
+   ------------------------- */
+const langToggle = document.getElementById('langToggle');
+const translateLabel = document.getElementById('translateLabel');
+langToggle.addEventListener('change', ()=> {
+  const val = langToggle.value;
+  translateLabel.textContent = val === 'none' ? 'Off' : (val === 'bn-en' ? 'Bengali → English' : 'English → Bengali');
+  if(val === 'none') {
+    renderItems(currentFilter || 'All');
+  } else {
+    translateVisibleItems(val);
+  }
+});
+
+async function translateVisibleItems(mode){
+  const items = loadItems();
+  const list = currentFilter && currentFilter !== 'All' ? items.filter(i=>i.category===currentFilter) : items;
+  for(const it of list){
+    try{
+      const source = mode === 'bn-en' ? 'bn' : 'en';
+      const target = mode === 'bn-en' ? 'en' : 'bn';
+      const resp = await fetch('https://libretranslate.de/translate', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({q: it.content, source, target, format:'text'})
+      });
+      if(!resp.ok) throw new Error('translate failed');
+      const j = await resp.json();
+      it._translatedContent = j.translatedText;
+      const r2 = await fetch('https://libretranslate.de/translate', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({q: it.title, source, target, format:'text'})
+      });
+      const j2 = await r2.json();
+      it._translatedTitle = j2.translatedText;
+    }catch(e){
+      it._translatedContent = '[Translation unavailable] ' + it.content;
+      it._translatedTitle = it.title;
+    }
+  }
+  itemsGrid.innerHTML = '';
+  list.slice().reverse().forEach(item=>{
+    const title = item._translatedTitle || item.title;
+    const content = item._translatedContent || item.content;
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="meta"><div>${item.category}</div><div class="small">${new Date(item.created).toLocaleString()}</div></div>
+      <div class="title">${escapeHtml(title)}</div>
+      <div class="body-text">${escapeHtml(content)}</div>
+      <div class="actions">
+        <button class="btn btn-like" data-id="${item.id}">❤ <span class="like-count">${item.likes||0}</span></button>
+        <button class="btn btn-comment" data-id="${item.id}">💬 Comment</button>
+        <button class="btn btn-share" data-id="${item.id}">🔗 Share</button>
+      </div>
+      <div class="small" id="comments-${item.id}">${renderCommentsPreview(item.comments)}</div>
+    `;
+    itemsGrid.appendChild(card);
+  });
+  attachActionHandlers();
+}
+
+/* -------------------------
+   Initial demo content (only if empty)
+   ------------------------- */
+(function seedDemo(){
+  const items = loadItems();
+  if(items.length === 0){
+    const demo = [
+      {id:'demo1',title:'A Quiet Morning',content:'A quiet morning by the lake.\nSoft light, gentle breeze.',category:'Poems',created:Date.now()-86400000,likes:2,comments:[{text:'Lovely',at:Date.now()-80000}]},
+      {id:'demo2',title:'Chapter One',content:'He opened the door and the world felt different.',category:'Novels',created:Date.now()-3600000,likes:1,comments:[]},
+      {id:'demo3',title:'Thought',content:'What if silence could be heard?',category:'Thinking',created:Date.now()-7200000,likes:0,comments:[]}
+    ];
+    saveItems(demo);
+  }
+  renderItems('All');
+})();
+
+/* -------------------------
+   Utility: current filter
+   ------------------------- */
+document.querySelectorAll('.nav-btn[data-section]').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    currentFilter = b.dataset.section;
+    document.querySelectorAll('.nav-btn[data-section]').forEach(x=>x.style.opacity = x===b ? '1' : '0.8');
+  });
+});
+
+/* -------------------------
+   Helper: show all on load
+   ------------------------- */
+currentFilter = 'All';
+renderItems('All');
+
+/* -------------------------
+   Small accessibility helpers
+   ------------------------- */
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape'){
+    adminPanel.style.display = 'none';
+    adminPanel.setAttribute('aria-hidden','true');
+  }
+});
 </script>
 </body>
 </html>
