@@ -1,1501 +1,653 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-  <title>نور المعرفة | ইসলামিক জ্ঞান</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Noto+Serif+Bengali:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <style>
-    /* ══════════════════════════════════════
-       DESIGN TOKENS & CUSTOM PROPERTIES
-    ══════════════════════════════════════ */
-    :root {
-      --emerald-1:#1976d2;
-      --emerald-2:#42a5f5;
-      --emerald-3:#81d4fa;
-      --emerald-glow: rgba(13, 102, 71, 0.5);
-      --gold-1: #c9a227;
-      --gold-2: #e2b842;
-      --gold-3: #f5d06a;
-      --gold-glow: rgba(201, 162, 39, 0.45);
-      --glass-white: rgba(255,255,255,0.10);
-      --glass-border: rgba(255,255,255,0.18);
-      --glass-white-strong: rgba(255,255,255,0.85);
-      --glass-border-strong: rgba(255,255,255,0.40);
-      --bg-light-1: #eef5f1;
-      --bg-light-2: #e5f0ea;
-      --card-bg-light: rgba(255,255,255,0.82);
-      --text-primary-light: #0d2a1e;
-      --text-secondary-light: #2f5543;
-      --shadow-card: 0 8px 32px rgba(10,79,51,0.12);
-      --shadow-hover: 0 20px 50px rgba(10,79,51,0.22), 0 0 0 1px var(--gold-1);
-      --shadow-glow: 0 0 30px rgba(201,162,39,0.25);
-      --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-      --nav-bg-light: rgba(255,255,255,0.78);
-      --footer-bg: linear-gradient(135deg, #061e12, #0a3020);
-    }
-
-    body.dark {
-      --bg-light-1: #08160e;
-      --bg-light-2: #0b1d12;
-      --card-bg-light: rgba(12, 30, 20, 0.88);
-      --text-primary-light: #d4ead8;
-      --text-secondary-light: #7eba94;
-      --glass-white: rgba(255,255,255,0.05);
-      --glass-border: rgba(255,255,255,0.10);
-      --glass-white-strong: rgba(15, 35, 22, 0.92);
-      --glass-border-strong: rgba(255,255,255,0.15);
-      --shadow-card: 0 8px 32px rgba(0,0,0,0.45);
-      --shadow-hover: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px var(--gold-2);
-      --nav-bg-light: rgba(8, 20, 13, 0.88);
-    }
-
-    /* ══════════════════════════════════════
-       GLOBAL RESET & BASE
-    ══════════════════════════════════════ */
-    *, *::before, *::after {
-      margin: 0; padding: 0;
-      box-sizing: border-box;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Noto Serif Bengali', 'Rajdhani', system-ui, sans-serif;
-      background-color: var(--bg-light-1);
-      background-image:
-        radial-gradient(ellipse at 20% 10%, rgba(13,102,71,0.12) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 90%, rgba(201,162,39,0.08) 0%, transparent 50%),
-        radial-gradient(ellipse at 60% 40%, rgba(13,102,71,0.06) 0%, transparent 50%);
-      color: var(--text-primary-light);
-      min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
-      transition: background-color 0.4s ease, color 0.3s ease;
-    }
-
-    /* Mesh noise overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.6;
-    }
-
-    body > * { position: relative; z-index: 1; }
-
-    /* ══════════════════════════════════════
-       HERO / PROFILE SECTION
-    ══════════════════════════════════════ */
-    .hero-profile {
-      background: linear-gradient(145deg, #062218 0%, #0a3828 40%, #083020 100%);
-      padding: 3rem 1.5rem 2.2rem;
-      text-align: center;
-      border-bottom: 1px solid var(--gold-1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Starfield effect */
-    .hero-profile::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px),
-        radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px),
-        radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px);
-      background-size: 80px 80px, 120px 120px, 200px 200px;
-      background-position: 10px 10px, 40px 60px, 100px 20px;
-      opacity: 0.25;
-      animation: starShimmer 8s ease-in-out infinite alternate;
-    }
-
-    @keyframes starShimmer {
-      0%  { opacity: 0.15; }
-      100% { opacity: 0.35; }
-    }
-
-    /* Gold bokeh orbs */
-    .hero-profile::after {
-      content: '';
-      position: absolute;
-      top: -40%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(201,162,39,0.18) 0%, transparent 65%);
-      animation: orbPulse 6s ease-in-out infinite alternate;
-      pointer-events: none;
-    }
-
-    @keyframes orbPulse {
-      0%  { transform: translateX(-50%) scale(1);   opacity: 0.5; }
-      100% { transform: translateX(-50%) scale(1.3); opacity: 0.9; }
-    }
-
-    .profile-container {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 2.2rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .avatar-frame {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold-1), var(--gold-3));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 0 3px rgba(255,255,255,0.15), 0 0 40px var(--gold-glow), 0 15px 30px rgba(0,0,0,0.3);
-      animation: floatAvatar 4s ease-in-out infinite;
-      font-size: 2.8rem;
-    }
-
-    @keyframes floatAvatar {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(-8px); }
-    }
-
-    .brand-text h2 {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: clamp(1.3rem, 4vw, 2rem);
-      font-weight: 700;
-      background: linear-gradient(120deg, #fff 0%, var(--gold-3) 50%, #fff 100%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      letter-spacing: 0.5px;
-      margin-bottom: 0.4rem;
-    }
-
-    .brand-text p {
-      color: rgba(255,255,255,0.75);
-      font-size: 0.9rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .badge-light {
-      display: inline-block;
-      background: rgba(201,162,39,0.15);
-      border: 1px solid rgba(201,162,39,0.4);
-      backdrop-filter: blur(8px);
-      color: var(--gold-3);
-      padding: 0.25rem 1rem;
-      border-radius: 50px;
-      font-size: 0.78rem;
-      letter-spacing: 0.3px;
-    }
-
-    /* ══════════════════════════════════════
-       SITE HEADER
-    ══════════════════════════════════════ */
-    header {
-      background: linear-gradient(145deg, #05180f, #0a2e1c);
-      padding: 1.6rem 1rem 1.4rem;
-      text-align: center;
-      border-bottom: 2px solid transparent;
-      border-image: linear-gradient(90deg, transparent, var(--gold-1), transparent) 1;
-    }
-
-    header h1 {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: clamp(1.6rem, 6vw, 2.8rem);
-      font-weight: 900;
-      background: linear-gradient(125deg, var(--gold-3) 0%, var(--gold-1) 50%, var(--gold-3) 100%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      text-shadow: none;
-      filter: drop-shadow(0 0 15px rgba(201,162,39,0.4));
-      letter-spacing: 1px;
-    }
-
-    header p {
-      color: rgba(255,255,255,0.55);
-      font-size: 0.85rem;
-      margin-top: 0.4rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .pattern {
-      height: 4px;
-      background: repeating-linear-gradient(
-        90deg,
-        var(--gold-1) 0px, var(--gold-1) 12px,
-        transparent 12px, transparent 16px,
-        var(--gold-3) 16px, var(--gold-3) 20px,
-        transparent 20px, transparent 24px
-      );
-    }
-
-    /* ══════════════════════════════════════
-       NAVIGATION — GLASSMORPHISM BUTTONS
-    ══════════════════════════════════════ */
-    nav {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      background: var(--nav-bg-light);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      padding: 0.9rem 1.2rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-bottom: 1px solid var(--glass-border-strong);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-      transition: background 0.4s;
-    }
-
-    /* ← THE INDIVIDUAL NAV BUTTONS */
-    nav .nav-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      background: var(--glass-white);
-      border: 1.5px solid var(--glass-border);
-      padding: 0.55rem 1.35rem;
-      border-radius: 50px;
-      cursor: pointer;
-      font-family: 'Noto Serif Bengali', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--text-primary-light);
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s var(--ease-spring);
-      backdrop-filter: blur(8px);
-      letter-spacing: 0.2px;
-    }
-
-    nav .nav-btn::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--emerald-2), var(--emerald-1));
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      border-radius: inherit;
-    }
-
-    nav .nav-btn .btn-icon,
-    nav .nav-btn .btn-label {
-      position: relative;
-      z-index: 1;
-      transition: color 0.3s;
-    }
-
-    nav .nav-btn:hover,
-    nav .nav-btn.active {
-      border-color: var(--gold-1);
-      color: #fff;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px var(--emerald-glow), 0 0 0 1px var(--gold-1);
-    }
-
-    nav .nav-btn:hover::before,
-    nav .nav-btn.active::before {
-      opacity: 1;
-    }
-
-    nav .nav-btn.active {
-      background: linear-gradient(135deg, var(--emerald-2), var(--emerald-1));
-      box-shadow: 0 8px 28px var(--emerald-glow), 0 0 20px var(--gold-glow), inset 0 1px 0 rgba(255,255,255,0.15);
-    }
-
-    /* Ripple */
-    .ripple-effect {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
-      transform: scale(0);
-      animation: ripple 0.5s linear;
-      pointer-events: none;
-    }
-
-    @keyframes ripple {
-      to { transform: scale(4); opacity: 0; }
-    }
-
-    /* ══════════════════════════════════════
-       MAIN CONTAINER
-    ══════════════════════════════════════ */
-    .container {
-      max-width: 1300px;
-      margin: 2rem auto;
-      padding: 0 1.5rem;
-    }
-
-    /* Controls Bar */
-    .controls-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 2.5rem;
-      background: var(--card-bg-light);
-      backdrop-filter: blur(16px);
-      padding: 0.8rem 1.4rem;
-      border-radius: 60px;
-      border: 1px solid var(--glass-border-strong);
-      box-shadow: var(--shadow-card);
-      transition: background 0.4s;
-    }
-
-    .search-box {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: rgba(13,102,71,0.07);
-      padding: 0.5rem 1.1rem;
-      border-radius: 40px;
-      border: 1px solid rgba(13,102,71,0.15);
-      min-width: 160px;
-    }
-
-    .search-box i { color: var(--emerald-2); font-size: 0.9rem; }
-
-    .search-box input {
-      background: transparent;
-      border: none;
-      outline: none;
-      width: 100%;
-      font-size: 0.88rem;
-      font-family: 'Noto Serif Bengali', sans-serif;
-      color: var(--text-primary-light);
-    }
-
-    .search-box input::placeholder { color: var(--text-secondary-light); opacity: 0.7; }
-
-    /* Dark mode toggle */
-    .dark-toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: linear-gradient(135deg, var(--emerald-1), var(--emerald-2));
-      border: 1px solid rgba(255,255,255,0.15);
-      color: white;
-      padding: 0.5rem 1.2rem;
-      border-radius: 40px;
-      cursor: pointer;
-      font-family: 'Noto Serif Bengali', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      transition: all 0.3s var(--ease-spring);
-      box-shadow: 0 4px 16px var(--emerald-glow);
-      white-space: nowrap;
-    }
-
-    .dark-toggle:hover {
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 8px 24px var(--emerald-glow), 0 0 15px var(--gold-glow);
-    }
-
-    /* Section headings */
-    .section-title {
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-      margin-bottom: 1.8rem;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid rgba(201,162,39,0.2);
-    }
-
-    .section-title h2 {
-      font-family: 'Noto Serif Bengali', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text-primary-light);
-    }
-
-    .section-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(201,162,39,0.3), transparent);
-    }
-
-    /* Grid */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 1.8rem;
-    }
-
-    /* ══════════════════════════════════════
-       CONTENT CARDS — GLASSMORPHISM
-    ══════════════════════════════════════ */
-    .card {
-      background: var(--card-bg-light);
-      backdrop-filter: blur(16px) saturate(140%);
-      -webkit-backdrop-filter: blur(16px) saturate(140%);
-      border: 1px solid var(--glass-border-strong);
-      border-radius: 20px;
-      padding: 1.6rem 1.5rem;
-      box-shadow: var(--shadow-card);
-      transition: all 0.35s var(--ease-spring);
-      position: relative;
-      overflow: hidden;
-      animation: fadeInUp 0.5s var(--ease-out) forwards;
-      opacity: 0;
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Shimmer sweep */
-    .card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(125deg, transparent 30%, rgba(201,162,39,0.06) 50%, transparent 70%);
-      transform: translateX(-100%);
-      transition: transform 0.6s ease;
-    }
-
-    .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); border-color: var(--gold-1); }
-    .card:hover::after { transform: translateX(100%); }
-
-    /* Top accent stripe */
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold-1), var(--gold-3), var(--emerald-3));
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .card:hover::before { opacity: 1; }
-
-    .card h3 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 0.7rem;
-      line-height: 1.4;
-    }
-
-    .card h3 a {
-      text-decoration: none;
-      background: linear-gradient(135deg, var(--emerald-2), var(--emerald-1));
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      transition: filter 0.2s;
-    }
-
-    .card h3 a:hover { filter: brightness(1.3); }
-
-    .card p {
-      color: var(--text-secondary-light);
-      font-size: 0.88rem;
-      line-height: 1.65;
-    }
-
-    .card-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, rgba(201,162,39,0.12), rgba(201,162,39,0.06));
-      border: 1px solid rgba(201,162,39,0.25);
-      color: var(--gold-1);
-      font-size: 0.7rem;
-      padding: 0.15rem 0.6rem;
-      border-radius: 30px;
-      margin-bottom: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-    }
-
-    .delete-btn {
-      position: absolute;
-      top: 0.8rem;
-      right: 0.8rem;
-      background: rgba(220, 53, 69, 0.1);
-      border: 1px solid rgba(220,53,69,0.2);
-      color: #dc3545;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s;
-      opacity: 0;
-    }
-
-    .card:hover .delete-btn { opacity: 1; }
-    .delete-btn:hover { background: rgba(220,53,69,0.9); color: white; transform: scale(1.1); }
-
-    /* Sections */
-    .content { display: block; }
-    .content.hidden { display: none; }
-
-    /* About section card */
-    #about .card { max-width: 750px; margin: 0 auto; }
-    #about .card h3 { font-size: 1.35rem; margin-bottom: 1rem; }
-    #about .card p { margin-bottom: 0.8rem; }
-
-    /* ══════════════════════════════════════
-       FOOTER
-    ══════════════════════════════════════ */
-    footer {
-      background: var(--footer-bg);
-      text-align: center;
-      padding: 2rem 1rem;
-      margin-top: 4rem;
-      border-top: 1px solid rgba(201,162,39,0.2);
-    }
-
-    footer p {
-      color: rgba(255,255,255,0.5);
-      font-size: 0.85rem;
-    }
-
-    footer span {
-      color: var(--gold-2);
-      font-weight: 600;
-    }
-
-    /* ══════════════════════════════════════
-       ADMIN FAB (FLOATING ACTION BUTTON)
-    ══════════════════════════════════════ */
-    .admin-fab {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--emerald-1), var(--emerald-2));
-      border: 2px solid var(--gold-1);
-      color: var(--gold-2);
-      font-size: 1.3rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 8px 30px var(--emerald-glow), 0 0 20px var(--gold-glow);
-      z-index: 900;
-      transition: all 0.3s var(--ease-spring);
-      animation: fabEntrance 0.8s var(--ease-spring) 0.5s both;
-    }
-
-    @keyframes fabEntrance {
-      from { transform: scale(0) rotate(-90deg); opacity: 0; }
-      to   { transform: scale(1) rotate(0deg); opacity: 1; }
-    }
-
-    .admin-fab:hover {
-      transform: scale(1.12) rotate(45deg);
-      box-shadow: 0 12px 40px var(--emerald-glow), 0 0 30px var(--gold-glow);
-    }
-
-    /* ══════════════════════════════════════
-       MODALS — ADVANCED GLASSMORPHISM
-    ══════════════════════════════════════ */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.65);
-      backdrop-filter: blur(8px);
-      z-index: 9999;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      animation: modalFadeIn 0.3s ease;
-    }
-
-    .modal.open { display: flex; }
-
-    @keyframes modalFadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-
-    .modal-content {
-      background: var(--glass-white-strong);
-      backdrop-filter: blur(30px) saturate(180%);
-      -webkit-backdrop-filter: blur(30px) saturate(180%);
-      border: 1px solid var(--glass-border-strong);
-      border-radius: 24px;
-      padding: 2.2rem;
-      width: 100%;
-      max-width: 480px;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1);
-      animation: modalSlideIn 0.35s var(--ease-spring);
-      position: relative;
-    }
-
-    .modal-content.large { max-width: 680px; }
-
-    @keyframes modalSlideIn {
-      from { opacity: 0; transform: translateY(30px) scale(0.95); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .modal-content h3 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--text-primary-light);
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid rgba(201,162,39,0.2);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .close-modal {
-      position: absolute;
-      top: 1rem;
-      right: 1.2rem;
-      font-size: 1.4rem;
-      cursor: pointer;
-      color: var(--text-secondary-light);
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      transition: all 0.2s;
-    }
-
-    .close-modal:hover { background: rgba(220,53,69,0.12); color: #dc3545; transform: rotate(90deg); }
-
-    /* ══════════════════════════════════════
-       PASSWORD MODAL — SPECIAL DESIGN
-    ══════════════════════════════════════ */
-    #passwordModal .modal-content {
-      max-width: 380px;
-      text-align: center;
-      background: linear-gradient(145deg, #06200f, #0b3320);
-      border-color: rgba(201,162,39,0.3);
-    }
-
-    #passwordModal .modal-content h3 {
-      color: var(--gold-3);
-      justify-content: center;
-      border-bottom-color: rgba(201,162,39,0.15);
-    }
-
-    .pw-lock-icon {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(201,162,39,0.15), rgba(201,162,39,0.05));
-      border: 2px solid rgba(201,162,39,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      margin: 0 auto 1.5rem;
-      color: var(--gold-2);
-      animation: lockPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes lockPulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(201,162,39,0.3); }
-      50%       { box-shadow: 0 0 0 12px rgba(201,162,39,0); }
-    }
-
-    .pw-input-wrap {
-      position: relative;
-      margin: 1rem 0;
-    }
-
-    .pw-input-wrap input {
-      width: 100%;
-      padding: 0.75rem 3rem 0.75rem 1.2rem;
-      background: rgba(255,255,255,0.06);
-      border: 1.5px solid rgba(201,162,39,0.25);
-      border-radius: 12px;
-      color: rgba(255,255,255,0.9);
-      font-family: 'Noto Serif Bengali', sans-serif;
-      font-size: 0.95rem;
-      outline: none;
-      text-align: center;
-      letter-spacing: 3px;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .pw-input-wrap input:focus {
-      border-color: var(--gold-2);
-      box-shadow: 0 0 0 3px rgba(201,162,39,0.15);
-    }
-
-    .pw-input-wrap input::placeholder {
-      letter-spacing: 0;
-      color: rgba(255,255,255,0.3);
-    }
-
-    .pw-toggle {
-      position: absolute;
-      right: 0.8rem;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: rgba(255,255,255,0.4);
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-
-    .pw-toggle:hover { color: var(--gold-2); }
-
-    /* ══════════════════════════════════════
-       ADMIN PANEL MODAL
-    ══════════════════════════════════════ */
-    #adminModal .modal-content {
-      max-width: 560px;
-    }
-
-    .admin-tabs {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-      background: rgba(13,102,71,0.06);
-      padding: 0.3rem;
-      border-radius: 12px;
-    }
-
-    .admin-tab-btn {
-      flex: 1;
-      padding: 0.5rem;
-      border: none;
-      border-radius: 10px;
-      background: transparent;
-      cursor: pointer;
-      font-family: 'Noto Serif Bengali', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-secondary-light);
-      transition: all 0.25s;
-    }
-
-    .admin-tab-btn.active {
-      background: linear-gradient(135deg, var(--emerald-1), var(--emerald-2));
-      color: white;
-      box-shadow: 0 4px 12px var(--emerald-glow);
-    }
-
-    .admin-tab-panel { display: none; }
-    .admin-tab-panel.active { display: block; }
-
-    /* Form elements */
-    .admin-form label {
-      display: block;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-secondary-light);
-      margin-bottom: 0.35rem;
-      margin-top: 1rem;
-    }
-
-    .admin-form label:first-child { margin-top: 0; }
-
-    .admin-form input,
-    .admin-form textarea,
-    .admin-form select {
-      width: 100%;
-      padding: 0.65rem 1rem;
-      background: var(--card-bg-light);
-      border: 1.5px solid var(--glass-border-strong);
-      border-radius: 12px;
-      color: var(--text-primary-light);
-      font-family: 'Noto Serif Bengali', sans-serif;
-      font-size: 0.9rem;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      backdrop-filter: blur(8px);
-    }
-
-    .admin-form input:focus,
-    .admin-form textarea:focus,
-    .admin-form select:focus {
-      border-color: var(--emerald-2);
-      box-shadow: 0 0 0 3px rgba(13,102,71,0.12);
-    }
-
-    .admin-form textarea { resize: vertical; min-height: 110px; }
-
-    /* ══════════════════════════════════════
-       BUTTON STYLES (GLOBAL)
-    ══════════════════════════════════════ */
-
-    /* Primary action button */
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      width: 100%;
-      padding: 0.75rem 1.5rem;
-      background: linear-gradient(135deg, var(--emerald-2), var(--emerald-1));
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      color: white;
-      font-family: 'Noto Serif Bengali', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 1.5rem;
-      transition: all 0.3s var(--ease-spring);
-      box-shadow: 0 6px 20px var(--emerald-glow);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px var(--emerald-glow), 0 0 20px var(--gold-glow);
-    }
-
-    .btn-primary:hover::before { opacity: 1; }
-    .btn-primary:active { transform: translateY(0); }
-
-    /* Gold accent button (for password modal) */
-    .btn-gold {
-      background: linear-gradient(135deg, var(--gold-1), var(--gold-2));
-      border: 1px solid rgba(255,255,255,0.15);
-      box-shadow: 0 6px 20px var(--gold-glow);
-      color: #06200f;
-      font-weight: 800;
-    }
-
-    .btn-gold:hover {
-      box-shadow: 0 10px 30px var(--gold-glow), 0 0 20px rgba(201,162,39,0.5);
-      background: linear-gradient(135deg, var(--gold-2), var(--gold-3));
-    }
-
-    /* Danger button */
-    .btn-danger {
-      background: linear-gradient(135deg, #c0392b, #e74c3c);
-      box-shadow: 0 6px 20px rgba(192,57,43,0.3);
-    }
-
-    /* Manage entries section */
-    .manage-entry-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.7rem 1rem;
-      background: var(--glass-white);
-      border: 1px solid var(--glass-border);
-      border-radius: 12px;
-      margin-bottom: 0.6rem;
-      gap: 0.5rem;
-    }
-
-    .manage-entry-item span {
-      font-size: 0.85rem;
-      flex: 1;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .manage-entry-item .del-small {
-      background: rgba(220,53,69,0.1);
-      border: 1px solid rgba(220,53,69,0.2);
-      color: #dc3545;
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      flex-shrink: 0;
-      transition: all 0.2s;
-    }
-
-    .manage-entry-item .del-small:hover {
-      background: rgba(220,53,69,0.9);
-      color: white;
-    }
-
-    .manage-section-label {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--gold-1);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin: 1rem 0 0.5rem;
-    }
-
-    /* Content modal */
-    #contentModal h3#modalTitle {
-      font-size: 1.4rem;
-      padding-right: 2rem;
-    }
-
-    #contentModal p#modalBody {
-      white-space: pre-wrap;
-      line-height: 1.85;
-      color: var(--text-secondary-light);
-      font-size: 0.95rem;
-    }
-
-    /* Toast notification */
-    .toast {
-      position: fixed;
-      bottom: 6rem;
-      right: 2rem;
-      background: linear-gradient(135deg, var(--emerald-1), var(--emerald-2));
-      color: white;
-      padding: 0.8rem 1.5rem;
-      border-radius: 12px;
-      border: 1px solid rgba(201,162,39,0.3);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      font-size: 0.9rem;
-      font-weight: 600;
-      z-index: 99999;
-      animation: toastIn 0.4s var(--ease-spring) forwards;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    @keyframes toastIn {
-      from { opacity: 0; transform: translateY(20px) scale(0.95); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .toast.exit { animation: toastOut 0.3s ease forwards; }
-
-    @keyframes toastOut {
-      to { opacity: 0; transform: translateY(10px); }
-    }
-
-    /* ══════════════════════════════════════
-       RESPONSIVE
-    ══════════════════════════════════════ */
-    @media (max-width: 768px) {
-      nav { gap: 0.4rem; padding: 0.7rem 0.8rem; }
-      nav .nav-btn { padding: 0.45rem 0.9rem; font-size: 0.8rem; }
-      .grid { grid-template-columns: 1fr; }
-      .modal-content { padding: 1.5rem; }
-      .admin-fab { bottom: 1.2rem; right: 1.2rem; width: 50px; height: 50px; font-size: 1.1rem; }
-    }
-
-    @media (max-width: 480px) {
-      nav .nav-btn .btn-label { display: none; }
-      nav .nav-btn .btn-icon { font-size: 1.1rem; }
-      nav .nav-btn { padding: 0.5rem 0.7rem; border-radius: 12px; }
-    }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: rgba(13,102,71,0.3); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--emerald-2); }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نور المعرفة | Noor Al-Marifah</title>
+<meta name="description" content="An educational and Islamic learning website for English, Mathematics, Poems, Novels, Q&A and thoughts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root{
+  --sky:#35baf6; --sky2:#0b8fd0; --sky3:#bfeeff;
+  --navy:#07304a; --ink:#0d2535; --muted:#587080;
+  --bg:#eaf8ff; --panel:rgba(255,255,255,.68);
+  --panel2:rgba(255,255,255,.88); --border:rgba(255,255,255,.72);
+  --shadow:0 18px 50px rgba(10,91,135,.15);
+  --danger:#ef5350; --gold:#e7b84b;
+}
+body.dark{
+  --bg:#061722; --panel:rgba(9,34,48,.70); --panel2:rgba(8,27,39,.92);
+  --ink:#e8f7ff; --muted:#a9c5d2; --border:rgba(145,220,255,.14);
+  --shadow:0 20px 55px rgba(0,0,0,.38);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Noto Sans Bengali",system-ui,sans-serif;
+  color:var(--ink); background:
+  radial-gradient(circle at 10% 10%,rgba(53,186,246,.20),transparent 28%),
+  radial-gradient(circle at 90% 30%,rgba(108,220,255,.18),transparent 25%),
+  linear-gradient(135deg,var(--bg),#f7fdff);
+  min-height:100vh; overflow-x:hidden; transition:.35s ease;
+}
+body.dark{background:radial-gradient(circle at 10% 10%,rgba(53,186,246,.10),transparent 28%),linear-gradient(135deg,#061722,#0a2330)}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background-image:linear-gradient(rgba(53,186,246,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(53,186,246,.045) 1px,transparent 1px);
+  background-size:38px 38px;
+}
+a{color:inherit}
+button,input,textarea,select{font:inherit}
+
+.hero{
+  min-height:270px; padding:42px 18px 35px; position:relative; overflow:hidden;
+  background:
+    linear-gradient(120deg,rgba(3,47,71,.92),rgba(8,133,191,.78)),
+    url("https://raw.githubusercontent.com/BetimShala/quran-images-api/master/quran-images/1.png") center/cover;
+  color:white;
+}
+.hero:after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 75% 25%,rgba(255,255,255,.28),transparent 18%),linear-gradient(transparent 60%,rgba(0,20,32,.35));
+  pointer-events:none;
+}
+.hero-inner{max-width:1180px;margin:auto;position:relative;z-index:2;display:grid;grid-template-columns:1.3fr .7fr;gap:24px;align-items:center}
+.brand h1{font-family:"Playfair Display",serif;font-size:clamp(2rem,5vw,4.2rem);letter-spacing:.5px}
+.brand .bn{font-size:clamp(1.05rem,2vw,1.4rem);opacity:.92;margin-top:6px}
+.brand p{margin-top:12px;max-width:700px;opacity:.82;line-height:1.8}
+.hero-card{justify-self:end;width:min(100%,340px);padding:22px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.13);backdrop-filter:blur(16px);border-radius:28px;box-shadow:0 20px 60px rgba(0,0,0,.18)}
+.hero-card .big{font-size:3rem}.hero-card strong{display:block;font-size:1.1rem;margin-top:8px}.hero-card span{opacity:.76;font-size:.86rem}
+
+.topbar{
+  position:sticky;top:0;z-index:1000;display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;
+  padding:10px 12px;background:rgba(240,250,255,.78);backdrop-filter:blur(22px) saturate(160%);
+  border-bottom:1px solid var(--border);box-shadow:0 8px 28px rgba(10,90,130,.08)
+}
+body.dark .topbar{background:rgba(5,22,32,.78)}
+.nav-btn,.tool-btn{
+  border:1px solid rgba(53,186,246,.22);background:var(--panel);color:var(--ink);cursor:pointer;
+  border-radius:16px;padding:10px 13px;display:inline-flex;align-items:center;gap:8px;
+  transition:.25s cubic-bezier(.2,.8,.2,1);box-shadow:0 5px 18px rgba(0,100,150,.06);position:relative;overflow:hidden
+}
+.nav-btn:hover,.nav-btn.active,.tool-btn:hover{transform:translateY(-2px);background:linear-gradient(135deg,var(--sky),var(--sky2));color:white;box-shadow:0 10px 26px rgba(11,143,208,.25)}
+.nav-num{font-size:.68rem;opacity:.65;background:rgba(255,255,255,.45);padding:2px 6px;border-radius:99px}
+.nav-btn.active .nav-num,.nav-btn:hover .nav-num{opacity:1;background:rgba(255,255,255,.2)}
+.nav-icon{font-size:1rem}
+#customNav{display:contents}
+
+.tools{max-width:1180px;margin:20px auto 0;padding:0 16px;display:flex;gap:10px;flex-wrap:wrap}
+.search{flex:1;min-width:220px;display:flex;align-items:center;gap:9px;padding:11px 15px;border-radius:18px;background:var(--panel);border:1px solid var(--border);backdrop-filter:blur(15px);box-shadow:var(--shadow)}
+.search input{border:0;outline:0;background:transparent;color:var(--ink);width:100%}
+.tool-btn{white-space:nowrap}
+
+main{max-width:1180px;margin:22px auto 70px;padding:0 16px}
+.section{display:none;animation:rise .45s ease both}
+.section.active{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin:25px 0 18px}
+.section-head h2{font-size:clamp(1.4rem,3vw,2rem)}
+.section-head p{color:var(--muted);font-size:.88rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:17px}
+.card{
+  background:var(--panel);border:1px solid var(--border);backdrop-filter:blur(18px) saturate(140%);
+  border-radius:24px;padding:20px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:.3s ease
+}
+.card:before{content:"";position:absolute;inset:0 auto auto 0;width:100%;height:3px;background:linear-gradient(90deg,var(--sky),#8ce8ff,var(--gold));opacity:.75}
+.card:hover{transform:translateY(-6px);box-shadow:0 24px 55px rgba(0,110,170,.18)}
+.card .serial{display:inline-flex;padding:4px 9px;border-radius:99px;background:rgba(53,186,246,.10);color:var(--sky2);font-size:.72rem;font-weight:800;margin-bottom:12px}
+.card h3{font-size:1.12rem;margin-bottom:8px}
+.card h3 a{text-decoration:none}
+.card h3 a:hover{color:var(--sky2)}
+.card p{color:var(--muted);line-height:1.75;font-size:.9rem}
+.card img{width:100%;max-height:190px;object-fit:cover;border-radius:16px;margin:-2px 0 14px;border:1px solid var(--border)}
+.socials{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.socials a{width:34px;height:34px;display:grid;place-items:center;border-radius:12px;background:rgba(53,186,246,.1);text-decoration:none;color:var(--sky2);transition:.2s}
+.socials a:hover{background:var(--sky2);color:#fff;transform:translateY(-2px)}
+.delete{position:absolute;right:12px;top:12px;width:30px;height:30px;border:0;border-radius:50%;cursor:pointer;background:rgba(239,83,80,.10);color:var(--danger);display:none}
+.admin-on .delete{display:grid;place-items:center}
+
+.about-card{max-width:800px;margin:auto}
+.notice{padding:14px 16px;border-radius:18px;background:rgba(53,186,246,.09);border:1px solid rgba(53,186,246,.16);color:var(--muted);line-height:1.7}
+
+footer{text-align:center;padding:30px 15px;color:var(--muted);border-top:1px solid var(--border)}
+.admin-dot{
+  position:fixed;right:12px;bottom:12px;width:11px;height:11px;border-radius:50%;background:#8fdfff;
+  box-shadow:0 0 0 5px rgba(143,223,255,.10),0 0 18px rgba(53,186,246,.45);cursor:pointer;z-index:5000
+}
+
+.modal{position:fixed;inset:0;background:rgba(0,20,30,.58);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:16px;z-index:9000}
+.modal.open{display:flex}
+.modal-box{width:min(760px,100%);max-height:92vh;overflow:auto;background:var(--panel2);border:1px solid var(--border);border-radius:28px;padding:24px;box-shadow:0 35px 90px rgba(0,0,0,.3);animation:pop .25s ease}
+@keyframes pop{from{opacity:0;transform:scale(.96) translateY(10px)}to{opacity:1;transform:none}}
+.modal-box h3{margin-bottom:16px}.close{float:right;border:0;background:transparent;color:var(--muted);font-size:1.2rem;cursor:pointer}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.tab{border:0;padding:9px 12px;border-radius:12px;background:rgba(53,186,246,.08);color:var(--ink);cursor:pointer}.tab.active{background:var(--sky2);color:#fff}
+.panel{display:none}.panel.active{display:block}
+label{display:block;font-size:.82rem;font-weight:700;margin:12px 0 5px;color:var(--muted)}
+input,textarea,select{width:100%;border:1px solid rgba(53,186,246,.2);border-radius:13px;padding:11px 12px;outline:none;background:rgba(255,255,255,.52);color:#173241}
+body.dark input,body.dark textarea,body.dark select{background:rgba(255,255,255,.05);color:var(--ink)}
+textarea{min-height:120px;resize:vertical}
+.primary,.danger{border:0;border-radius:13px;padding:11px 15px;margin-top:14px;cursor:pointer;font-weight:800}.primary{background:linear-gradient(135deg,var(--sky),var(--sky2));color:white}.danger{background:var(--danger);color:white}
+.list-item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:13px;background:rgba(53,186,246,.06);margin:7px 0}.list-item span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.small-actions{display:flex;gap:6px}.small-actions button{border:0;border-radius:9px;padding:7px 9px;cursor:pointer}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#07304a;color:#fff;padding:11px 17px;border-radius:13px;z-index:99999;box-shadow:0 12px 35px rgba(0,0,0,.25);animation:toast .25s ease}
+@keyframes toast{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.35);transform:scale(0);animation:ripple .55s linear;pointer-events:none}@keyframes ripple{to{transform:scale(4);opacity:0}}
+
+@media(max-width:800px){.hero-inner{grid-template-columns:1fr}.hero-card{justify-self:stretch}.topbar{justify-content:flex-start;overflow:auto;flex-wrap:nowrap}.nav-btn{flex:0 0 auto}.nav-btn .nav-label{display:inline}.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.hero{min-height:310px}.grid{grid-template-columns:1fr}.tools{margin-top:12px}.nav-btn{padding:9px 10px}.nav-num{display:none}.nav-label{font-size:.78rem}}
+
+.creation-strip{
+  position:relative;min-height:190px;overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(2,35,49,.72),rgba(0,125,172,.24)),
+    url("https://raw.githubusercontent.com/BetimShala/quran-images-api/master/quran-images/1.png") center/cover no-repeat;
+  border-bottom:1px solid rgba(255,255,255,.35);
+}
+.creation-strip:before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 15% 35%,rgba(255,255,255,.28),transparent 18%),
+    linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,20,30,.38));
+}
+.creation-overlay{position:relative;z-index:1;max-width:1180px;margin:auto;padding:34px 18px;color:white}
+.creation-copy{max-width:690px;padding:20px 24px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.12);backdrop-filter:blur(12px);border-radius:24px;box-shadow:0 15px 45px rgba(0,0,0,.16)}
+.creation-kicker{font-weight:800;color:#d8f7ff}
+.creation-copy h2{font-family:"Playfair Display",serif;font-size:clamp(1.45rem,3vw,2.4rem);margin:5px 0}
+.creation-copy p{opacity:.9;line-height:1.75;font-size:.9rem}
+.flash-modal-body{line-height:1.9;color:var(--ink)}
+.flash-modal-body img{width:100%;max-height:330px;object-fit:cover;border-radius:18px;margin-bottom:15px}
+.flash-modal-body .flash-link{display:inline-flex;margin-top:16px;padding:9px 13px;border-radius:12px;background:var(--sky2);color:#fff;text-decoration:none}
+.flash-socials{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.flash-socials a{padding:8px 11px;border-radius:11px;background:rgba(53,186,246,.10);color:var(--sky2);text-decoration:none}
+.admin-only-note{font-size:.78rem;color:var(--muted);margin-top:8px}
+
+
+/* ===== Cross-device compatibility layer ===== */
+html, body { width:100%; max-width:100%; }
+img, video, iframe { max-width:100%; }
+button, a, input, textarea, select { touch-action:manipulation; }
+.nav-btn, .tool-btn, .tab, .primary, .danger { min-height:44px; }
+.card { min-width:0; overflow-wrap:anywhere; }
+.card h3, .card p { overflow-wrap:anywhere; word-break:break-word; }
+.hero, .topbar, main, footer { max-width:100vw; }
+
+@media (min-width: 769px) and (max-width: 1100px) {
+  .hero-inner { grid-template-columns:1fr .55fr; }
+  .topbar { justify-content:flex-start; overflow-x:auto; flex-wrap:nowrap; }
+  .grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+
+@media (max-width: 768px) {
+  .hero { padding:30px 14px 26px; min-height:0; }
+  .hero-inner { grid-template-columns:1fr; gap:16px; }
+  .hero-card { width:100%; }
+  .brand h1 { font-size:clamp(2rem,10vw,3rem); }
+  .topbar {
+    justify-content:flex-start;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    padding:8px 10px;
+  }
+  .topbar::-webkit-scrollbar { display:none; }
+  .nav-btn { flex:0 0 auto; }
+  .tools { padding:0 12px; }
+  main { padding:0 12px; }
+  .section-head { align-items:flex-start; flex-direction:column; }
+  .modal { padding:10px; }
+  .modal-box { max-height:94vh; border-radius:22px; padding:18px; }
+}
+
+@media (max-width: 480px) {
+  .hero-card { padding:17px; border-radius:20px; }
+  .tools { display:grid; grid-template-columns:1fr 1fr; }
+  .search { grid-column:1/-1; min-width:0; }
+  .tool-btn { width:100%; justify-content:center; }
+  .grid { grid-template-columns:1fr; gap:13px; }
+  .card { border-radius:20px; padding:17px; }
+  .admin-dot { right:9px; bottom:9px; }
+}
+
+@media (hover:none) {
+  .card:hover, .nav-btn:hover, .tool-btn:hover { transform:none; }
+  .card:active { transform:scale(.99); }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  *, *::before, *::after {
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    scroll-behavior:auto !important;
+    transition-duration:.01ms !important;
+  }
+}
+
+</style>
 </head>
 <body>
 
-<!-- ═══════════════════ HERO ═══════════════════ -->
-<div class="hero-profile">
-  <div class="profile-container">
-    <div class="avatar-frame">🕌</div>
-    <div class="brand-text">
-      <h2>আব্দুর রহীম <span id="adminDot" title="" style="display:inline-block;width:8px;height:8px;background:#7ec8ff;border-radius:50%;cursor:pointer;vertical-align:middle;margin-left:6px;"></span></h2>
-      <p>📖 ইসলামিক লেখক | আলোর সন্ধানী ✨</p>
-      <div class="badge-light">🌙 نور المعرفة — প্রজ্ঞা ও প্রতিফলন বিস্তার</div>
+
+<section class="creation-strip" aria-label="প্রকৃতির সৌন্দর্য">
+  <div class="creation-overlay">
+    <div class="creation-copy">
+      <span class="creation-kicker">🌿 আল্লাহর সৃষ্টি</span>
+      <h2>প্রকৃতির সৌন্দর্যে শেখার নতুন সকাল</h2>
+      <p>আকাশ, পাহাড়, নদী ও সবুজের সৌন্দর্য আমাদের চারপাশের নিদর্শন—শিখি, ভাবি এবং কৃতজ্ঞ হই।</p>
     </div>
   </div>
-</div>
+</section>
 
-<!-- ═══════════════════ HEADER ═══════════════════ -->
-<header>
-  <h1>نور المعرفة</h1>
-  <p>কবিতা &nbsp;•&nbsp; উপন্যাস &nbsp;•&nbsp; প্রশ্নোত্তর &nbsp;•&nbsp; চিন্তা &nbsp;•&nbsp; জ্ঞান</p>
+<header class="hero">
+  <div class="hero-inner">
+    <div class="brand">
+      <h1>نور المعرفة</h1>
+      <div class="bn">নূর আল-মা'রিফাহ — শিক্ষা, জ্ঞান ও সুন্দর চিন্তার প্ল্যাটফর্ম</div>
+      <p>ইসলামিক মূল্যবোধের সঙ্গে ইংরেজি, গণিত, সাহিত্য, প্রশ্নোত্তর ও সৃজনশীল চিন্তা শেখার জন্য একটি পরিচ্ছন্ন শিক্ষামূলক ওয়েবসাইট।</p>
+    </div>
+    <div class="hero-card">
+      <div class="big">📚 ☪️</div>
+      <strong>Learn • Reflect • Improve</strong>
+      <span>জ্ঞান অর্জন করুন, চিন্তা করুন, নিজেকে উন্নত করুন।</span>
+    </div>
+  </div>
 </header>
 
-<div class="pattern"></div>
-
-<!-- ═══════════════════ NAV ═══════════════════ -->
-<nav id="mainNav">
-  <button class="nav-btn active" onclick="showSection('poems', this)">
-    <span class="btn-icon">📜</span>
-    <span class="btn-label">কবিতা</span>
-  </button>
-  <button class="nav-btn" onclick="showSection('novels', this)">
-    <span class="btn-icon">📚</span>
-    <span class="btn-label">উপন্যাস</span>
-  </button>
-  <button class="nav-btn" onclick="showSection('qa', this)">
-    <span class="btn-icon">❓</span>
-    <span class="btn-label">প্রশ্ন ও উত্তর</span>
-  </button>
-  <button class="nav-btn" onclick="showSection('thoughts', this)">
-    <span class="btn-icon">💭</span>
-    <span class="btn-label">চিন্তা-ভাবনা</span>
-  </button>
-  <button class="nav-btn" onclick="showSection('about', this)">
-    <span class="btn-icon">🧑‍🕋</span>
-    <span class="btn-label">আমার সম্পর্কে</span>
-  </button>
+<nav class="topbar" id="mainNav">
+  <button class="nav-btn active" data-section="english"><span class="nav-num">01</span><span class="nav-icon">🔤</span><span class="nav-label" data-bn="চলো ইংরেজি শিখি" data-en="Let's Learn English">চলো ইংরেজি শিখি</span></button>
+  <button class="nav-btn" data-section="math"><span class="nav-num">02</span><span class="nav-icon">🧮</span><span class="nav-label" data-bn="গণিতের হিরো" data-en="Math Hero">গণিতের হিরো</span></button>
+  <button class="nav-btn" data-section="novels"><span class="nav-num">03</span><span class="nav-icon">📚</span><span class="nav-label" data-bn="উপন্যাস" data-en="Novels">উপন্যাস</span></button>
+  <button class="nav-btn" data-section="poems"><span class="nav-num">04</span><span class="nav-icon">📜</span><span class="nav-label" data-bn="কবিতা" data-en="Poems">কবিতা</span></button>
+  <button class="nav-btn" data-section="qa"><span class="nav-num">05</span><span class="nav-icon">❓</span><span class="nav-label" data-bn="প্রশ্ন ও উত্তর" data-en="Q & A">প্রশ্ন ও উত্তর</span></button>
+  <button class="nav-btn" data-section="thoughts"><span class="nav-num">06</span><span class="nav-icon">💭</span><span class="nav-label" data-bn="আমার চিন্তা" data-en="My Thoughts">আমার চিন্তা</span></button>
+  <button class="nav-btn" data-section="about"><span class="nav-num">07</span><span class="nav-icon">🕌</span><span class="nav-label" data-bn="আমাদের সম্পর্কে" data-en="About Us">আমাদের সম্পর্কে</span></button>
+  <span id="customNav"></span>
 </nav>
 
-<!-- ═══════════════════ MAIN ═══════════════════ -->
-<div class="container">
-  <div class="controls-bar">
-    <div class="search-box">
-      <i class="fas fa-search"></i>
-      <input type="text" id="searchInput" placeholder="শিরোনাম বা বিবরণ দিয়ে অনুসন্ধান করুন...">
-    </div>
-    <button id="darkModeToggle" class="dark-toggle">
-      <i class="fas fa-moon"></i> ডার্ক মোড
-    </button>
-  </div>
+<div class="tools">
+  <div class="search"><i class="fa-solid fa-magnifying-glass"></i><input id="search" placeholder="এই বিভাগে খুঁজুন..."></div>
+  <button class="tool-btn" id="langBtn">EN ⇄ BN</button>
+  <button class="tool-btn" id="themeBtn">☀️ Light</button>
+</div>
 
-  <section id="poems" class="content">
-    <div class="section-title"><h2>📜 কবিতা</h2></div>
-    <div class="grid" id="poemsGrid"></div>
+<main>
+  <section class="section active" id="english">
+    <div class="section-head"><div><h2>🔤 চলো ইংরেজি শিখি</h2><p>Vocabulary, grammar ও everyday English শেখার জায়গা।</p></div></div>
+    <div class="grid">
+      <article class="card"><span class="serial">01</span><h3>Daily Vocabulary</h3><p>প্রতিদিন ৫টি নতুন ইংরেজি শব্দ শিখুন এবং বাক্যে ব্যবহার করুন।</p></article>
+      <article class="card"><span class="serial">02</span><h3>Grammar Basics</h3><p>Parts of speech, tense, sentence structure ও common mistakes অনুশীলন করুন।</p></article>
+      <article class="card"><span class="serial">03</span><h3>Speaking Practice</h3><p>দৈনন্দিন কথোপকথনের ছোট ছোট বাক্য দিয়ে English speaking practice করুন।</p></article>
+    </div>
   </section>
 
-  <section id="novels" class="content hidden">
-    <div class="section-title"><h2>📚 উপন্যাস</h2></div>
+  <section class="section" id="math">
+    <div class="section-head"><div><h2>🧮 গণিতের হিরো</h2><p>ধাপে ধাপে problem solving ও practice-এর জন্য।</p></div></div>
+    <div class="grid">
+      <article class="card"><span class="serial">01</span><h3>Basic Mathematics</h3><p>অনুপাত, শতকরা, বীজগণিত ও মৌলিক গণনার ভিত্তি শক্ত করুন।</p></article>
+      <article class="card"><span class="serial">02</span><h3>Problem Solving</h3><p>অঙ্ককে ছোট ধাপে ভেঙে সমাধান করার কৌশল অনুশীলন করুন।</p></article>
+      <article class="card"><span class="serial">03</span><h3>Quick Practice</h3><p>নিজের practice questions পরে Admin Panel থেকে যোগ করতে পারবেন।</p></article>
+    </div>
+  </section>
+
+  <section class="section" id="novels">
+    <div class="section-head"><div><h2>📚 উপন্যাস</h2><p>আপনার আগের লিংকগুলো অপরিবর্তিত রাখা হয়েছে।</p></div></div>
     <div class="grid" id="novelsGrid"></div>
   </section>
 
-  <section id="qa" class="content hidden">
-    <div class="section-title"><h2>❓ প্রশ্ন ও উত্তর</h2></div>
+  <section class="section" id="poems">
+    <div class="section-head"><div><h2>📜 কবিতা</h2><p>আপনার আগের লিংকগুলো অপরিবর্তিত রাখা হয়েছে।</p></div></div>
+    <div class="grid" id="poemsGrid"></div>
+  </section>
+
+  <section class="section" id="qa">
+    <div class="section-head"><div><h2>❓ প্রশ্ন ও উত্তর</h2><p>জ্ঞানভিত্তিক প্রশ্নোত্তর ও ব্যাখ্যা।</p></div></div>
     <div class="grid" id="qaGrid"></div>
   </section>
 
-  <section id="thoughts" class="content hidden">
-    <div class="section-title"><h2>💭 চিন্তা-ভাবনা</h2></div>
+  <section class="section" id="thoughts">
+    <div class="section-head"><div><h2>💭 আমার চিন্তা</h2><p>চিন্তা, শিক্ষা ও আত্মউন্নয়নের লেখা।</p></div></div>
     <div class="grid" id="thoughtsGrid"></div>
   </section>
 
-  <section id="about" class="content hidden">
-    <div class="card" style="max-width:750px;margin:0 auto;">
-      <div class="card-badge">✨ লেখক পরিচিতি</div>
-      <h3>আব্দুর রহীম — আলোর সন্ধানী</h3>
-      <p>আমি আব্দুর রহীম, ইসলামী জ্ঞান, হৃদয়গ্রাহী কবিতা, আত্মিক উপন্যাস এবং উম্মাহর জন্য চিন্তা-ভাবনা ছড়িয়ে দিতে আগ্রহী।</p><p><a href='https://www.facebook.com/share/1DFxFFbQaC/' target='_blank'>Knowledge of Islam (Facebook)</a></p>
-      <p style="margin-top:0.8rem;">এই প্ল্যাটফর্ম <strong>نور المعرفة (নূর আল-মা'রিফাহ)</strong> হৃদয়কে সৎপথে, ধৈর্য ও ঈমানের আলোয় উদ্বুদ্ধ করার একটি নম্র প্রচেষ্টা।</p>
-      <p style="margin-top:0.8rem;font-style:italic;opacity:0.8;">📩 "আপনার প্রভুর পথে প্রজ্ঞা ও সুন্দর উপদেশের মাধ্যমে আহ্বান করুন।" (কুরআন ১৬:১২৫)</p>
+  <section class="section" id="about">
+    <div class="card about-card">
+      <span class="serial">07</span>
+      <h2>আব্দুর রহীম — আলোর সন্ধানী</h2>
+      <p style="margin-top:12px">আমি আব্দুর রহীম, ইসলামী জ্ঞান, হৃদয়গ্রাহী কবিতা, আত্মিক উপন্যাস এবং উম্মাহর জন্য চিন্তা-ভাবনা ছড়িয়ে দিতে আগ্রহী।</p>
+      <p style="margin-top:12px"><a href="https://www.facebook.com/share/1DFxFFbQaC/" target="_blank" rel="noopener">Knowledge of Islam (Facebook)</a></p>
+      <p style="margin-top:12px">এই প্ল্যাটফর্ম <strong>نور المعرفة (নূর আল-মা'রিফাহ)</strong> হৃদয়কে সৎপথে, ধৈর্য ও ঈমানের আলোয় উদ্বুদ্ধ করার একটি নম্র প্রচেষ্টা।</p>
+      <p class="notice" style="margin-top:16px">📖 "আপনার প্রভুর পথে প্রজ্ঞা ও সুন্দর উপদেশের মাধ্যমে আহ্বান করুন।" (কুরআন ১৬:১২৫)</p>
     </div>
   </section>
-</div>
+</main>
 
-<!-- ═══════════════════ FOOTER ═══════════════════ -->
-<footer>
-  <p>© ২০২৬ | নির্মাতা <span>আব্দুর রহীম</span> | মুসলিম উম্মাহর জন্য <span>ﷺ</span></p>
-</footer>
+<footer>© ২০২৬ | নির্মাতা <strong>আব্দুর রহীম</strong> | মুসলিম উম্মাহর জন্য ﷺ</footer>
 
-<!-- ═══════════════════ ADMIN FAB ═══════════════════ -->
-<div class="admin-fab" id="adminFab" title="অ্যাডমিন প্যানেল" style="display:none">
-  <i class="fas fa-cog"></i>
-</div>
+<div class="admin-dot" id="adminDot" title="Admin"></div>
 
-<!-- ═══════════════════ PASSWORD MODAL ═══════════════════ -->
-<div id="passwordModal" class="modal">
-  <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('passwordModal')"><i class="fas fa-times"></i></span>
-    <div class="pw-lock-icon">🔐</div>
-    <h3 style="justify-content:center;border:none;margin-bottom:0.3rem;color:inherit;">অ্যাডমিন প্রবেশ</h3>
-    <p style="color:rgba(255,255,255,0.45);font-size:0.82rem;margin-bottom:1.2rem;text-align:center;">পাসওয়ার্ড দিয়ে প্রবেশ করুন</p>
-    <div class="pw-input-wrap">
-      <input type="password" id="adminPassword" placeholder="পাসওয়ার্ড লিখুন">
-      <button class="pw-toggle" onclick="togglePw()" id="pwToggleBtn"><i class="fas fa-eye"></i></button>
-    </div>
-    <div id="pwError" style="color:#ff6b6b;font-size:0.82rem;text-align:center;min-height:1.2rem;margin-top:0.3rem;"></div>
-    <button class="btn-primary btn-gold" onclick="checkPassword()">
-      <i class="fas fa-unlock-alt"></i> প্রবেশ করুন
-    </button>
+
+<!-- Flashcard reader -->
+<div class="modal" id="flashModal">
+  <div class="modal-box">
+    <button class="close" data-close="flashModal">✕</button>
+    <div id="flashModalBody" class="flash-modal-body"></div>
   </div>
 </div>
 
-<!-- ═══════════════════ ADMIN PANEL MODAL ═══════════════════ -->
-<div id="adminModal" class="modal">
-  <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('adminModal')"><i class="fas fa-times"></i></span>
-    <h3><i class="fas fa-shield-alt" style="color:var(--gold-1)"></i> অ্যাডমিন প্যানেল</h3>
+<!-- Password -->
+<div class="modal" id="passwordModal">
+  <div class="modal-box" style="max-width:390px">
+    <button class="close" data-close="passwordModal">✕</button>
+    <h3>🔐 অ্যাডমিন প্রবেশ</h3>
+    <p style="color:var(--muted);font-size:.88rem">পাসওয়ার্ড দিয়ে প্রবেশ করুন।</p>
+    <label>পাসওয়ার্ড</label><input id="password" type="password" autocomplete="current-password">
+    <div id="pwError" style="color:#e53935;min-height:24px;margin-top:7px"></div>
+    <button class="primary" id="loginBtn">প্রবেশ করুন</button>
+  </div>
+</div>
 
-    <div class="admin-tabs">
-      <button class="admin-tab-btn active" onclick="switchAdminTab('publish', this)">
-        <i class="fas fa-plus-circle"></i> প্রকাশ করুন
-      </button>
-      <button class="admin-tab-btn" onclick="switchAdminTab('manage', this)">
-        <i class="fas fa-list-ul"></i> পরিচালনা
-      </button>
+<!-- Admin -->
+<div class="modal" id="adminModal">
+  <div class="modal-box">
+    <button class="close" data-close="adminModal">✕</button>
+    <h3>⚙️ Control Panel</h3><div class="admin-only-note">🔒 Delete/restore controls are available only after Admin unlock.</div>
+    <div class="tabs">
+      <button class="tab active" data-tab="contentPanel">Content</button>
+      <button class="tab" data-tab="buttonPanel">New Button</button>
+      <button class="tab" data-tab="managePanel">Manage</button>
     </div>
 
-    <!-- Publish Tab -->
-    <div id="admin-tab-publish" class="admin-tab-panel active">
-      <div class="admin-form">
-        <label><i class="fas fa-folder"></i> বিভাগ নির্বাচন</label>
-        <select id="entrySection">
-          <option value="poems">📜 কবিতা</option>
-          <option value="novels">📚 উপন্যাস</option>
-          <option value="thoughts">💭 চিন্তা-ভাবনা</option>
-        </select>
-
-        <label><i class="fas fa-heading"></i> শিরোনাম</label>
-        <input type="text" id="entryTitle" placeholder="বাংলায় শিরোনাম লিখুন">
-
-        <label><i class="fas fa-align-left"></i> বিষয়বস্তু</label>
-        <textarea id="entryContent" rows="5" placeholder="পূর্ণ বিষয়বস্তু লিখুন..."></textarea>
-
-        <label><i class="fas fa-link"></i> লিঙ্ক <small style="opacity:0.6">(ঐচ্ছিক)</small></label>
-        <input type="text" id="entryLink" placeholder="যেমন: poem.html অথবা https://...">
-      </div>
-      <button class="btn-primary" onclick="addDynamicEntry()">
-        <i class="fas fa-paper-plane"></i> প্রকাশ করুন
-      </button>
+    <div class="panel active" id="contentPanel">
+      <label>Section / Button</label>
+      <select id="entrySection">
+        <option value="english">🔤 চলো ইংরেজি শিখি</option>
+        <option value="math">🧮 গণিতের হিরো</option>
+        <option value="novels">📚 উপন্যাস</option>
+        <option value="poems">📜 কবিতা</option>
+        <option value="qa">❓ Q & A</option>
+        <option value="thoughts">💭 My Thoughts</option>
+        <option value="about">🕌 About Us</option>
+      </select>
+      <label>Title</label><input id="entryTitle" placeholder="শিরোনাম">
+      <label>Content</label><textarea id="entryContent" placeholder="বিষয়বস্তু..."></textarea>
+      <label>Image URL (optional)</label><input id="entryImage" placeholder="https://... অথবা GitHub raw image URL">
+      <label>Page / External Link (optional)</label><input id="entryLink" placeholder="https://... বা your-page.html">
+      <label>Facebook (optional)</label><input id="entryFacebook" placeholder="https://facebook.com/...">
+      <label>YouTube (optional)</label><input id="entryYoutube" placeholder="https://youtube.com/...">
+      <label>Other Social Link (optional)</label><input id="entrySocial" placeholder="https://...">
+      <button class="primary" id="addEntry">➕ Save Content</button>
     </div>
 
-    <!-- Manage Tab -->
-    <div id="admin-tab-manage" class="admin-tab-panel">
-      <div id="manageList">
-        <p style="color:var(--text-secondary-light);font-size:0.88rem;text-align:center;padding:1.5rem 0;opacity:0.7;">
-          কোনো এন্ট্রি নেই
-        </p>
-      </div>
+    <div class="panel" id="buttonPanel">
+      <label>Button name (Bangla)</label><input id="buttonBn" placeholder="যেমন: বিজ্ঞান জগৎ">
+      <label>Button name (English)</label><input id="buttonEn" placeholder="e.g. Science World">
+      <label>Icon / Emoji</label><input id="buttonIcon" value="📘" maxlength="4">
+      <label>Short description</label><input id="buttonDesc" placeholder="এই বিভাগের পরিচিতি">
+      <button class="primary" id="addButton">➕ Create New Button</button>
+    </div>
+
+    <div class="panel" id="managePanel">
+      <p style="color:var(--muted);font-size:.86rem;margin-bottom:10px">শুধু Admin unlock করার পর এখান থেকে content/flashcard/button delete বা restore করা যাবে।</p>
+      <div id="manageList"></div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════ CONTENT VIEW MODAL ═══════════════════ -->
-<div id="contentModal" class="modal">
-  <div class="modal-content large">
-    <span class="close-modal" onclick="closeModal('contentModal')"><i class="fas fa-times"></i></span>
-    <h3 id="modalTitle"></h3>
-    <p id="modalBody"></p>
-  </div>
-</div>
-
-<!-- ═══════════════════ JAVASCRIPT ═══════════════════ -->
 <script>
-  /* ─── Static Data ─── */
-  const staticData = {
-    poems: [
-      { title: "ভালো যদি হতে চাও", desc: "আরও এগিয়ে যাও মঙ্গলের সন্ধানে।", link: "valoo.html" },
-      { title: "নামাজ", desc: "সর্বশক্তিমান আল্লাহর নির্দেশনা লাভের জন্য সালাত আদায় করুন।", link: "namaj.html" },
-      { title: "অনুভূতি", desc: "মনের কল্পনা।", link: "onuvuti.html" },
-      { title: "ধৈর্য (সবর)", desc: "সহনশীলতা ও আস্থা।", link: "d.html" }
-    ],
-    novels: [
-      { title: "জীবনের উদ্দেশ্য", desc: "এই জীবন কেন?।", link: "yes.html" },
-      { title: "যোগ্যতা: চরম সাফল্য", desc: "আধ্যাত্মিক যাত্রা।", link: "merit.html" },
-      { title: "সে বিচার চায়", desc: "অন্যায় লুকানো যায় না।", link: "Justice.html" },
-      { title: "কিভাবে শত্রুকে কষ্ট দিতে হয়", desc: "গোপন পদ্ধতি", link: "f.html" },
-      { title: "প্রত্যেক মানুষের দায়িত্ব", desc: "পাঠ করুন আপনার প্রভুর নামে", link: "g.html" }
-    ],
-    qa: [
-      { title: "জীবনের চাবিকাঠি", desc: "মূল বিশ্বাস।", link: "h.html" }
-    ],
-    thoughts: [
-      { title: "আমার চিন্তা", desc: "আমার ভালোবাসার ভাগাভাগি..", link: "n.html" }
-    ]
-  };
+/* Existing links preserved from the supplied website. */
+const staticData = {
+  poems: [
+    {title:"ভালো যদি হতে চাও",desc:"আরও এগিয়ে যাও মঙ্গলের সন্ধানে।",link:"valoo.html"},
+    {title:"নামাজ",desc:"সর্বশক্তিমান আল্লাহর নির্দেশনা লাভের জন্য সালাত আদায় করুন।",link:"namaj.html"},
+    {title:"অনুভূতি",desc:"মনের কল্পনা।",link:"onuvuti.html"},
+    {title:"ধৈর্য (সবর)",desc:"সহনশীলতা ও আস্থা।",link:"d.html"}
+  ],
+  novels: [
+    {title:"জীবনের উদ্দেশ্য",desc:"এই জীবন কেন?।",link:"yes.html"},
+    {title:"যোগ্যতা: চরম সাফল্য",desc:"আধ্যাত্মিক যাত্রা।",link:"merit.html"},
+    {title:"সে বিচার চায়",desc:"অন্যায় লুকানো যায় না।",link:"Justice.html"},
+    {title:"কিভাবে শত্রুকে কষ্ট দিতে হয়",desc:"গোপন পদ্ধতি",link:"f.html"},
+    {title:"প্রত্যেক মানুষের দায়িত্ব",desc:"পাঠ করুন আপনার প্রভুর নামে",link:"g.html"}
+  ],
+  qa: [{title:"জীবনের চাবিকাঠি",desc:"মূল বিশ্বাস।",link:"h.html"}],
+  thoughts: [{title:"আমার চিন্তা",desc:"আমার ভালোবাসার ভাগাভাগি..",link:"n.html"}]
+};
 
-  /* ─── Dynamic Entries ─── */
-  let dynamicEntries = { poems: [], novels: [], thoughts: [] };
+const labels={english:"চলো ইংরেজি শিখি",math:"গণিতের হিরো",novels:"উপন্যাস",poems:"কবিতা",qa:"প্রশ্ন ও উত্তর",thoughts:"আমার চিন্তা",about:"আমাদের সম্পর্কে"};
+const icons={english:"🔤",math:"🧮",novels:"📚",poems:"📜",qa:"❓",thoughts:"💭",about:"🕌"};
+let dynamicEntries = JSON.parse(localStorage.getItem("noor_entries") || "{}");
+let deletedStatic = JSON.parse(localStorage.getItem("noor_deleted_static") || "{}");
+let customButtons = JSON.parse(localStorage.getItem("noor_buttons") || "[]");
+let lang = localStorage.getItem("noor_lang") || "bn";
+let adminUnlocked=false;
 
-  function loadFromStorage() {
-    try {
-      const stored = localStorage.getItem('noor_dynamic_entries');
-      if (stored) dynamicEntries = JSON.parse(stored);
-    } catch(e) { dynamicEntries = { poems: [], novels: [], thoughts: [] }; }
-  }
+const $=s=>document.querySelector(s);
+const $$=s=>document.querySelectorAll(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
 
-  function saveToStorage() {
-    localStorage.setItem('noor_dynamic_entries', JSON.stringify(dynamicEntries));
-  }
+function save(){localStorage.setItem("noor_entries",JSON.stringify(dynamicEntries));localStorage.setItem("noor_buttons",JSON.stringify(customButtons));localStorage.setItem("noor_deleted_static",JSON.stringify(deletedStatic))}
+function toast(msg){const t=document.createElement("div");t.className="toast";t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2500)}
+function sectionExists(id){return !!document.getElementById(id)}
+function sectionTitle(id){return labels[id] || customButtons.find(b=>b.id===id)?.bn || "বিভাগ"}
 
-  /* ─── Rendering ─── */
-  const CATEGORY_LABELS = { poems: '📜 কবিতা', novels: '📚 উপন্যাস', thoughts: '💭 চিন্তা-ভাবনা' };
-
-  function renderGrid(sectionId, staticList, dynamicList) {
-    const container = document.getElementById(sectionId + 'Grid');
-    if (!container) return;
-    let html = '';
-    const delay = (i) => `animation-delay:${i * 0.07}s`;
-
-    staticList.forEach((card, i) => {
-      html += `
-        <div class="card" style="${delay(i)}">
-          <div class="card-badge">${CATEGORY_LABELS[sectionId] || '📄'}</div>
-          <h3><a href="${card.link}">${card.title}</a></h3>
-          <p>${card.desc}</p>
-        </div>`;
-    });
-
-    dynamicList.forEach((entry, i) => {
-      const idx = staticList.length + i;
-      const titleHtml = entry.link
-        ? `<h3><a href="${entry.link}" target="_blank">${entry.title}</a></h3>`
-        : `<h3 style="cursor:pointer" onclick="openContentModal('${escStr(entry.title)}', '${escStr(entry.content)}')">${entry.title}</h3>`;
-      html += `
-        <div class="card" style="${delay(idx)}">
-          <button class="delete-btn" onclick="deleteEntry('${sectionId}', ${entry.id})"><i class="fas fa-trash-alt"></i></button>
-          <div class="card-badge">${CATEGORY_LABELS[sectionId] || '📄'} · নতুন</div>
-          ${titleHtml}
-          <p>${entry.preview}</p>
-        </div>`;
-    });
-
-    container.innerHTML = html || '<p style="color:var(--text-secondary-light);opacity:0.6;padding:1rem 0">কোনো বিষয়বস্তু নেই।</p>';
-  }
-
-  function renderAllSections() {
-    renderGrid('poems', staticData.poems, dynamicEntries.poems);
-    renderGrid('novels', staticData.novels, dynamicEntries.novels);
-    renderGrid('thoughts', staticData.thoughts, dynamicEntries.thoughts);
-    const qa = document.getElementById('qaGrid');
-    if (qa) {
-      qa.innerHTML = staticData.qa.map((c, i) => `
-        <div class="card" style="animation-delay:${i*0.07}s">
-          <div class="card-badge">❓ প্রশ্নোত্তর</div>
-          <h3><a href="${c.link}">${c.title}</a></h3>
-          <p>${c.desc}</p>
-        </div>`).join('');
-    }
-    updateManageList();
-  }
-
-  function escStr(s) {
-    return s.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, '\\n');
-  }
-
-  /* ─── Add / Delete ─── */
-  function addDynamicEntry() {
-    const section = document.getElementById('entrySection').value;
-    const title   = document.getElementById('entryTitle').value.trim();
-    const content = document.getElementById('entryContent').value.trim();
-    const link    = document.getElementById('entryLink').value.trim();
-    if (!title || !content) { showToast('⚠️ শিরোনাম এবং বিষয়বস্তু পূরণ করুন!', 'error'); return; }
-    const entry = {
-      id: Date.now(), title, content,
-      preview: content.substring(0, 120) + (content.length > 120 ? '…' : ''),
-      link: link || null
+function createSectionForButton(btn){
+  const sec=document.createElement("section");sec.className="section";sec.id=btn.id;
+  sec.innerHTML=`<div class="section-head"><div><h2>${esc(btn.icon)} ${esc(btn.bn)}</h2><p>${esc(btn.desc||"নতুন শিক্ষামূলক বিভাগ")}</p></div></div><div class="grid" id="${btn.id}Grid"></div>`;
+  $("main").appendChild(sec);
+}
+function renderCustomButtons(){
+  const wrap=$("#customNav");wrap.innerHTML="";
+  customButtons.forEach((b,i)=>{
+    if(!sectionExists(b.id))createSectionForButton(b);
+    const el=document.createElement("button");el.className="nav-btn";el.dataset.section=b.id;
+    el.innerHTML=`<span class="nav-num">${String(8+i).padStart(2,"0")}</span><span class="nav-icon">${esc(b.icon||"📘")}</span><span class="nav-label" data-bn="${esc(b.bn)}" data-en="${esc(b.en||b.bn)}">${esc(lang==="bn"?b.bn:(b.en||b.bn))}</span>`;
+    wrap.appendChild(el);
+  });
+}
+function isDeletedStatic(section, link){
+  return !!((deletedStatic[section]||[]).includes(link));
+}
+function cardHTML(item, section, i, dynamic=false){
+  const label=sectionTitle(section);
+  const link=item.link || "";
+  const title=link
+    ? `<a href="${esc(link)}" class="card-link" ${/^https?:/i.test(link)?'target="_blank" rel="noopener"':''}>${esc(item.title)}</a>`
+    : `${esc(item.title)}`;
+  const image=item.image?`<img src="${esc(item.image)}" alt="${esc(item.title)}" loading="lazy" onerror="this.style.display='none'">`:"";
+  const socials=[
+    item.facebook&&`<a href="${esc(item.facebook)}" target="_blank" rel="noopener" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>`,
+    item.youtube&&`<a href="${esc(item.youtube)}" target="_blank" rel="noopener" title="YouTube"><i class="fa-brands fa-youtube"></i></a>`,
+    item.social&&`<a href="${esc(item.social)}" target="_blank" rel="noopener" title="Social"><i class="fa-solid fa-link"></i></a>`
+  ].filter(Boolean).join("");
+  const deleteButton = dynamic
+    ? `<button class="delete" onclick="event.stopPropagation();deleteDynamic('${esc(section)}',${Number(item.id)})" title="Delete"><i class="fa-solid fa-trash"></i></button>`
+    : `<button class="delete" onclick="event.stopPropagation();deleteStatic('${esc(section)}','${esc(link)}')" title="Delete"><i class="fa-solid fa-trash"></i></button>`;
+  const data = encodeURIComponent(JSON.stringify({
+    title:item.title||"", content:item.content||item.desc||"", image:item.image||"",
+    link, facebook:item.facebook||"", youtube:item.youtube||"", social:item.social||"",
+    section:label
+  }));
+  return `<article class="card flashcard" tabindex="0" data-flash="${data}">
+    ${deleteButton}
+    ${image}
+    <span class="serial">${String(i+1).padStart(2,"0")} · ${esc(label)}</span>
+    <h3>${title}</h3>
+    <p>${esc(item.content||item.desc||"")}</p>
+    ${socials?`<div class="socials">${socials}</div>`:""}
+  </article>`;
+}
+function renderSection(section){
+  const grid=document.getElementById(section+"Grid");if(!grid)return;
+  const base=(staticData[section]||[]).filter(x=>!isDeletedStatic(section,x.link));
+  const dyn=dynamicEntries[section]||[];
+  grid.innerHTML=base.map((x,i)=>cardHTML({...x,content:x.desc},section,i,false)).join("")+
+    dyn.map((x,i)=>cardHTML(x,section,base.length+i,true)).join("");
+  bindFlashcards(grid);
+}
+function bindFlashcards(root=document){
+  root.querySelectorAll(".flashcard").forEach(card=>{
+    if(card.dataset.bound)return;
+    card.dataset.bound="1";
+    const open=()=>{
+      let data;try{data=JSON.parse(decodeURIComponent(card.dataset.flash))}catch{return}
+      openFlashcard(data);
     };
-    dynamicEntries[section].push(entry);
-    saveToStorage();
-    renderAllSections();
-    closeModal('adminModal');
-    document.getElementById('entryTitle').value = '';
-    document.getElementById('entryContent').value = '';
-    document.getElementById('entryLink').value = '';
-    showToast('✅ সফলভাবে প্রকাশিত হয়েছে!');
-  }
-
-  function deleteEntry(section, id) {
-    dynamicEntries[section] = dynamicEntries[section].filter(e => e.id != id);
-    saveToStorage();
-    renderAllSections();
-    showToast('🗑️ এন্ট্রি মুছে ফেলা হয়েছে।');
-  }
-
-  /* ─── Manage List ─── */
-  function updateManageList() {
-    const container = document.getElementById('manageList');
-    if (!container) return;
-    let html = '';
-    let hasAny = false;
-    ['poems', 'novels', 'thoughts'].forEach(sec => {
-      if (!dynamicEntries[sec] || dynamicEntries[sec].length === 0) return;
-      hasAny = true;
-      html += `<div class="manage-section-label">${CATEGORY_LABELS[sec]}</div>`;
-      dynamicEntries[sec].forEach(e => {
-        html += `
-          <div class="manage-entry-item">
-            <span>${e.title}</span>
-            <button class="del-small" onclick="deleteEntry('${sec}', ${e.id})"><i class="fas fa-trash"></i></button>
-          </div>`;
-      });
+    card.addEventListener("click",e=>{
+      if(e.target.closest("a,button"))return;
+      open();
     });
-    container.innerHTML = hasAny ? html : '<p style="color:var(--text-secondary-light);font-size:0.88rem;text-align:center;padding:1.5rem 0;opacity:0.7">কোনো প্রকাশিত এন্ট্রি নেই।</p>';
-  }
-
-  /* ─── Content Modal ─── */
-  function openContentModal(title, content) {
-    document.getElementById('modalTitle').textContent = title;
-    document.getElementById('modalBody').textContent  = content;
-    document.getElementById('contentModal').classList.add('open');
-  }
-
-  /* ─── Section Nav ─── */
-  function showSection(id, btn) {
-    document.querySelectorAll('.content').forEach(s => s.classList.add('hidden'));
-    document.getElementById(id).classList.remove('hidden');
-    document.querySelectorAll('nav .nav-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    filterCards();
-  }
-
-  /* ─── Search ─── */
-  function filterCards() {
-    const q = document.getElementById('searchInput').value.toLowerCase();
-    document.querySelectorAll('.grid').forEach(grid => {
-      grid.querySelectorAll('.card').forEach(card => {
-        const text = card.textContent.toLowerCase();
-        card.style.display = (!q || text.includes(q)) ? '' : 'none';
-      });
-    });
-  }
-
-  /* ─── Admin Modals ─── */
-  function openPasswordModal() {
-    document.getElementById('adminPassword').value = '';
-    document.getElementById('pwError').textContent = '';
-    document.getElementById('passwordModal').classList.add('open');
-    setTimeout(() => document.getElementById('adminPassword').focus(), 200);
-  }
-
-  function checkPassword() {
-    const pass = document.getElementById('adminPassword').value;
-    const errEl = document.getElementById('pwError');
-    if (pass === 'EDC@2012') {
-      closeModal('passwordModal');
-      updateManageList();
-      document.getElementById('adminModal').classList.add('open');
-      switchAdminTab('publish', document.querySelector('.admin-tab-btn'));
-    } else {
-      errEl.textContent = '❌ ভুল পাসওয়ার্ড! আবার চেষ্টা করুন।';
-      document.getElementById('adminPassword').value = '';
-      document.getElementById('adminPassword').focus();
-      // shake
-      const input = document.querySelector('.pw-input-wrap');
-      input.style.animation = 'shake 0.4s ease';
-      setTimeout(() => input.style.animation = '', 400);
-    }
-  }
-
-  function togglePw() {
-    const inp = document.getElementById('adminPassword');
-    const btn = document.getElementById('pwToggleBtn');
-    if (inp.type === 'password') {
-      inp.type = 'text';
-      btn.innerHTML = '<i class="fas fa-eye-slash"></i>';
-    } else {
-      inp.type = 'password';
-      btn.innerHTML = '<i class="fas fa-eye"></i>';
-    }
-  }
-
-  function closeModal(id) {
-    document.getElementById(id).classList.remove('open');
-  }
-
-  function switchAdminTab(tab, btn) {
-    document.querySelectorAll('.admin-tab-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('admin-tab-' + tab).classList.add('active');
-    btn.classList.add('active');
-    if (tab === 'manage') updateManageList();
-  }
-
-  /* ─── Dark Mode ─── */
-  function initDarkMode() {
-    const toggle = document.getElementById('darkModeToggle');
-    if (localStorage.getItem('darkMode') === 'enabled') {
-      document.body.classList.add('dark');
-      toggle.innerHTML = '<i class="fas fa-sun"></i> লাইট মোড';
-    }
-    toggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      const isDark = document.body.classList.contains('dark');
-      localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
-      toggle.innerHTML = isDark ? '<i class="fas fa-sun"></i> লাইট মোড' : '<i class="fas fa-moon"></i> ডার্ক মোড';
-    });
-  }
-
-  /* ─── Ripple ─── */
-  function addRipple(el) {
-    el.addEventListener('click', function(e) {
-      const r = document.createElement('span');
-      r.className = 'ripple-effect';
-      const rect = el.getBoundingClientRect();
-      const sz = Math.max(rect.width, rect.height);
-      r.style.cssText = `width:${sz}px;height:${sz}px;left:${e.clientX-rect.left-sz/2}px;top:${e.clientY-rect.top-sz/2}px`;
-      el.appendChild(r);
-      setTimeout(() => r.remove(), 600);
-    });
-  }
-
-  /* ─── Toast ─── */
-  function showToast(msg, type = 'success') {
-    const t = document.createElement('div');
-    t.className = 'toast';
-    t.textContent = msg;
-    if (type === 'error') t.style.background = 'linear-gradient(135deg, #8b0000, #c0392b)';
-    document.body.appendChild(t);
-    setTimeout(() => { t.classList.add('exit'); setTimeout(() => t.remove(), 350); }, 2800);
-  }
-
-  /* ─── Shake keyframe (CSS injection) ─── */
-  const shakeStyle = document.createElement('style');
-  shakeStyle.textContent = `@keyframes shake {
-    0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-8px)} 40%,80%{transform:translateX(8px)}
-  }`;
-  document.head.appendChild(shakeStyle);
-
-  /* ─── Enter key for password ─── */
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Enter' && document.getElementById('passwordModal').classList.contains('open')) {
-      checkPassword();
-    }
-    if (e.key === 'Escape') {
-      document.querySelectorAll('.modal.open').forEach(m => m.classList.remove('open'));
-    }
+    card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open()}});
   });
+}
+function openFlashcard(item){
+  const social = [
+    item.facebook&&`<a href="${esc(item.facebook)}" target="_blank" rel="noopener">📘 Facebook</a>`,
+    item.youtube&&`<a href="${esc(item.youtube)}" target="_blank" rel="noopener">▶️ YouTube</a>`,
+    item.social&&`<a href="${esc(item.social)}" target="_blank" rel="noopener">🔗 Social link</a>`
+  ].filter(Boolean).join("");
+  $("#flashModalBody").innerHTML=`
+    ${item.image?`<img src="${esc(item.image)}" alt="${esc(item.title)}" onerror="this.style.display='none'">`:""}
+    <span class="serial">${esc(item.section||"Learning")}</span>
+    <h2 style="margin:10px 0">${esc(item.title)}</h2>
+    <div style="white-space:pre-wrap">${esc(item.content||"")}</div>
+    ${item.link?`<a class="flash-link" href="${esc(item.link)}" ${/^https?:/i.test(item.link)?'target="_blank" rel="noopener"':''}>📖 Open full page</a>`:""}
+    ${social?`<div class="flash-socials">${social}</div>`:""}
+  `;
+  openModal("flashModal");
+}
 
-  /* ─── Modal backdrop click ─── */
-  window.addEventListener('click', e => {
-    if (e.target.classList.contains('modal')) e.target.classList.remove('open');
-  });
+function renderAll(){
+  ["poems","novels","qa","thoughts"].forEach(renderSection);
+  Object.keys(dynamicEntries).filter(k=>!["poems","novels","qa","thoughts","english","math","about"].includes(k)).forEach(renderSection);
+  renderCustomButtons();
+  customButtons.forEach(b=>renderSection(b.id));
+  updateManage();
+  applyAdminState();
+}
+function activate(id,btn){
+  $$(".section").forEach(s=>s.classList.remove("active"));
+  const sec=$("#"+CSS.escape(id)); if(sec)sec.classList.add("active");
+  $$(".nav-btn").forEach(x=>x.classList.remove("active")); if(btn)btn.classList.add("active");
+  $("#search").value=""; filter();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+$("#mainNav").addEventListener("click",e=>{const b=e.target.closest(".nav-btn");if(b)activate(b.dataset.section,b)});
+function filter(){
+  const q=$("#search").value.trim().toLowerCase();
+  const active=$(".section.active"); if(!active)return;
+  active.querySelectorAll(".card").forEach(c=>c.style.display=!q||c.textContent.toLowerCase().includes(q)?"":"none");
+}
+$("#search").addEventListener("input",filter);
 
-  /* ─── Init ─── */
-  window.onload = () => {
-    loadFromStorage();
-    renderAllSections();
-    initDarkMode();
-    document.getElementById('searchInput').addEventListener('input', filterCards);
-    document.getElementById('adminDot').addEventListener('click', openPasswordModal);
-    document.querySelectorAll('nav .nav-btn, .dark-toggle').forEach(addRipple);
-  };
+function applyLang(){
+  $$("[data-bn]").forEach(el=>el.textContent=lang==="bn"?el.dataset.bn:el.dataset.en);
+  $("#langBtn").textContent=lang==="bn"?"EN ⇄ BN":"BN ⇄ EN";
+  localStorage.setItem("noor_lang",lang);
+}
+$("#langBtn").onclick=()=>{lang=lang==="bn"?"en":"bn";applyLang()};
+
+function applyTheme(){
+  const dark=localStorage.getItem("noor_theme")==="dark";document.body.classList.toggle("dark",dark);
+  $("#themeBtn").textContent=dark?"☀️ Light":"🌙 Dark";
+}
+$("#themeBtn").onclick=()=>{localStorage.setItem("noor_theme",document.body.classList.contains("dark")?"light":"dark");applyTheme()};
+
+function openModal(id){$("#"+id).classList.add("open")}
+function closeModal(id){$("#"+id).classList.remove("open")}
+$$("[data-close]").forEach(b=>b.onclick=()=>closeModal(b.dataset.close));
+$$(".modal").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)m.classList.remove("open")}));
+
+$("#adminDot").onclick=()=>{if(adminUnlocked){applyAdminState();updateManage();openModal("adminModal")}else openModal("passwordModal")};
+$("#loginBtn").onclick=()=>{
+  if($("#password").value==="EDC@2012"){
+    adminUnlocked=true;document.body.classList.add("admin-on");closeModal("passwordModal");openModal("adminModal");$("#pwError").textContent="";updateManage();
+  }else{$("#pwError").textContent="❌ ভুল পাসওয়ার্ড";}
+};
+$("#password").addEventListener("keydown",e=>{if(e.key==="Enter")$("#loginBtn").click()});
+
+$$(".tab").forEach(t=>t.onclick=()=>{$$(".tab").forEach(x=>x.classList.remove("active"));$(".panel").forEach(x=>x.classList.remove("active"));t.classList.add("active");$("#"+t.dataset.tab).classList.add("active");if(t.dataset.tab==="managePanel")updateManage()});
+
+$("#addEntry").onclick=()=>{
+  const section=$("#entrySection").value,title=$("#entryTitle").value.trim(),content=$("#entryContent").value.trim();
+  if(!title||!content){toast("⚠️ Title এবং Content পূরণ করুন");return}
+  if(!dynamicEntries[section])dynamicEntries[section]=[];
+  dynamicEntries[section].push({id:Date.now(),title,content,image:$("#entryImage").value.trim(),link:$("#entryLink").value.trim(),facebook:$("#entryFacebook").value.trim(),youtube:$("#entryYoutube").value.trim(),social:$("#entrySocial").value.trim()});
+  save();renderAll();["entryTitle","entryContent","entryImage","entryLink","entryFacebook","entryYoutube","entrySocial"].forEach(id=>$("#"+id).value="");toast("✅ Content saved");
+};
+function requireAdmin(){
+  if(!adminUnlocked){toast("🔐 শুধু Admin content delete করতে পারবেন");openModal("passwordModal");return false}
+  return true;
+}
+function deleteStatic(section,link){
+  if(!requireAdmin())return;
+  if(!confirm("এই স্থায়ী flashcard-টি এই browser-এ লুকিয়ে/মুছে ফেলবেন?"))return;
+  if(!deletedStatic[section])deletedStatic[section]=[];
+  if(!deletedStatic[section].includes(link))deletedStatic[section].push(link);
+  save();renderAll();toast("🗑️ Flashcard deleted for this site browser");
+}
+
+function deleteDynamic(section,id){
+  if(!requireAdmin())return;
+  if(!confirm("এই content মুছে ফেলবেন?"))return;
+  dynamicEntries[section]=(dynamicEntries[section]||[]).filter(x=>x.id!==id);save();renderAll();toast("🗑️ Content deleted");
+}
+$("#addButton").onclick=()=>{
+  const bn=$("#buttonBn").value.trim(),en=$("#buttonEn").value.trim()||bn;
+  if(!bn){toast("⚠️ Button name দিন");return}
+  const id="custom_"+Date.now();
+  customButtons.push({id,bn,en,icon:$("#buttonIcon").value.trim()||"📘",desc:$("#buttonDesc").value.trim()});
+  dynamicEntries[id]=[];save();renderAll();activate(id,$$(".nav-btn")[0]);["buttonBn","buttonEn","buttonDesc"].forEach(x=>$("#"+x).value="");toast("✅ New button created");
+};
+function deleteCustom(id){
+  if(!requireAdmin())return;
+  if(!confirm("এই custom button এবং এর content মুছে ফেলবেন?"))return;
+  customButtons=customButtons.filter(b=>b.id!==id);delete dynamicEntries[id];save();$("#"+id)?.remove();renderAll();activate("english",$(".nav-btn"));
+}
+function updateManage(){
+  const box=$("#manageList");let h="";
+  customButtons.forEach(b=>h+=`<div class="list-item"><span>🔘 ${esc(b.bn)}</span><div class="small-actions"><button onclick="deleteCustom('${esc(b.id)}')">🗑️</button></div></div>`);
+  Object.keys(dynamicEntries).forEach(sec=>
+    (dynamicEntries[sec]||[]).forEach(e=>h+=`<div class="list-item"><span>${esc(sectionTitle(sec))} — ${esc(e.title)}</span><div class="small-actions"><button onclick="deleteDynamic('${esc(sec)}',${Number(e.id)})">🗑️</button></div></div>`));
+  Object.keys(deletedStatic).forEach(sec=>(deletedStatic[sec]||[]).forEach(link=>{
+    const original=(staticData[sec]||[]).find(x=>x.link===link);
+    if(original)h+=`<div class="list-item"><span>🚫 Deleted: ${esc(sectionTitle(sec))} — ${esc(original.title)}</span><div class="small-actions"><button onclick="restoreStatic('${esc(sec)}','${esc(link)}')">↩️ Restore</button></div></div>`;
+  }));
+  box.innerHTML=h||`<p style="color:var(--muted)">এখনও কোনো custom content নেই।</p>`;
+}
+function restoreStatic(section,link){
+  if(!requireAdmin())return;
+  deletedStatic[section]=(deletedStatic[section]||[]).filter(x=>x!==link);
+  save();renderAll();toast("↩️ Flashcard restored");
+}
+
+function applyAdminState(){document.body.classList.toggle("admin-on",adminUnlocked)}
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button,.tool-btn");if(!b)return;
+  const r=document.createElement("span");r.className="ripple";const q=b.getBoundingClientRect(),s=Math.max(q.width,q.height);
+  r.style.width=r.style.height=s+"px";r.style.left=e.clientX-q.left-s/2+"px";r.style.top=e.clientY-q.top-s/2+"px";b.appendChild(r);setTimeout(()=>r.remove(),600);
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")$$(".modal.open").forEach(x=>x.classList.remove("open"))});
+
+// Cross-device layout safeguard: refresh dynamic layout after orientation/viewport changes.
+let resizeTimer;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    renderCustomButtons();
+    ["poems","novels","qa","thoughts"].forEach(renderSection);
+    customButtons.forEach(b=>renderSection(b.id));
+    filter();
+  }, 120);
+});
+window.addEventListener("orientationchange", () => {
+  setTimeout(() => window.dispatchEvent(new Event("resize")), 180);
+});
+
+renderAll();applyLang();applyTheme();activate("english",$(".nav-btn"));
 </script>
 </body>
 </html>
