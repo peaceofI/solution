@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نور المعرفة | Noor Al-Marifah</title>
+<meta name="description" content="An educational and Islamic learning website for English, Mathematics, Poems, Novels, Q&A and thoughts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root{
+  --bg:#f7fbfd;--ink:#102d3b;--muted:#6f8792;--sky:#39bff2;--sky2:#087eb8;
+  --panel:rgba(255,255,255,.86);--border:rgba(53,186,246,.16);
+  --shadow:0 14px 38px rgba(0,82,120,.11);--danger:#e74c3c;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:var(--ink);background:
+  radial-gradient(circle at 10% 5%,rgba(57,191,242,.13),transparent 25%),
+  linear-gradient(135deg,#f9fdff,#eefaff);min-height:100vh;
+}
+body.dark{--bg:#071923;--ink:#eaf8ff;--muted:#9bb4c0;--panel:rgba(10,32,44,.88);--border:rgba(145,220,255,.14);background:#071923;color:var(--ink)}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{color:var(--sky2)}
+header.hero{min-height:180px;padding:35px 18px;background:linear-gradient(135deg,#06364d,#087eb8);color:white}
+.hero-inner{max-width:1100px;margin:auto;display:flex;justify-content:flex-end;align-items:center}
+.hero-card{width:min(380px,100%);padding:25px;border:1px solid rgba(255,255,255,.25);border-radius:24px;background:rgba(255,255,255,.10);backdrop-filter:blur(12px);box-shadow:0 20px 50px rgba(0,0,0,.16)}
+.hero-card .big{font-size:2rem}.hero-card strong{display:block;margin:8px 0}.hero-card span{font-size:.85rem;opacity:.85}
+.topbar{
+  width:min(100%,950px);margin:35px auto 20px;padding:20px;
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:20px;
+  position:relative;isolation:isolate;
+}
+.topbar:before{
+  content:"";position:absolute;inset:8px;border-radius:50%;
+  border:1px solid rgba(53,186,246,.12);pointer-events:none;z-index:-1;
+}
+.nav-btn{
+  --size:126px;width:var(--size);height:var(--size);min-width:var(--size);
+  border-radius:50%;border:1px solid rgba(53,186,246,.20);
+  background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(222,247,255,.72));
+  color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:3px;padding:10px;text-align:center;box-shadow:var(--shadow);
+  transition:transform .22s ease,box-shadow .22s ease,background .22s ease,color .22s ease;
+}
+body.dark .nav-btn{background:linear-gradient(145deg,#12394a,#092431)}
+.nav-btn:hover,.nav-btn.active{
+  transform:translateY(-5px) scale(1.04);background:linear-gradient(145deg,var(--sky),var(--sky2));
+  color:white;box-shadow:0 18px 42px rgba(8,126,184,.28)
+}
+.nav-num{font-size:.56rem;font-weight:800;opacity:.65}
+.nav-icon{font-size:1.65rem;line-height:1}
+.nav-label{font-size:.70rem;font-weight:800;line-height:1.15;max-width:92%}
+#customNav{display:contents}
+.tools{
+  width:min(100%,1000px);margin:0 auto 30px;padding:0 15px;
+  display:grid;grid-template-columns:1fr auto auto;gap:10px
+}
+.search,.tool-btn{
+  min-height:44px;border:1px solid var(--border);background:var(--panel);
+  border-radius:14px;box-shadow:var(--shadow);backdrop-filter:blur(12px)
+}
+.search{display:flex;align-items:center;padding:0 13px;gap:9px}
+.search input{width:100%;border:0;outline:0;background:transparent;color:var(--ink)}
+.tool-btn{padding:0 15px;color:var(--ink)}
+main{width:min(100%,1050px);margin:0 auto;padding:0 15px 50px}
+.section{display:none}.section.active{display:block}
+.section-head{margin:10px 0 18px}.section-head h2{margin:0;font-size:clamp(1.5rem,4vw,2.2rem)}.section-head p{color:var(--muted);font-size:.86rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card{
+  position:relative;padding:20px;border-radius:20px;border:1px solid var(--border);
+  background:var(--panel);box-shadow:var(--shadow);backdrop-filter:blur(12px);
+  transition:transform .2s ease,box-shadow .2s ease
+}
+.card:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,82,120,.15)}
+.card img{width:100%;max-height:210px;object-fit:cover;border-radius:14px;margin-bottom:12px}
+.card .serial{font-size:.65rem;color:var(--sky2);font-weight:800}.card h3{margin:8px 0}.card p{color:var(--muted);line-height:1.65}
+.socials,.flash-socials{display:flex;gap:8px;margin-top:12px}.socials a,.flash-socials a{padding:7px 10px;border-radius:10px;background:rgba(53,186,246,.08)}
+.delete{position:absolute;right:12px;top:12px;border:0;border-radius:9px;padding:7px;background:rgba(231,76,60,.10);color:var(--danger)}
+.about-card{max-width:800px;margin:auto}
+.admin-dot{
+  display:block!important;width:9px!important;height:9px!important;min-width:9px!important;
+  min-height:9px!important;padding:0!important;margin:22px 0 0 auto!important;
+  border-radius:50%!important;border:1px solid rgba(53,186,246,.55)!important;
+  background:rgba(53,186,246,.55)!important;box-shadow:0 0 0 3px rgba(53,186,246,.07);
+  opacity:.6
+}
+.admin-dot:hover{opacity:1;transform:scale(1.3)}
+.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:15px;background:rgba(0,20,30,.60);z-index:1000}
+.modal.open{display:flex}
+.modal-box{
+  width:min(100%,720px);max-height:90vh;overflow:auto;padding:22px;border-radius:22px;
+  background:var(--panel);border:1px solid var(--border);box-shadow:0 25px 70px rgba(0,0,0,.25)
+}
+.close{float:right;border:0;background:transparent;font-size:1.1rem;color:var(--muted)}
+.modal-box label{display:block;margin:13px 0 5px;font-size:.78rem;font-weight:700}
+.modal-box input,.modal-box textarea,.modal-box select{
+  width:100%;padding:11px;border:1px solid var(--border);border-radius:11px;
+  background:rgba(255,255,255,.6);color:var(--ink);outline:0
+}
+body.dark .modal-box input,body.dark .modal-box textarea,body.dark .modal-box select{background:rgba(0,0,0,.16)}
+.modal-box textarea{min-height:130px;resize:vertical}
+.primary{
+  margin-top:14px;width:100%;padding:11px;border:0;border-radius:12px;
+  background:linear-gradient(135deg,var(--sky),var(--sky2));color:#fff;font-weight:800
+}
+.tabs{display:flex;gap:7px;margin:15px 0;flex-wrap:wrap}.tab{border:1px solid var(--border);padding:9px 12px;border-radius:10px;background:transparent;color:var(--ink)}.tab.active{background:var(--sky);color:white}
+.panel{display:none}.panel.active{display:block}
+.list-item{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:.82rem}
+.small-actions button{border:0;border-radius:8px;padding:6px 9px;background:rgba(53,186,246,.10);color:var(--ink)}
+.notice{padding:12px;border-radius:12px;background:rgba(53,186,246,.07);border:1px solid var(--border)}
+.flash-modal-body img{max-width:100%;max-height:340px;display:block;margin:auto;border-radius:15px}
+.flash-link{display:inline-block;margin-top:15px;font-weight:800}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:2000;background:#102d3b;color:#fff;padding:10px 15px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+footer{text-align:center;padding:24px 15px;color:var(--muted);font-size:.8rem;border-top:1px solid var(--border)}
+@media(max-width:700px){
+  .topbar{gap:12px;padding:12px;margin-top:20px}.nav-btn{--size:92px;width:var(--size);height:var(--size)}
+  .nav-icon{font-size:1.3rem}.nav-label{font-size:.57rem}.nav-num{font-size:.46rem}
+  .tools{grid-template-columns:1fr 1fr}.search{grid-column:1/-1}
+}
+@media(max-width:420px){
+  .topbar{gap:9px}.nav-btn{--size:78px;width:var(--size);height:var(--size);padding:6px}
+  .nav-icon{font-size:1.05rem}.nav-label{font-size:.50rem}
+  .grid{grid-template-columns:1fr}.hero{padding:25px 12px}
+}
+@media(pointer:coarse){.nav-btn{touch-action:manipulation}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+
+<section class="creation-strip" aria-label="প্রকৃতির সৌন্দর্য">
+  <div class="creation-overlay">
+    <div class="creation-copy">
+      <span class="creation-kicker">🌿 আল্লাহর সৃষ্টি</span>
+      <h2>প্রকৃতির সৌন্দর্যে শেখার নতুন সকাল</h2>
+      <p>আকাশ, পাহাড়, নদী ও সবুজের সৌন্দর্য আমাদের চারপাশের নিদর্শন—শিখি, ভাবি এবং কৃতজ্ঞ হই।</p>
+    </div>
+  </div>
+</section>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="brand" aria-hidden="true"></div>
+    <div class="hero-card">
+      <div class="big">📚 ☪️</div>
+      <strong>Learn • Reflect • Improve</strong>
+      <span>জ্ঞান অর্জন করুন, চিন্তা করুন, নিজেকে উন্নত করুন।</span>
+    </div>
+  </div>
+</header>
+
+<nav class="topbar" id="mainNav">
+  <button class="nav-btn active" data-section="english"><span class="nav-num">01</span><span class="nav-icon">🔤</span><span class="nav-label" data-bn="চলো ইংরেজি শিখি" data-en="Let's Learn English">চলো ইংরেজি শিখি</span></button>
+  <button class="nav-btn" data-section="math"><span class="nav-num">02</span><span class="nav-icon">🧮</span><span class="nav-label" data-bn="গণিতের হিরো" data-en="Math Hero">গণিতের হিরো</span></button>
+  <button class="nav-btn" data-section="novels"><span class="nav-num">03</span><span class="nav-icon">📚</span><span class="nav-label" data-bn="উপন্যাস" data-en="Novels">উপন্যাস</span></button>
+  <button class="nav-btn" data-section="poems"><span class="nav-num">04</span><span class="nav-icon">📜</span><span class="nav-label" data-bn="কবিতা" data-en="Poems">কবিতা</span></button>
+  <button class="nav-btn" data-section="qa"><span class="nav-num">05</span><span class="nav-icon">❓</span><span class="nav-label" data-bn="প্রশ্ন ও উত্তর" data-en="Q & A">প্রশ্ন ও উত্তর</span></button>
+  <button class="nav-btn" data-section="thoughts"><span class="nav-num">06</span><span class="nav-icon">💭</span><span class="nav-label" data-bn="আমার চিন্তা" data-en="My Thoughts">আমার চিন্তা</span></button>
+  <button class="nav-btn" data-section="about"><span class="nav-num">07</span><span class="nav-icon">🕌</span><span class="nav-label" data-bn="আমাদের সম্পর্কে" data-en="About Us">আমাদের সম্পর্কে</span></button>
+  <span id="customNav"></span>
+</nav>
+
+<div class="tools">
+  <div class="search"><i class="fa-solid fa-magnifying-glass"></i><input id="search" placeholder="এই বিভাগে খুঁজুন..."></div>
+  <button class="tool-btn" id="langBtn">EN ⇄ BN</button>
+  <button class="tool-btn" id="themeBtn">☀️ Light</button>
+</div>
+
+<main>
+  <section class="section active" id="english">
+    <div class="section-head"><div><h2>🔤 চলো ইংরেজি শিখি</h2><p>Vocabulary, grammar ও everyday English শেখার জায়গা।</p></div></div>
+    <div class="grid" id="englishGrid"></div>
+  </section>
+
+  <section class="section" id="math">
+    <div class="section-head"><div><h2>🧮 গণিতের হিরো</h2><p>ধাপে ধাপে problem solving ও practice-এর জন্য।</p></div></div>
+    <div class="grid" id="mathGrid"></div>
+  </section>
+
+  <section class="section" id="novels">
+    <div class="section-head"><div><h2>📚 উপন্যাস</h2><p>আপনার আগের লিংকগুলো অপরিবর্তিত রাখা হয়েছে।</p></div></div>
+    <div class="grid" id="novelsGrid"></div>
+  </section>
+
+  <section class="section" id="poems">
+    <div class="section-head"><div><h2>📜 কবিতা</h2><p>আপনার আগের লিংকগুলো অপরিবর্তিত রাখা হয়েছে।</p></div></div>
+    <div class="grid" id="poemsGrid"></div>
+  </section>
+
+  <section class="section" id="qa">
+    <div class="section-head"><div><h2>❓ প্রশ্ন ও উত্তর</h2><p>জ্ঞানভিত্তিক প্রশ্নোত্তর ও ব্যাখ্যা।</p></div></div>
+    <div class="grid" id="qaGrid"></div>
+  </section>
+
+  <section class="section" id="thoughts">
+    <div class="section-head"><div><h2>💭 আমার চিন্তা</h2><p>চিন্তা, শিক্ষা ও আত্মউন্নয়নের লেখা।</p></div></div>
+    <div class="grid" id="thoughtsGrid"></div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="card about-card">
+      <span class="serial">07</span>
+      <h2>আব্দুর রহীম — আলোর সন্ধানী</h2>
+      <p style="margin-top:12px">আমি আব্দুর রহীম, ইসলামী জ্ঞান, হৃদয়গ্রাহী কবিতা, আত্মিক উপন্যাস এবং উম্মাহর জন্য চিন্তা-ভাবনা ছড়িয়ে দিতে আগ্রহী।</p>
+      <p style="margin-top:12px"><a href="https://www.facebook.com/share/1DFxFFbQaC/" target="_blank" rel="noopener">Knowledge of Islam (Facebook)</a></p>
+      <p style="margin-top:12px">এই প্ল্যাটফর্ম <strong>نور المعرفة (নূর আল-মা'রিফাহ)</strong> হৃদয়কে সৎপথে, ধৈর্য ও ঈমানের আলোয় উদ্বুদ্ধ করার একটি নম্র প্রচেষ্টা।</p>
+      <p class="notice" style="margin-top:16px">📖 "আপনার প্রভুর পথে প্রজ্ঞা ও সুন্দর উপদেশের মাধ্যমে আহ্বান করুন।" (কুরআন ১৬:১২৫)</p>
+      <!-- Admin access button inside About section -->
+      <button class="admin-dot" id="adminFromAbout" aria-label="Admin" title="Admin"></button>
+    </div>
+  </section>
+</main>
+
+<footer>© ২০২৬ | নির্মাতা <strong>আব্দুর রহীম</strong> | মুসলিম উম্মাহর জন্য ﷺ</footer>
+
+
+
+
+<!-- Flashcard reader -->
+<div class="modal" id="flashModal">
+  <div class="modal-box">
+    <button class="close" data-close="flashModal">✕</button>
+    <div id="flashModalBody" class="flash-modal-body"></div>
+  </div>
+</div>
+
+<!-- Password -->
+<div class="modal" id="passwordModal">
+  <div class="modal-box" style="max-width:390px">
+    <button class="close" data-close="passwordModal">✕</button>
+    <h3>🔐 অ্যাডমিন প্রবেশ</h3>
+    <p style="color:var(--muted);font-size:.88rem">পাসওয়ার্ড দিয়ে প্রবেশ করুন।</p>
+    <label>পাসওয়ার্ড</label><input id="password" type="password" autocomplete="current-password">
+    <div id="pwError" style="color:#e53935;min-height:24px;margin-top:7px"></div>
+    <button class="primary" id="loginBtn">প্রবেশ করুন</button>
+  </div>
+</div>
+
+<!-- Admin -->
+<div class="modal" id="adminModal">
+  <div class="modal-box">
+    <button class="close" data-close="adminModal">✕</button>
+    <h3>⚙️ Control Panel</h3><div class="admin-only-note">🔒 Delete/restore controls are available only after Admin unlock.</div>
+    <div class="tabs">
+      <button class="tab active" data-tab="contentPanel">Content</button>
+      <button class="tab" data-tab="buttonPanel">New Button</button>
+      <button class="tab" data-tab="managePanel">Manage</button>
+    </div>
+
+    <div class="panel active" id="contentPanel">
+      <label>Section / Button</label>
+      <select id="entrySection">
+        <option value="english">🔤 চলো ইংরেজি শিখি</option>
+        <option value="math">🧮 গণিতের হিরো</option>
+        <option value="novels">📚 উপন্যাস</option>
+        <option value="poems">📜 কবিতা</option>
+        <option value="qa">❓ Q & A</option>
+        <option value="thoughts">💭 My Thoughts</option>
+        <option value="about">🕌 About Us</option>
+      </select>
+      <label>Title</label><input id="entryTitle" placeholder="শিরোনাম">
+      <label>Content</label><textarea id="entryContent" placeholder="বিষয়বস্তু..."></textarea>
+      <label>Image file (optional)</label><input id="entryImageFile" type="file" accept="image/*"><label>Image URL (optional)</label><input id="entryImage" placeholder="https://... অথবা GitHub raw image URL">
+      <label>Page / External Link (optional)</label><input id="entryLink" placeholder="https://... বা your-page.html">
+      <label>Facebook (optional)</label><input id="entryFacebook" placeholder="https://facebook.com/...">
+      <label>YouTube (optional)</label><input id="entryYoutube" placeholder="https://youtube.com/...">
+      <label>Other Social Link (optional)</label><input id="entrySocial" placeholder="https://...">
+      <button class="primary" id="addEntry">➕ Save Content</button>
+    </div>
+
+    <div class="panel" id="buttonPanel">
+      <label>Button name (Bangla)</label><input id="buttonBn" placeholder="যেমন: বিজ্ঞান জগৎ">
+      <label>Button name (English)</label><input id="buttonEn" placeholder="e.g. Science World">
+      <label>Icon / Emoji</label><input id="buttonIcon" value="📘" maxlength="4">
+      <label>Short description</label><input id="buttonDesc" placeholder="এই বিভাগের পরিচিতি">
+      <button class="primary" id="addButton">➕ Create New Button</button>
+    </div>
+
+    <div class="panel" id="managePanel">
+      <p style="color:var(--muted);font-size:.86rem;margin-bottom:10px">শুধু Admin unlock করার পর এখান থেকে content/flashcard/button delete বা restore করা যাবে।</p>
+      <div id="manageList"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* Existing links preserved from the supplied website. */
+const staticData = {
+  english: [],    // now empty – all content added via admin
+  math: [],       // now empty – all content added via admin
+  poems: [
+    {title:"ভালো যদি হতে চাও",desc:"আরও এগিয়ে যাও মঙ্গলের সন্ধানে।",link:"valoo.html"},
+    {title:"নামাজ",desc:"সর্বশক্তিমান আল্লাহর নির্দেশনা লাভের জন্য সালাত আদায় করুন।",link:"namaj.html"},
+    {title:"অনুভূতি",desc:"মনের কল্পনা।",link:"onuvuti.html"},
+    {title:"ধৈর্য (সবর)",desc:"সহনশীলতা ও আস্থা।",link:"d.html"}
+  ],
+  novels: [
+    {title:"জীবনের উদ্দেশ্য",desc:"এই জীবন কেন?।",link:"yes.html"},
+    {title:"যোগ্যতা: চরম সাফল্য",desc:"আধ্যাত্মিক যাত্রা।",link:"merit.html"},
+    {title:"সে বিচার চায়",desc:"অন্যায় লুকানো যায় না।",link:"Justice.html"},
+    {title:"কিভাবে শত্রুকে কষ্ট দিতে হয়",desc:"গোপন পদ্ধতি",link:"f.html"},
+    {title:"প্রত্যেক মানুষের দায়িত্ব",desc:"পাঠ করুন আপনার প্রভুর নামে",link:"g.html"}
+  ],
+  qa: [{title:"জীবনের চাবিকাঠি",desc:"মূল বিশ্বাস।",link:"h.html"}],
+  thoughts: [{title:"আমার চিন্তা",desc:"আমার ভালোবাসার ভাগাভাগি..",link:"n.html"}]
+};
+
+const labels={english:"চলো ইংরেজি শিখি",math:"গণিতের হিরো",novels:"উপন্যাস",poems:"কবিতা",qa:"প্রশ্ন ও উত্তর",thoughts:"আমার চিন্তা",about:"আমাদের সম্পর্কে"};
+const icons={english:"🔤",math:"🧮",novels:"📚",poems:"📜",qa:"❓",thoughts:"💭",about:"🕌"};
+let dynamicEntries = JSON.parse(localStorage.getItem("noor_entries") || "{}");
+let deletedStatic = JSON.parse(localStorage.getItem("noor_deleted_static") || "{}");
+let customButtons = JSON.parse(localStorage.getItem("noor_buttons") || "[]");
+let lang = localStorage.getItem("noor_lang") || "bn";
+let adminUnlocked=false;
+
+const $=s=>document.querySelector(s);
+const $$=s=>document.querySelectorAll(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+
+function save(){localStorage.setItem("noor_entries",JSON.stringify(dynamicEntries));localStorage.setItem("noor_buttons",JSON.stringify(customButtons));localStorage.setItem("noor_deleted_static",JSON.stringify(deletedStatic))}
+function toast(msg){const t=document.createElement("div");t.className="toast";t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2500)}
+function sectionExists(id){return !!document.getElementById(id)}
+function sectionTitle(id){return labels[id] || customButtons.find(b=>b.id===id)?.bn || "বিভাগ"}
+
+function createSectionForButton(btn){
+  const sec=document.createElement("section");sec.className="section";sec.id=btn.id;
+  sec.innerHTML=`<div class="section-head"><div><h2>${esc(btn.icon)} ${esc(btn.bn)}</h2><p>${esc(btn.desc||"নতুন শিক্ষামূলক বিভাগ")}</p></div></div><div class="grid" id="${btn.id}Grid"></div>`;
+  $("main").appendChild(sec);
+}
+function renderCustomButtons(){
+  const wrap=$("#customNav"); if(!wrap)return;
+  wrap.innerHTML="";
+  customButtons.forEach((b,i)=>{
+    if(!sectionExists(b.id))createSectionForButton(b);
+    const el=document.createElement("button");
+    el.type="button";
+    el.className="nav-btn";
+    el.dataset.section=b.id;
+    el.innerHTML=`<span class="nav-num">${String(8+i).padStart(2,"0")}</span>
+      <span class="nav-icon">${esc(b.icon||"📘")}</span>
+      <span class="nav-label" data-bn="${esc(b.bn)}" data-en="${esc(b.en||b.bn)}">${esc(lang==="bn"?b.bn:(b.en||b.bn))}</span>`;
+    wrap.appendChild(el);
+  });
+}
+function isDeletedStatic(section, link){
+  return !!((deletedStatic[section]||[]).includes(link));
+}
+function cardHTML(item, section, i, dynamic=false){
+  const label=sectionTitle(section);
+  const link=item.link || "";
+  const title = `${esc(item.title)}`;
+  const image=item.image?`<img src="${esc(item.image)}" alt="${esc(item.title)}" loading="lazy" onerror="this.style.display='none'">`:"";
+  const socials=[
+    item.facebook&&`<a href="${esc(item.facebook)}" target="_blank" rel="noopener" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>`,
+    item.youtube&&`<a href="${esc(item.youtube)}" target="_blank" rel="noopener" title="YouTube"><i class="fa-brands fa-youtube"></i></a>`,
+    item.social&&`<a href="${esc(item.social)}" target="_blank" rel="noopener" title="Social"><i class="fa-solid fa-link"></i></a>`
+  ].filter(Boolean).join("");
+  const deleteButton = dynamic
+    ? `<button class="delete" onclick="event.stopPropagation();deleteDynamic('${esc(section)}',${Number(item.id)})" title="Delete"><i class="fa-solid fa-trash"></i></button>`
+    : `<button class="delete" onclick="event.stopPropagation();deleteStatic('${esc(section)}','${esc(link)}')" title="Delete"><i class="fa-solid fa-trash"></i></button>`;
+  const data = encodeURIComponent(JSON.stringify({
+    title:item.title||"", content:item.content||item.desc||"", image:item.image||"",
+    link, facebook:item.facebook||"", youtube:item.youtube||"", social:item.social||"",
+    section:label
+  }));
+  return `<article class="card flashcard" tabindex="0" data-flash="${data}">
+    ${deleteButton}
+    ${image}
+    <span class="serial">${String(i+1).padStart(2,"0")} · ${esc(label)}</span>
+    <h3>${title}</h3>
+    <p>${esc(item.content||item.desc||"")}</p>
+    ${socials?`<div class="socials">${socials}</div>`:""}
+  </article>`;
+}
+function renderSection(section){
+  const grid=document.getElementById(section+"Grid");if(!grid)return;
+  const base=(staticData[section]||[]).filter(x=>!isDeletedStatic(section,x.link));
+  const dyn=dynamicEntries[section]||[];
+  grid.innerHTML=base.map((x,i)=>cardHTML({...x,content:x.desc},section,i,false)).join("")+
+    dyn.map((x,i)=>cardHTML(x,section,base.length+i,true)).join("");
+  bindFlashcards(grid);
+}
+function bindFlashcards(root=document){
+  root.querySelectorAll(".flashcard").forEach(card=>{
+    if(card.dataset.bound)return;
+    card.dataset.bound="1";
+    const open=()=>{
+      let data;try{data=JSON.parse(decodeURIComponent(card.dataset.flash))}catch{return}
+      openFlashcard(data);
+    };
+    card.addEventListener("click",e=>{
+      if(e.target.closest("button"))return;
+      open();
+    });
+    card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open()}});
+  });
+}
+function openFlashcard(item){
+  const social = [
+    item.facebook&&`<a href="${esc(item.facebook)}" target="_blank" rel="noopener">📘 Facebook</a>`,
+    item.youtube&&`<a href="${esc(item.youtube)}" target="_blank" rel="noopener">▶️ YouTube</a>`,
+    item.social&&`<a href="${esc(item.social)}" target="_blank" rel="noopener">🔗 Social link</a>`
+  ].filter(Boolean).join("");
+  $("#flashModalBody").innerHTML=`
+    ${item.image?`<img src="${esc(item.image)}" alt="${esc(item.title)}" onerror="this.style.display='none'">`:""}
+    <span class="serial">${esc(item.section||"Learning")}</span>
+    <h2 style="margin:10px 0">${esc(item.title)}</h2>
+    <div style="white-space:pre-wrap">${esc(item.content||"")}</div>
+    ${item.link?`<a class="flash-link" href="${esc(item.link)}" ${/^https?:/i.test(item.link)?'target="_blank" rel="noopener"':''}>📖 Open full page</a>`:""}
+    ${social?`<div class="flash-socials">${social}</div>`:""}
+  `;
+  openModal("flashModal");
+}
+
+function renderAll(){
+  // Render all sections that have a grid
+  ["english","math","poems","novels","qa","thoughts"].forEach(renderSection);
+  Object.keys(dynamicEntries).filter(k=>!["english","math","poems","novels","qa","thoughts","about"].includes(k)).forEach(renderSection);
+  renderCustomButtons();
+  applyLang();
+  customButtons.forEach(b=>renderSection(b.id));
+  // No built-in cards to hide; all static are now in staticData (empty for english/math)
+  updateManage();
+  applyAdminState();
+}
+function activate(id,btn){
+  $$(".section").forEach(s=>s.classList.remove("active"));
+  const sec=$("#"+CSS.escape(id)); if(sec)sec.classList.add("active");
+  $$(".nav-btn").forEach(x=>x.classList.remove("active")); if(btn)btn.classList.add("active");
+  $("#search").value=""; filter();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+$("#mainNav").addEventListener("click",e=>{const b=e.target.closest(".nav-btn");if(b)activate(b.dataset.section,b)});
+function filter(){
+  const q=$("#search").value.trim().toLowerCase();
+  const active=$(".section.active"); if(!active)return;
+  active.querySelectorAll(".card").forEach(c=>c.style.display=!q||c.textContent.toLowerCase().includes(q)?"":"none");
+}
+$("#search").addEventListener("input",filter);
+
+function applyLang(){
+  $$("[data-bn]").forEach(el=>el.textContent=lang==="bn"?el.dataset.bn:el.dataset.en);
+  $("#langBtn").textContent=lang==="bn"?"EN ⇄ BN":"BN ⇄ EN";
+  localStorage.setItem("noor_lang",lang);
+}
+$("#langBtn").onclick=()=>{lang=lang==="bn"?"en":"bn";applyLang()};
+
+function applyTheme(){
+  const dark=localStorage.getItem("noor_theme")==="dark";document.body.classList.toggle("dark",dark);
+  $("#themeBtn").textContent=dark?"☀️ Light":"🌙 Dark";
+}
+$("#themeBtn").onclick=()=>{localStorage.setItem("noor_theme",document.body.classList.contains("dark")?"light":"dark");applyTheme()};
+
+function openModal(id){$("#"+id).classList.add("open")}
+function closeModal(id){$("#"+id).classList.remove("open")}
+$$("[data-close]").forEach(b=>b.onclick=()=>closeModal(b.dataset.close));
+$$(".modal").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)m.classList.remove("open")}));
+
+// Admin access from About button
+$("#adminFromAbout").onclick=()=>{
+  if(adminUnlocked){
+    applyAdminState();
+    updateManage();
+    openModal("adminModal");
+  } else {
+    openModal("passwordModal");
+  }
+};
+
+$("#loginBtn").onclick=()=>{
+  if($("#password").value==="EDC@2012"){
+    adminUnlocked=true;document.body.classList.add("admin-on");closeModal("passwordModal");openModal("adminModal");$("#pwError").textContent="";updateManage();
+  }else{$("#pwError").textContent="❌ ভুল পাসওয়ার্ড";}
+};
+$("#password").addEventListener("keydown",e=>{if(e.key==="Enter")$("#loginBtn").click()});
+
+$$(".tab").forEach(t=>t.onclick=()=>{$$(".tab").forEach(x=>x.classList.remove("active"));$(".panel").forEach(x=>x.classList.remove("active"));t.classList.add("active");$("#"+t.dataset.tab).classList.add("active");if(t.dataset.tab==="managePanel")updateManage()});
+
+$("#addEntry").onclick=async()=>{
+  const section=$("#entrySection").value,title=$("#entryTitle").value.trim(),content=$("#entryContent").value.trim();
+  if(!title||!content){toast("⚠️ Title এবং Content পূরণ করুন");return}
+  let image=$("#entryImage").value.trim();
+  if($("#entryImageFile")?.files?.[0]){
+    const file=$("#entryImageFile").files[0];
+    if(file.size>2*1024*1024){toast("⚠️ Image 2MB-এর মধ্যে রাখুন");return}
+    image=await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file)});
+  }
+  if(!dynamicEntries[section])dynamicEntries[section]=[];
+  dynamicEntries[section].push({id:Date.now()+Math.floor(Math.random()*1000),title,content,image,link:$("#entryLink").value.trim(),facebook:$("#entryFacebook").value.trim(),youtube:$("#entryYoutube").value.trim(),social:$("#entrySocial").value.trim()});
+  save();renderAll();
+  ["entryTitle","entryContent","entryImage","entryLink","entryFacebook","entryYoutube","entrySocial"].forEach(id=>$("#"+id).value="");
+  if($("#entryImageFile"))$("#entryImageFile").value="";
+  toast("✅ Content published");
+};
+function requireAdmin(){
+  if(!adminUnlocked){toast("🔐 শুধু Admin content delete করতে পারবেন");openModal("passwordModal");return false}
+  return true;
+}
+function deleteStatic(section,link){
+  if(!requireAdmin())return;
+  if(!confirm("এই স্থায়ী flashcard-টি এই browser-এ লুকিয়ে/মুছে ফেলবেন?"))return;
+  if(!deletedStatic[section])deletedStatic[section]=[];
+  if(!deletedStatic[section].includes(link))deletedStatic[section].push(link);
+  save();renderAll();toast("🗑️ Flashcard deleted for this site browser");
+}
+
+function deleteDynamic(section,id){
+  if(!requireAdmin())return;
+  if(!confirm("এই content মুছে ফেলবেন?"))return;
+  dynamicEntries[section]=(dynamicEntries[section]||[]).filter(x=>x.id!==id);save();renderAll();toast("🗑️ Content deleted");
+}
+$("#addButton").onclick=()=>{
+  const bn=$("#buttonBn").value.trim(),en=$("#buttonEn").value.trim()||bn;
+  if(!bn){toast("⚠️ Button name দিন");return}
+  const id="custom_"+Date.now();
+  customButtons.push({id,bn,en,icon:$("#buttonIcon").value.trim()||"📘",desc:$("#buttonDesc").value.trim()});
+  dynamicEntries[id]=[];save();renderAll();activate(id,$(`.nav-btn[data-section="${CSS.escape(id)}"]`));["buttonBn","buttonEn","buttonDesc"].forEach(x=>$("#"+x).value="");toast("✅ New button created");
+};
+function deleteCustom(id){
+  if(!requireAdmin())return;
+  if(!confirm("এই custom button এবং এর content মুছে ফেলবেন?"))return;
+  customButtons=customButtons.filter(b=>b.id!==id);delete dynamicEntries[id];save();$("#"+id)?.remove();renderAll();activate("english",$(`.nav-btn[data-section="english"]`));
+}
+function updateManage(){
+  const box=$("#manageList");
+  if(!box)return;
+
+  let h=`<div class="notice" style="margin-bottom:14px">
+    🔐 <strong>Admin-only Content Manager</strong><br>
+    এখানে সব flashcard/content-এর তালিকা আছে। Delete/Restore শুধু Admin unlock করার পর কাজ করবে।
+  </div>`;
+
+  const sections=["english","math","novels","poems","qa","thoughts","about"];
+
+  sections.forEach(sec=>{
+    const items=staticData[sec]||[];
+    if(!items.length)return;
+    h+=`<h4 style="margin:16px 0 7px">${esc(sectionTitle(sec))}</h4>`;
+    items.forEach(item=>{
+      const deleted=isDeletedStatic(sec,item.link||"");
+      h+=`<div class="list-item">
+        <span>${deleted?"🚫":"📄"} ${esc(item.title)}</span>
+        <div class="small-actions">
+          ${deleted
+            ? `<button type="button" onclick="restoreStatic('${esc(sec)}','${esc(item.link||"")}')">↩️ Restore</button>`
+            : `<button type="button" onclick="deleteStatic('${esc(sec)}','${esc(item.link||"")}')">🗑️ Delete</button>`}
+        </div>
+      </div>`;
+    });
+  });
+
+  // No built-in cards for english/math anymore – they are in staticData (empty) or dynamic
+  // But we still need to show dynamic entries from all sections
+  Object.keys(dynamicEntries).forEach(sec=>{
+    (dynamicEntries[sec]||[]).forEach(e=>{
+      h+=`<div class="list-item">
+        <span>➕ ${esc(sectionTitle(sec))} — ${esc(e.title)}</span>
+        <div class="small-actions">
+          <button type="button" onclick="deleteDynamic('${esc(sec)}',${Number(e.id)})">🗑️ Delete</button>
+        </div>
+      </div>`;
+    });
+  });
+
+  if(customButtons.length){
+    h+=`<h4 style="margin:16px 0 7px">🔘 Custom Buttons</h4>`;
+    customButtons.forEach(b=>{
+      h+=`<div class="list-item">
+        <span>${esc(b.icon||"📘")} ${esc(b.bn)}</span>
+        <div class="small-actions">
+          <button type="button" onclick="deleteCustom('${esc(b.id)}')">🗑️ Delete</button>
+        </div>
+      </div>`;
+    });
+  }
+
+  box.innerHTML=h;
+}
+
+function restoreStatic(section,link){
+  if(!requireAdmin())return;
+  deletedStatic[section]=(deletedStatic[section]||[]).filter(x=>x!==link);
+  save();renderAll();toast("↩️ Flashcard restored");
+}
+
+function applyAdminState(){document.body.classList.toggle("admin-on",adminUnlocked)}
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button,.tool-btn");if(!b)return;
+  const r=document.createElement("span");r.className="ripple";const q=b.getBoundingClientRect(),s=Math.max(q.width,q.height);
+  r.style.width=r.style.height=s+"px";r.style.left=e.clientX-q.left-s/2+"px";r.style.top=e.clientY-q.top-s/2+"px";b.appendChild(r);setTimeout(()=>r.remove(),600);
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")$$(".modal.open").forEach(x=>x.classList.remove("open"))});
+
+// Cross-device layout safeguard: refresh dynamic layout after orientation/viewport changes.
+let resizeTimer;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    renderCustomButtons();
+    ["english","math","poems","novels","qa","thoughts"].forEach(renderSection);
+    customButtons.forEach(b=>renderSection(b.id));
+    filter();
+  }, 120);
+});
+window.addEventListener("orientationchange", () => {
+  setTimeout(() => window.dispatchEvent(new Event("resize")), 180);
+});
+
+renderAll();applyLang();applyTheme();activate("english",$(".nav-btn"));
+</script>
+</body>
+</html>
