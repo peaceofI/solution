@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Soptom Sranir Gonit</title>
+<style>
+:root{--bg:#061522;--card:rgba(11,34,51,.72);--text:#effaff;--muted:#a9c6d5;--a:#39dcff;--b:#7b6cff;--line:#ffffff1c}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:system-ui,Arial,sans-serif;color:var(--text);min-height:100vh;background:radial-gradient(circle at 10% 10%,#1b9bc52a,transparent 30%),radial-gradient(circle at 90% 20%,#765cff30,transparent 30%),linear-gradient(145deg,#030a11,#071d30 60%,#08111c)}
+.container{width:min(1120px,92%);margin:auto}header{text-align:center;padding:48px 0 28px}.badge{display:inline-block;padding:8px 14px;border:1px solid var(--line);border-radius:99px;background:#ffffff0b;color:#bdeeff;font-size:13px}h1{font-size:clamp(34px,7vw,64px);margin:15px 0 8px}.grad{background:linear-gradient(90deg,#fff,var(--a),#a58dff);color:transparent;background-clip:text}.sub{color:var(--muted);line-height:1.7;max-width:720px;margin:auto}.tools{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:25px 0 30px}.search{width:min(450px,100%);padding:14px 17px;border-radius:15px;border:1px solid var(--line);outline:0;background:#ffffff0a;color:white;font-size:15px}.playlist{padding:13px 18px;border-radius:15px;border:1px solid #ffffff20;background:linear-gradient(100deg,#39dcff,#7b6cff);color:#04111a;font-weight:800;cursor:pointer}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:18px;padding-bottom:35px}.card{position:relative;padding:23px;border:1px solid var(--line);border-radius:23px;background:var(--card);backdrop-filter:blur(16px);box-shadow:0 20px 55px #0005;transition:.25s;overflow:hidden}.card:hover{transform:translateY(-6px);border-color:#39dcff55}.num{font-size:12px;color:#79b5c9}.icon{font-size:30px;margin:10px 0}.card h2{font-size:20px;margin-bottom:8px}.card p{color:var(--muted);line-height:1.65;min-height:76px}.btn{width:100%;margin-top:17px;padding:13px;border:0;border-radius:13px;background:#ffffff10;color:white;border:1px solid #ffffff18;cursor:pointer;font-weight:800}.btn:hover{background:linear-gradient(100deg,#39dcff,#7b6cff);color:#03101a}.empty{text-align:center;color:var(--muted);display:none;padding:25px}footer{text-align:center;color:#7294a6;padding:5px 0 35px;font-size:13px}
+.modal{position:fixed;inset:0;background:#000b;display:none;place-items:center;padding:18px;z-index:5}.modal.show{display:grid}.box{width:min(600px,100%);background:#0a2032;border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 30px 90px #0009}.top{display:flex;justify-content:space-between;align-items:center;gap:12px}.close{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:#ffffff0b;color:white;font-size:21px;cursor:pointer}.box p{color:var(--muted);line-height:1.7;margin:15px 0}.open{display:inline-block;text-decoration:none;padding:12px 17px;border-radius:13px;background:linear-gradient(100deg,#39dcff,#7b6cff);color:#03101a;font-weight:900}
+@media(max-width:600px){header{padding-top:35px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<div class="badge">📐 NCTB • Class 7 • 2026</div>
+<h1><span class="grad">Soptom Sranir Gonit</span></h1>
+<p class="sub">সপ্তম শ্রেণির গণিত — অধ্যায়ভিত্তিক বাংলা YouTube lessons খুঁজে শেখার জন্য একটি সহজ, সুন্দর learning hub.</p>
+</header>
+<div class="tools">
+<input id="search" class="search" placeholder="🔎 অধ্যায় খুঁজুন...">
+<button id="playlist" class="playlist">▶ Full YouTube Playlist</button>
+</div>
+<div id="grid" class="grid"></div><div id="empty" class="empty">কোনো অধ্যায় পাওয়া যায়নি।</div>
+<footer>Learn • Practice • Solve • Succeed ✨</footer>
+</div>
+
+<div id="modal" class="modal">
+<div class="box">
+<div class="top"><h2 id="mt"></h2><button id="close" class="close">×</button></div>
+<p id="md"></p><a id="open" class="open" target="_blank" rel="noopener">▶ YouTube-এ Lesson দেখুন</a>
+</div></div>
+
+<script>
+const chapters=[
+["১","🔢","মূলদ ও অমূলদ সংখ্যা","Rational and Irrational Numbers","মূলদ ও অমূলদ সংখ্যার ধারণা, নিয়ম ও অনুশীলনী সমাধান","class 7 math 2026 chapter 1 মূলদ অমূলদ সংখ্যা NCTB Bangla"],
+["২","📊","সমানুপাত ও লাভ-ক্ষতি","Proportion, Profit and Loss","সমানুপাত, শতকরা, লাভ-ক্ষতি ও বাস্তব জীবনের সমস্যা","class 7 math 2026 chapter 2 সমানুপাত লাভ ক্ষতি NCTB Bangla"],
+["৩","📏","পরিমাপ","Measurement","দৈর্ঘ্য, ক্ষেত্রফল, আয়তন ও পরিমাপের গুরুত্বপূর্ণ সমস্যা","class 7 math 2026 chapter 3 পরিমাপ NCTB Bangla"],
+["৪","✖️","বীজগণিতীয় রাশির গুণ ও ভাগ","Multiplication and Division of Algebraic Expressions","বীজগাণিতিক রাশির গুণ, ভাগ ও অনুশীলনী","class 7 math 2026 chapter 4 বীজগণিতীয় রাশির গুণ ভাগ NCTB Bangla"],
+["৫","🧮","বীজগণিতীয় সূত্রাবলি ও প্রয়োগ","Algebraic Formulae and Applications","বীজগাণিতিক সূত্র ও সেগুলোর প্রয়োগ","class 7 math 2026 chapter 5 algebraic formula NCTB Bangla"],
+["৬","➗","বীজগণিতীয় ভগ্নাংশ","Algebraic Fractions","বীজগাণিতিক ভগ্নাংশের সরলীকরণ, যোগ-বিয়োগ ও অন্যান্য প্রয়োগ","class 7 math 2026 chapter 6 algebraic fractions NCTB Bangla"],
+["৭","⚖️","সরল সমীকরণ","Simple Equations","এক চলকের সরল সমীকরণ ও সমস্যা সমাধান","class 7 math 2026 chapter 7 simple equation NCTB Bangla"],
+["৮","📐","সমান্তরাল সরলরেখা","Parallel Straight Lines","সমান্তরাল সরলরেখা, কোণ ও উপপাদ্য","class 7 math 2026 chapter 8 parallel lines NCTB Bangla"],
+["৯","🔺","ত্রিভুজ","Triangles","ত্রিভুজের ধর্ম, উপপাদ্য, সম্পাদ্য ও অনুশীলনী","class 7 math 2026 chapter 9 triangle NCTB Bangla"],
+["১০","🔷","সর্বসমতা ও সদৃশতা","Congruence and Similarity","সর্বসমতা ও সদৃশতার ধারণা, উপপাদ্য ও প্রয়োগ","class 7 math 2026 chapter 10 congruence similarity NCTB Bangla"],
+["১১","📈","তথ্য ও উপাত্ত","Information and Data","তথ্য সংগ্রহ, উপাত্ত উপস্থাপন ও বিশ্লেষণ","class 7 math 2026 chapter 11 information data NCTB Bangla"]
+];
+
+const grid=document.getElementById("grid"),search=document.getElementById("search");
+function yt(q){return "https://www.youtube.com/results?search_query="+encodeURIComponent(q)}
+function render(list){
+grid.innerHTML=list.map((c,i)=>`<article class="card"><span class="num">অধ্যায় ${c[0]}</span><div class="icon">${c[1]}</div><h2>${c[2]}</h2><p>${c[4]}<br><small>${c[3]}</small></p><button class="btn" data-i="${i}">▶ এই অধ্যায়ের YouTube Lesson</button></article>`).join("");
+document.getElementById("empty").style.display=list.length?"none":"block";
+grid.querySelectorAll(".btn").forEach(b=>b.onclick=()=>show(list[+b.dataset.i]));
+}
+function show(c){mt.textContent="অধ্যায় "+c[0]+" — "+c[2];md.textContent=c[4]+" বাংলা ভাষায় YouTube lesson দেখতে নিচের button চাপুন।";open.href=yt(c[5]);modal.classList.add("show")}
+search.oninput=()=>{let q=search.value.toLowerCase();render(chapters.filter(c=>(c[2]+" "+c[3]+" "+c[4]).toLowerCase().includes(q)))};
+playlist.onclick=()=>location.href=yt("Class 7 Math NCTB 2026 full playlist Bangla");
+close.onclick=()=>modal.classList.remove("show");
+modal.onclick=e=>{if(e.target===modal)modal.classList.remove("show")};
+document.onkeydown=e=>{if(e.key==="Escape")modal.classList.remove("show")};
+render(chapters);
+</script>
+</body>
+</html>
